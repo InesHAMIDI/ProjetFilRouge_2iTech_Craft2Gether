@@ -1,4 +1,7 @@
 package fr.Craft2Gether.App.Repositories;
 
-public class UserRepository {
+import fr.Craft2Gether.App.Models.User;
+
+public class UserRepository extends GenericRepository<User, Long>{
+
 }
