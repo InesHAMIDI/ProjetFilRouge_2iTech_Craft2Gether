@@ -2,6 +2,7 @@ package fr.Craft2Gether.App.Models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ManyToAny;
 
 import java.util.Collection;
 import java.util.Set;
@@ -26,9 +27,9 @@ public class Liste {
     @ManyToOne
     private User creator;
 
-    @ManyToMany
+    @ManyToAny
     private Set<Bloc> blocs;
 
-    @ManyToMany
+    @ManyToAny
     private Set<Recette> recipes;
 }
