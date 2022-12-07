@@ -6,7 +6,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 
-import java.util.Collection;
 import java.util.Set;
 
 @Entity
