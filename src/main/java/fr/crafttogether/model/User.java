@@ -1,5 +1,15 @@
 package fr.crafttogether.model;
 
-public class User {
 
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructorpublic class User {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Integer num;
+	@NonNull
+	String nom;
 }

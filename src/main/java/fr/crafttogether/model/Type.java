@@ -1,6 +1,13 @@
 package fr.crafttogether.model;
 
 public enum Type {
-	NATURAL,
-	OBJECT
+	BLOC_NATUREL,
+	VEGETATION,
+	MINERAI,
+	ELEMENT_MECANIQUE,
+	BLOC_MANUFACTURE,
+	LIQUIDE,
+	BLOC_COLORE,
+	OBJET,
+	NETHER
 }
