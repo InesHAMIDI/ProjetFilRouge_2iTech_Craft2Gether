@@ -5,16 +5,16 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.2</version>
+		<version>3.0.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>fr.crafttogether</groupId>
+	<groupId>fr.crafftogether</groupId>
 	<artifactId>ProjetFilRouge_2iTech_Craft2Gether</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ProjetFilRouge_2iTech_Craft2Gether</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Craf2Gether</name>
+	<description>Projet fil Rouge Ines HAMIDI 2022 2023</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>19</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -47,6 +47,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+<groupId>com.mysql</groupId>
+<artifactId>mysql-connector-j</artifactId>
+<scope>runtime</scope>
+</dependency>
 	</dependencies>
 
 	<build>
