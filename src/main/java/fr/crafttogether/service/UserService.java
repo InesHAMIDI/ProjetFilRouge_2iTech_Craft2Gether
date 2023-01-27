@@ -2,10 +2,13 @@ package fr.crafttogether.service;
 
 import java.util.List;
 
+import fr.crafttogether.dao.UserRepository;
 import fr.crafttogether.model.User;
 
 public class UserService implements GenericService<User, Integer>{
 
+	UserRepository userRepository;
+	
 	@Override
 	public List<User> findAll() {
 		// TODO Auto-generated method stub
