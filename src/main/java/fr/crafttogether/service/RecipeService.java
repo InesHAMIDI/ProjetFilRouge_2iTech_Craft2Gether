@@ -2,10 +2,13 @@ package fr.crafttogether.service;
 
 import java.util.List;
 
+import fr.crafttogether.dao.RecipeRepository;
 import fr.crafttogether.model.Recipe;
 
 public class RecipeService implements GenericService<Recipe, Integer> {
 
+	RecipeRepository recipeRepository;
+	
 	@Override
 	public List<Recipe> findAll() {
 		// TODO Auto-generated method stub

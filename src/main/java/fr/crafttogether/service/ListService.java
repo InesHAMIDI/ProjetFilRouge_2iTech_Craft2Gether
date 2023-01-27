@@ -1,37 +1,41 @@
 package fr.crafttogether.service;
 
+import fr.crafttogether.dao.BlockRepository;
+import fr.crafttogether.dao.ListRepository;
+import fr.crafttogether.dao.RecipeRepository;
 import fr.crafttogether.model.List;
 
 public class ListService  implements GenericService<List, Integer> {
 
+	ListRepository listRepository;
+	BlockRepository blockRepository;
+	RecipeRepository recipeRepository;
+	
 	@Override
 	public java.util.List<List> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return listRepository.findAll();
 	}
 
 	@Override
 	public List findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return listRepository.findById(id).orElse(null);
 	}
 
 	@Override
 	public List save(List elt) {
-		// TODO Auto-generated method stub
-		return null;
+		blockRepository.saveAll(elt.getBlocks());
+		recipeRepository.saveAll(elt.getRecipes());
+		return listRepository.save(elt);
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		
+		listRepository.deleteById(id);
 	}
 
 	@Override
 	public List update(List elt) {
-		// TODO Auto-generated method stub
-		return null;
+		return listRepository.save(elt);
 	}
 
 }
