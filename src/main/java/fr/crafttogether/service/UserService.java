@@ -2,41 +2,40 @@ package fr.crafttogether.service;
 
 import java.util.List;
 
+import fr.crafttogether.dao.ListRepository;
 import fr.crafttogether.dao.UserRepository;
 import fr.crafttogether.model.User;
 
 public class UserService implements GenericService<User, Integer>{
 
 	UserRepository userRepository;
+	ListRepository listRepository;
 	
 	@Override
 	public List<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepository.findAll();
 	}
 
 	@Override
 	public User findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepository.findById(id).orElse(null);
 	}
 
 	@Override
 	public User save(User elt) {
-		// TODO Auto-generated method stub
-		return null;
+		listRepository.saveAll(elt.getLists());
+		return userRepository.save(elt);
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+		userRepository.deleteById(id);
 		
 	}
 
 	@Override
 	public User update(User elt) {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepository.save(elt);
 	}
 
 }
