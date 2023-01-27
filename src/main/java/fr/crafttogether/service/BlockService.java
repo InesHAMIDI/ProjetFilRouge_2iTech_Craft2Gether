@@ -3,40 +3,39 @@ package fr.crafttogether.service;
 import java.util.List;
 
 import fr.crafttogether.dao.BlockRepository;
+import fr.crafttogether.dao.RecipeRepository;
 import fr.crafttogether.model.Block;
 
 public class BlockService implements GenericService<Block, Integer> {
 
 	BlockRepository blockRepository;
+	RecipeRepository recipeRepository;
 	
 	@Override
 	public List<Block> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return blockRepository.findAll();
 	}
 
 	@Override
 	public Block findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return blockRepository.findById(id).orElse(null);
 	}
 
 	@Override
 	public Block save(Block elt) {
-		// TODO Auto-generated method stub
-		return null;
+		recipeRepository.saveAll(elt.getRecipesImAComponent());
+		recipeRepository.saveAll(elt.getRecipesToMakeMe());
+		return blockRepository.save(elt);
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		
+		blockRepository.deleteById(id);
 	}
 
 	@Override
 	public Block update(Block elt) {
-		// TODO Auto-generated method stub
-		return null;
+		return blockRepository.save(elt);
 	}
 
 
