@@ -2,6 +2,8 @@ package fr.crafttogether.controller;
 
 import java.util.List;
 
+import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @AllArgsConstructor //remplace le AutoWired pour injecter les dépendances
 @Slf4j
-public class GenericController<T> {
+public abstract class GenericController<T> {
 
 	//remplace l'appel aux repository
 		private GenericService<T, Integer> genericService;
@@ -31,56 +33,41 @@ public class GenericController<T> {
 		@GetMapping()
 		@ResponseBody
 		public List<T> getTs(){
-			log.info("Liste recipes consultée");
+			log.info("Liste {} consultée", this.getClass());
 				return genericService.findAll();
 			}
 		
 		@GetMapping("/{id}")
 		@ResponseBody
 		public ResponseEntity<T> getT(@PathVariable int id) {
-			var recipe = genericService.findById(id);
-			if(recipe == null) {
-				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "la recette recherchée n'existe pas");
+			var elt = genericService.findById(id);
+			if(elt == null) {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "l'élément recherché n'existe pas");
 			}
-			log.info("recette recherchée avec id {}", id);
-			return new ResponseEntity<T>(recipe, HttpStatus.OK);
+			log.info("{} recherchée avec id {}",this.getClass(), id);
+			return new ResponseEntity<T>(elt, HttpStatus.OK);
 		}
 		
 		@PostMapping()
 		@ResponseBody
 		@ResponseStatus(code = HttpStatus.CREATED)
-		public T createT(@RequestBody T recipe) {
-			log.info("T added in BD");
-			return genericService.save(recipe);
+		public T createT(@RequestBody T elt) {
+			log.info("{} added in BD", this.getClass());
+			return genericService.save(elt);
 		}
 
 		@DeleteMapping("/{id}")
 		@ResponseBody
 		public ResponseEntity<Boolean> deleteT(@PathVariable int id) {
 			if(genericService.findById(id) == null) {
-				log.error("T {} à supprimer introuvable",id);
+				log.error("{} {} à supprimer introuvable",this.getClass(), id);
 				return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
 			}
 			genericService.deleteById(id);
-			log.info("T deleted {}", id);
+			log.info("{} deleted {}",this.getClass(), id);
 		
 			return new ResponseEntity<Boolean>(true, HttpStatus.NO_CONTENT);
 		}
 		
-		@PutMapping()
-		@ResponseBody
-		public ResponseEntity<T> modifT(@PathVariable int id,
-									  @RequestBody T recipe) {
-			if(id != recipe.getNum()) {
-				log.error("requete incohérente ! {} != {}", id, recipe.getNum());
-				return new ResponseEntity<T>(HttpStatus.BAD_REQUEST);
-			}
-			else if(genericService.findById(id) == null) {
-				log.error("recipe introuvable ! {}", id);
-				return new ResponseEntity<T>(HttpStatus.NOT_FOUND);
-			}
-			log.info("recipe modifiée {}", recipe);
-			genericService.save(recipe);
-			return new ResponseEntity<T>(HttpStatus.ACCEPTED);
-		}
+	
 }
