@@ -4,8 +4,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import fr.crafttogether.model.Block;
-
 @SpringBootApplication
 public class ProjetFilRouge_2iTech_Craft2GetherApplication implements CommandLineRunner {
 
