@@ -44,7 +44,7 @@ public class ListController {
 			if(list == null) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "la recette recherchée n'existe pas");
 			}
-			log.info("recette recherchée avec id {}", id);
+			log.info("liste recherchée avec id {}", id);
 			return new ResponseEntity<fr.crafttogether.model.List>(list, HttpStatus.OK);
 		}
 		
@@ -60,7 +60,7 @@ public class ListController {
 		@ResponseBody
 		public ResponseEntity<Boolean> deleteList(@PathVariable int id) {
 			if(listService.findById(id) == null) {
-				log.error("List {} à supprimer introuvable",id);
+				log.error("List {} à supprimer introuvable", id);
 				return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
 			}
 			listService.deleteById(id);
@@ -72,7 +72,7 @@ public class ListController {
 		@PutMapping()
 		@ResponseBody
 		public ResponseEntity<fr.crafttogether.model.List> modifList(@PathVariable int id,
-									  @RequestBody Recipe list) {
+									  @RequestBody fr.crafttogether.model.List list) {
 			if(id != list.getNum()) {
 				log.error("requete incohérente ! {} != {}", id, list.getNum());
 				return new ResponseEntity<fr.crafttogether.model.List>(HttpStatus.BAD_REQUEST);
@@ -81,7 +81,7 @@ public class ListController {
 				log.error("liste introuvable ! {}", id);
 				return new ResponseEntity<fr.crafttogether.model.List>(HttpStatus.NOT_FOUND);
 			}
-			log.info("personne modifiée {}", list);
+			log.info("liste modifiée {}", list);
 			listService.save(list);
 			return new ResponseEntity<fr.crafttogether.model.List>(HttpStatus.ACCEPTED);
 		}
