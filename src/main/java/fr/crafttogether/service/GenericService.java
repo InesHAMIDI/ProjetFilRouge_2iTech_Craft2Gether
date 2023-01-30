@@ -4,14 +4,12 @@ import java.util.List;
 
 import org.springframework.data.repository.NoRepositoryBean;
 
-import fr.crafttogether.model.GenericEntity;
-
 @NoRepositoryBean
-public interface GenericService<T extends GenericEntity<T>> {
+public interface GenericService<T, I> {
 	
 	public List<T> findAll();
-    public T findById(int id);
+    public T findById(I id);
     public T save(T elt);
-    public void deleteById(int id) ;
+    public void deleteById(I id) ;
     public T update(T elt);
 }

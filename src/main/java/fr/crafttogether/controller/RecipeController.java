@@ -33,9 +33,9 @@ public class RecipeController {
 	@GetMapping()
 	@ResponseBody
 	public List<Recipe> getRecipes(){
-		log.info("Liste recipes consultée");
+		log.info("Liste users consultée");
 			return recipeService.findAll();
-		}
+	}
 	
 	@GetMapping("/{id}")
 	@ResponseBody
@@ -51,14 +51,14 @@ public class RecipeController {
 	@PostMapping()
 	@ResponseBody
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Recipe createRecipe(@RequestBody Recipe recipe) {
-		log.info("Recipe added in BD");
+	public Recipe createPersonne(@RequestBody Recipe recipe) {
+		log.info("Personne added in BD");
 		return recipeService.save(recipe);
 	}
 
 	@DeleteMapping("/{id}")
 	@ResponseBody
-	public ResponseEntity<Boolean> deleteRecipe(@PathVariable int id) {
+	public ResponseEntity<Boolean> deletePersonne(@PathVariable int id) {
 		if(recipeService.findById(id) == null) {
 			log.error("Recipe {} à supprimer introuvable",id);
 			return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
@@ -71,17 +71,17 @@ public class RecipeController {
 	
 	@PutMapping()
 	@ResponseBody
-	public ResponseEntity<Recipe> modifRecipe(@PathVariable int id,
+	public ResponseEntity<Recipe> modifPersonne(@PathVariable int id,
 								  @RequestBody Recipe recipe) {
 		if(id != recipe.getNum()) {
 			log.error("requete incohérente ! {} != {}", id, recipe.getNum());
 			return new ResponseEntity<Recipe>(HttpStatus.BAD_REQUEST);
 		}
 		else if(recipeService.findById(id) == null) {
-			log.error("recipe introuvable ! {}", id);
+			log.error("personne introuvable ! {}", id);
 			return new ResponseEntity<Recipe>(HttpStatus.NOT_FOUND);
 		}
-		log.info("recipe modifiée {}", recipe);
+		log.info("personne modifiée {}", recipe);
 		recipeService.save(recipe);
 		return new ResponseEntity<Recipe>(HttpStatus.ACCEPTED);
 	}
