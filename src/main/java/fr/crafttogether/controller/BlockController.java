@@ -1,7 +1,5 @@
 package fr.crafttogether.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import fr.crafttogether.model.Block;
-import fr.crafttogether.model.Recipe;
 import fr.crafttogether.service.GenericService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +42,7 @@ public class BlockController {
 		public ResponseEntity<Block> getRecipe(@PathVariable int id) {
 			var block = blockService.findById(id);
 			if(block == null) {
-				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "le block recherché n'existe pas");<>
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "le block recherché n'existe pas");
 			}
 			log.info("block recherchée avec id {}", id);
 			return new ResponseEntity<Block>(block, HttpStatus.OK);
