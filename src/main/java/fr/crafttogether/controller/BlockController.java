@@ -38,7 +38,7 @@ public class BlockController {
 				return blockService.findAll();
 		}
 		
-		@GetMapping("/{id}")
+		@GetMapping("/{id:\\d+}") //le :\\d+ lui dit de faire ça si id est un nombre
 		@ResponseBody
 		public ResponseEntity<Block> getRecipe(@PathVariable int id) {
 			var block = blockService.findById(id);
