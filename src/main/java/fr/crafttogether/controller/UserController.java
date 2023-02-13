@@ -39,7 +39,7 @@ public class UserController {
 				return userService.findAll();
 		}
 		
-		@GetMapping("/{id}")
+		@GetMapping("/{id:\\d+}")
 		@ResponseBody
 		public ResponseEntity<User> getRecipe(@PathVariable int id) {
 			var user = userService.findById(id);
@@ -58,7 +58,7 @@ public class UserController {
 			return userService.save(user);
 		}
 
-		@DeleteMapping("/{id}")
+		@DeleteMapping("/{id:\\d+}")
 		@ResponseBody
 		public ResponseEntity<Boolean> deleteUser(@PathVariable int id) {
 			if(userService.findById(id) == null) {

@@ -38,7 +38,7 @@ public class ListController {
 				return listService.findAll();
 			}
 		
-		@GetMapping("/{id}")
+		@GetMapping("/{id:\\d+}")
 		@ResponseBody
 		public ResponseEntity<fr.crafttogether.model.List> getList(@PathVariable int id) {
 			var list = listService.findById(id);
@@ -57,7 +57,7 @@ public class ListController {
 			return listService.save(list);
 		}
 
-		@DeleteMapping("/{id}")
+		@DeleteMapping("/{id:\\d+}")
 		@ResponseBody
 		public ResponseEntity<Boolean> deleteList(@PathVariable int id) {
 			if(listService.findById(id) == null) {

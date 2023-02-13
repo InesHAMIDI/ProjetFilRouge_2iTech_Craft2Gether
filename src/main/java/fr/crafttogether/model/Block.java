@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class Block {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@NonNull

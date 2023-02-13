@@ -38,7 +38,7 @@ public class RecipeController {
 			return recipeService.findAll();
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{id:\\d+}")
 	@ResponseBody
 	public ResponseEntity<Recipe> getRecipe(@PathVariable int id) {
 		var recipe = recipeService.findById(id);
@@ -57,7 +57,7 @@ public class RecipeController {
 		return recipeService.save(recipe);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{id:\\d+}")
 	@ResponseBody
 	public ResponseEntity<Boolean> deleteRecipe(@PathVariable int id) {
 		if(recipeService.findById(id) == null) {

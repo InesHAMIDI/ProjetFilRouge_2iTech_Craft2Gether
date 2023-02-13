@@ -57,7 +57,7 @@ public class BlockController {
 			return blockService.save(block);
 		}
 
-		@DeleteMapping("/{id}")
+		@DeleteMapping("/{id:\\d+}")
 		@ResponseBody
 		public ResponseEntity<Boolean> deleteBlock(@PathVariable int id) {
 			if(blockService.findById(id) == null) {
