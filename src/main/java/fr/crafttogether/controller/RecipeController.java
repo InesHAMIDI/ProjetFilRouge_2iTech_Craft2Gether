@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import fr.crafttogether.model.Recipe;
@@ -21,7 +22,7 @@ import fr.crafttogether.service.GenericService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Controller
+@RestController
 @RequestMapping("/recipes")
 @Slf4j
 @AllArgsConstructor //remplace le AutoWired pour injecter les dépendances
@@ -33,9 +34,9 @@ public class RecipeController {
 	@GetMapping()
 	@ResponseBody
 	public List<Recipe> getRecipes(){
-		log.info("Liste recipes consultée");
+		log.info("Liste recettes consultée");
 			return recipeService.findAll();
-		}
+	}
 	
 	@GetMapping("/{id}")
 	@ResponseBody
@@ -52,7 +53,7 @@ public class RecipeController {
 	@ResponseBody
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Recipe createRecipe(@RequestBody Recipe recipe) {
-		log.info("Recipe added in BD");
+		log.info("recette added in BD");
 		return recipeService.save(recipe);
 	}
 
@@ -78,10 +79,10 @@ public class RecipeController {
 			return new ResponseEntity<Recipe>(HttpStatus.BAD_REQUEST);
 		}
 		else if(recipeService.findById(id) == null) {
-			log.error("recipe introuvable ! {}", id);
+			log.error("recette introuvable ! {}", id);
 			return new ResponseEntity<Recipe>(HttpStatus.NOT_FOUND);
 		}
-		log.info("recipe modifiée {}", recipe);
+		log.info("recette modifiée {}", recipe);
 		recipeService.save(recipe);
 		return new ResponseEntity<Recipe>(HttpStatus.ACCEPTED);
 	}
