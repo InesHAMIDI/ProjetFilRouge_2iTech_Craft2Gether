@@ -2,8 +2,6 @@ package fr.crafttogether;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,7 +29,7 @@ public class ProjetFilRouge_2iTech_Craft2GetherApplication {
 			};
 			InputStream inputStream = TypeReference.class.getResourceAsStream("/resources/MinecraftJsonData/andesite.json");
 			try {
-				Recipe res = mapper.readValue(inputStream,typeReference);
+				System.out.println(mapper.readValue(inputStream,typeReference));
 				
 			} catch (IOException e) {
 				System.out.println("Unable to save recipe: " + e.getMessage());
