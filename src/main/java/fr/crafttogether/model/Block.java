@@ -33,7 +33,9 @@ public class Block {
 	@NonNull
 	private String nom;
 	@NonNull
-	private Type type;
+	private String type;
+	@NonNull
+	private String category;
 	
 	@ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
 	@JsonIgnoreProperties(value = "recipesImAComponent")

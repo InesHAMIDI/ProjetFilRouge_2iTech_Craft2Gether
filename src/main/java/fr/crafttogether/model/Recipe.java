@@ -23,13 +23,22 @@ public class Recipe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer num;
-	@NonNull
+	
 	private String nom;
 
 	@NonNull
-	private List<Block> components;
+	private String type;
 	
 	@NonNull
-	@ManyToOne
-	private Block result;
+	private String category;
+	
+	@NonNull
+	private List<Block> components;
+
+	private int count;
+	private String item;
+	
+//	@NonNull
+//	@ManyToOne
+//	private Block result;
 }
