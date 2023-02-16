@@ -44,8 +44,6 @@ public class Block {
 	//@ManyToOne
 	private List<Recipe> recipesToMakeMe;
 	
-	//@OneToMany(mappedBy = "creationsBL")
-	private Modder creator;
 	
 	
 }
