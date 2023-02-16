@@ -1,6 +1,7 @@
 package fr.crafttogether.model;
 
 import java.util.List;
+import java.util.Map;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,8 +38,10 @@ public class Recipe {
 
 	private int count;
 	private String item;
-	
-//  @NonNull
-//	@ManyToOne
-//	private Block result;
+
+
+	private String groupString;
+	private String key;
+	private String pattern;
+	private Map<String, String> result;
 }
