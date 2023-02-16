@@ -25,6 +25,7 @@ public class Recipe {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer num;
 	
+	@NonNull
 	private String nom;
 
 	@NonNull
