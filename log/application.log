@@ -613,3 +613,121 @@ Caused by: org.hibernate.type.descriptor.java.spi.JdbcTypeRecommendationExceptio
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1747) ~[spring-beans-6.0.3.jar:6.0.3]
 	... 21 common frames omitted
 
+2023-02-16T11:55:11.765+01:00  INFO 18304 --- [restartedMain] tFilRouge_2iTech_Craft2GetherApplication : Starting ProjetFilRouge_2iTech_Craft2GetherApplication using Java 17.0.5 with PID 18304 (C:\Users\iham\Documents\GitHub\ProjetFilRouge_2iTech_Craft2Gether\target\classes started by iham in C:\Users\iham\Documents\GitHub\ProjetFilRouge_2iTech_Craft2Gether)
+2023-02-16T11:55:11.768+01:00  INFO 18304 --- [restartedMain] tFilRouge_2iTech_Craft2GetherApplication : No active profile set, falling back to 1 default profile: "default"
+2023-02-16T11:55:11.821+01:00  INFO 18304 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-16T11:55:11.821+01:00  INFO 18304 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-16T11:55:12.403+01:00  INFO 18304 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-16T11:55:12.480+01:00  INFO 18304 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 69 ms. Found 4 JPA repository interfaces.
+2023-02-16T11:55:13.066+01:00  INFO 18304 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-02-16T11:55:13.077+01:00  INFO 18304 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-16T11:55:13.078+01:00  INFO 18304 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.4]
+2023-02-16T11:55:13.162+01:00  INFO 18304 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/CtT]    : Initializing Spring embedded WebApplicationContext
+2023-02-16T11:55:13.163+01:00  INFO 18304 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1341 ms
+2023-02-16T11:55:13.295+01:00  INFO 18304 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-16T11:55:13.454+01:00  INFO 18304 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7aba9403
+2023-02-16T11:55:13.456+01:00  INFO 18304 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-16T11:55:13.497+01:00  INFO 18304 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-16T11:55:13.550+01:00  INFO 18304 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.6.Final
+2023-02-16T11:55:13.727+01:00  WARN 18304 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2023-02-16T11:55:13.746+01:00  INFO 18304 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2023-02-16T11:55:13.906+01:00  INFO 18304 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-02-16T11:55:14.023+01:00  WARN 18304 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: 'java.lang.reflect.Type org.hibernate.annotations.common.reflection.ReflectionManager.toType(org.hibernate.annotations.common.reflection.XClass)'
+2023-02-16T11:55:14.025+01:00  INFO 18304 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-16T11:55:14.035+01:00  INFO 18304 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-16T11:55:14.038+01:00  INFO 18304 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-02-16T11:55:14.053+01:00  INFO 18304 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-02-16T11:55:14.076+01:00 ERROR 18304 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+An attempt was made to call a method that does not exist. The attempt was made from the following location:
+
+    org.hibernate.cfg.annotations.BasicValueBinder.resolveJavaType(BasicValueBinder.java:1002)
+
+The following method did not exist:
+
+    'java.lang.reflect.Type org.hibernate.annotations.common.reflection.ReflectionManager.toType(org.hibernate.annotations.common.reflection.XClass)'
+
+The calling method's class, org.hibernate.cfg.annotations.BasicValueBinder, was loaded from the following location:
+
+    jar:file:/C:/Users/iham/.m2/repository/org/hibernate/orm/hibernate-core/6.1.6.Final/hibernate-core-6.1.6.Final.jar!/org/hibernate/cfg/annotations/BasicValueBinder.class
+
+The called method's class, org.hibernate.annotations.common.reflection.ReflectionManager, is available from the following locations:
+
+    jar:file:/C:/Users/iham/.m2/repository/org/hibernate/common/hibernate-commons-annotations/5.0.1.Final/hibernate-commons-annotations-5.0.1.Final.jar!/org/hibernate/annotations/common/reflection/ReflectionManager.class
+
+The called method's class hierarchy was loaded from the following locations:
+
+    org.hibernate.annotations.common.reflection.ReflectionManager: file:/C:/Users/iham/.m2/repository/org/hibernate/common/hibernate-commons-annotations/5.0.1.Final/hibernate-commons-annotations-5.0.1.Final.jar
+
+
+Action:
+
+Correct the classpath of your application so that it contains compatible versions of the classes org.hibernate.cfg.annotations.BasicValueBinder and org.hibernate.annotations.common.reflection.ReflectionManager
+
+2023-02-16T11:55:29.888+01:00  INFO 13888 --- [restartedMain] tFilRouge_2iTech_Craft2GetherApplication : Starting ProjetFilRouge_2iTech_Craft2GetherApplication using Java 17.0.5 with PID 13888 (C:\Users\iham\Documents\GitHub\ProjetFilRouge_2iTech_Craft2Gether\target\classes started by iham in C:\Users\iham\Documents\GitHub\ProjetFilRouge_2iTech_Craft2Gether)
+2023-02-16T11:55:29.891+01:00  INFO 13888 --- [restartedMain] tFilRouge_2iTech_Craft2GetherApplication : No active profile set, falling back to 1 default profile: "default"
+2023-02-16T11:55:29.953+01:00  INFO 13888 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-16T11:55:29.954+01:00  INFO 13888 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-16T11:55:30.573+01:00  INFO 13888 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-16T11:55:30.651+01:00  INFO 13888 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68 ms. Found 4 JPA repository interfaces.
+2023-02-16T11:55:31.241+01:00  INFO 13888 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-02-16T11:55:31.253+01:00  INFO 13888 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-16T11:55:31.253+01:00  INFO 13888 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.4]
+2023-02-16T11:55:31.332+01:00  INFO 13888 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/CtT]    : Initializing Spring embedded WebApplicationContext
+2023-02-16T11:55:31.332+01:00  INFO 13888 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1378 ms
+2023-02-16T11:55:31.476+01:00  INFO 13888 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-16T11:55:31.533+01:00  INFO 13888 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.6.Final
+2023-02-16T11:55:31.678+01:00  WARN 13888 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2023-02-16T11:55:31.695+01:00  INFO 13888 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2023-02-16T11:55:31.803+01:00  INFO 13888 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-16T11:55:31.956+01:00  INFO 13888 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@f2bc3ed
+2023-02-16T11:55:31.958+01:00  INFO 13888 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-16T11:55:32.003+01:00  INFO 13888 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-02-16T11:55:32.134+01:00  WARN 13888 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: 'java.lang.reflect.Type org.hibernate.annotations.common.reflection.ReflectionManager.toType(org.hibernate.annotations.common.reflection.XClass)'
+2023-02-16T11:55:32.136+01:00  INFO 13888 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-16T11:55:32.153+01:00  INFO 13888 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-16T11:55:32.156+01:00  INFO 13888 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-02-16T11:55:32.170+01:00  INFO 13888 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-02-16T11:55:32.193+01:00 ERROR 13888 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+An attempt was made to call a method that does not exist. The attempt was made from the following location:
+
+    org.hibernate.cfg.annotations.BasicValueBinder.resolveJavaType(BasicValueBinder.java:1002)
+
+The following method did not exist:
+
+    'java.lang.reflect.Type org.hibernate.annotations.common.reflection.ReflectionManager.toType(org.hibernate.annotations.common.reflection.XClass)'
+
+The calling method's class, org.hibernate.cfg.annotations.BasicValueBinder, was loaded from the following location:
+
+    jar:file:/C:/Users/iham/.m2/repository/org/hibernate/orm/hibernate-core/6.1.6.Final/hibernate-core-6.1.6.Final.jar!/org/hibernate/cfg/annotations/BasicValueBinder.class
+
+The called method's class, org.hibernate.annotations.common.reflection.ReflectionManager, is available from the following locations:
+
+    jar:file:/C:/Users/iham/.m2/repository/org/hibernate/common/hibernate-commons-annotations/5.0.1.Final/hibernate-commons-annotations-5.0.1.Final.jar!/org/hibernate/annotations/common/reflection/ReflectionManager.class
+
+The called method's class hierarchy was loaded from the following locations:
+
+    org.hibernate.annotations.common.reflection.ReflectionManager: file:/C:/Users/iham/.m2/repository/org/hibernate/common/hibernate-commons-annotations/5.0.1.Final/hibernate-commons-annotations-5.0.1.Final.jar
+
+
+Action:
+
+Correct the classpath of your application so that it contains compatible versions of the classes org.hibernate.cfg.annotations.BasicValueBinder and org.hibernate.annotations.common.reflection.ReflectionManager
+
