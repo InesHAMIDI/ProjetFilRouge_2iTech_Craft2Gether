@@ -27,9 +27,10 @@ public class ProjetFilRouge_2iTech_Craft2GetherApplication {
 			ObjectMapper mapper = new ObjectMapper();
 			TypeReference<Recipe> typeReference = new TypeReference<Recipe>() {
 			};
-			InputStream inputStream = TypeReference.class.getResourceAsStream("/resources/MinecraftJsonData/andesite.json");
+			InputStream inputStream = TypeReference.class.getResourceAsStream("./minecraft-data/data/pc/1.19/blocks.json");
 			try {
 				System.out.println(mapper.readValue(inputStream,typeReference));
+				
 				
 			} catch (IOException e) {
 				System.out.println("Unable to save recipe: " + e.getMessage());

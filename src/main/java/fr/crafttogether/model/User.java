@@ -25,6 +25,6 @@ public class User {
 	@NonNull
 	private String nom;
 	
-	@ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
-	private java.util.List<List> lists;
+	//@ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+	//private java.util.List<List> lists;
 }

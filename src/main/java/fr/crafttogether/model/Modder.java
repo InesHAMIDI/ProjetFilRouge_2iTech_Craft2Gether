@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper=false)
 public class Modder extends User {
 
-	@OneToMany
+	//@OneToMany
 	private List<Recipe> creationsRE;
-	@OneToMany(mappedBy = "creator")
+	//@OneToMany(mappedBy = "creator")
 	private List<Block> creationsBL;
 }

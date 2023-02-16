@@ -23,8 +23,9 @@ public class UserService implements GenericService<User, Integer>{
 
 	@Override
 	public User save(User elt) {
-		listRepository.saveAll(elt.getLists());
-		return userRepository.save(elt);
+//		listRepository.saveAll(elt.getLists());
+//		return userRepository.save(elt);
+		return null;
 	}
 
 	@Override

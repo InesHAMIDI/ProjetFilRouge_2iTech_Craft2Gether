@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class Block {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@NonNull
@@ -37,13 +37,15 @@ public class Block {
 	@NonNull
 	private String category;
 	
-	@ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
-	@JsonIgnoreProperties(value = "recipesImAComponent")
+	//@ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+	//@JsonIgnoreProperties(value = "recipesImAComponent")
 	private List<Recipe> recipesImAComponent;
 	
-	@ManyToOne
+	//@ManyToOne
 	private List<Recipe> recipesToMakeMe;
 	
-	@OneToMany(mappedBy = "creationsBL")
+	//@OneToMany(mappedBy = "creationsBL")
 	private Modder creator;
+	
+	
 }

@@ -29,8 +29,8 @@ public class List {
 	@NonNull
 	private User creator;
 	
-	@ManyToMany(mappedBy = "lists")
-	@JsonIgnoreProperties
+	//@ManyToMany(mappedBy = "lists")
+	//@JsonIgnoreProperties
 	private java.util.List<User> collaborators;
 	
 	private java.util.List<Block> blocks;
