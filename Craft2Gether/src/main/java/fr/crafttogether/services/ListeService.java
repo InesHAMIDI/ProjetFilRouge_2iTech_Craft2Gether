@@ -11,19 +11,24 @@ import java.util.List;
 @AllArgsConstructor
 public class ListeService {
     private ListeRepository listeRepository;
+
     public List<Liste> findAll() {
         return listeRepository.findAll();
     }
-    public Liste findById(long id) {
+
+    public Liste findById(int id) {
         return listeRepository.findById(id).orElse(null);
     }
+
     public Liste save(Liste liste) {
         return listeRepository.save(liste);
     }
-    public void deleteById(long id){
+
+    public void deleteById(int id) {
         listeRepository.deleteById(id);
     }
-    public Liste update(Liste liste){
+
+    public Liste update(Liste liste) {
         return listeRepository.save(liste);
     }
 

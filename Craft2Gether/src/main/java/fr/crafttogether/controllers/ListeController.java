@@ -25,7 +25,7 @@ public class ListeController {
 
     // GET BY ID
     @GetMapping("/{id}")
-    public ResponseEntity<Liste> getListeById(long id) {
+    public ResponseEntity<Liste> getListeById(@PathVariable int id) {
         Liste list = listeService.findById(id);
         if (list == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "La liste recherchée n'existe pas");
@@ -42,7 +42,7 @@ public class ListeController {
 
     // DELETE
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Boolean> deleteListe(@PathVariable long id) {
+    public ResponseEntity<Boolean> deleteListe(@PathVariable int id) {
         Liste list = listeService.findById(id);
         if (list == null) {
             return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
@@ -53,7 +53,7 @@ public class ListeController {
 
     //PUT
     @PutMapping("/{id}")
-    public ResponseEntity<Liste> updateListe(@RequestBody Liste liste, @PathVariable long id) {
+    public ResponseEntity<Liste> updateListe(@RequestBody Liste liste, @PathVariable int id) {
         if (id != liste.getId()) {
             return new ResponseEntity<>(liste, HttpStatus.BAD_REQUEST);
         } else if (listeService.findById(id) == null) {
