@@ -4,13 +4,15 @@ import Navbar from 'react-bootstrap/Navbar';
 
 function Menus(){
     return(
+    <>
       <TopNavBar />
+      <LeftNavBar />
+    </>
     );
 }
 
 function TopNavBar(){
   return(
-    <>
     <Navbar bg="dark" variant="dark" fixed="top">
       <Container>
         <Navbar.Brand href="#home">Navbar</Navbar.Brand>
@@ -25,8 +27,12 @@ function TopNavBar(){
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    </>
   );
+}
+
+function LeftNavBar(){
+
+  return("");
 }
 
 export default Menus
