@@ -33,6 +33,16 @@ public class BlocController {
         return new ResponseEntity<>(bloc, HttpStatus.OK);
     }
 
+    // GET BY NOM
+    @GetMapping("/{id}")
+    public ResponseEntity<Bloc> getBlocByNom(@PathVariable String nom) {
+        Bloc bloc = blocService.findByNom(nom);
+        if (bloc == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "La liste recherchée n'existe pas");
+        }
+        return new ResponseEntity<>(bloc, HttpStatus.OK);
+    }
+
     // POST : SAVE OR UPDATE
     @PostMapping()
     @ResponseStatus(code = HttpStatus.CREATED) //Permet de changer le code serveur

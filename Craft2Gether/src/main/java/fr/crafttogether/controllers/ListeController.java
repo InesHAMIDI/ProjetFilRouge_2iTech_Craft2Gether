@@ -33,6 +33,16 @@ public class ListeController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    // GET BY NOM
+    @GetMapping("{nom}")
+    public ResponseEntity<Liste> getListeByName(@PathVariable String nom) {
+        Liste liste = listeService.findByNom(nom);
+        if (liste == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "La liste recherchée n'existe pas");
+        }
+        return new ResponseEntity<>(liste, HttpStatus.OK);
+    }
+
     // POST : SAVE OR UPDATE
     @PostMapping()
     @ResponseStatus(code = HttpStatus.CREATED) //Permet de changer le code serveur
