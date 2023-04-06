@@ -4,6 +4,7 @@ import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Recette;
 import fr.crafttogether.repositories.RecetteRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,20 +22,4 @@ public class RecetteService {
     }
 
     public Recette findByNom(String nom){ return recetteRepository.findByNom(nom).orElseThrow(() -> new NotFoundException("no recette with nom " + nom + " exists")); }
-
-    public Recette save(Recette recette) {
-        return recetteRepository.save(recette);
-    }
-
-    public void deleteById(int id) {
-        if(recetteRepository.findById(id).isEmpty())
-            throw new NotFoundException("no recette with id " + id + " exists");
-        recetteRepository.deleteById(id);
-    }
-
-    public Recette update(Recette recette) {
-        if(recetteRepository.findById(recette.getId()).isEmpty())
-            throw new NotFoundException("no recette with id " + recette.getId() + " exists");
-        return recetteRepository.save(recette);
-    }
 }

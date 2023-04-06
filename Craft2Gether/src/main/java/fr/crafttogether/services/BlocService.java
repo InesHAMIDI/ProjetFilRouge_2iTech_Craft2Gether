@@ -5,6 +5,7 @@ import fr.crafttogether.models.Bloc;
 import fr.crafttogether.repositories.BlocRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,21 +26,5 @@ public class BlocService {
     public Bloc findByNom(String nom)
     {
         return blocRepository.findByNom(nom).orElseThrow(() -> new NotFoundException("no bloc with nom " + nom + " exists"));
-    }
-
-    public Bloc save(Bloc bloc) {
-        return blocRepository.save(bloc);
-    }
-
-    public void deleteById(int id) {
-        if(blocRepository.findById(id).isEmpty())
-            throw new NotFoundException("no bloc with id " + id + " exists");
-        blocRepository.deleteById(id);
-    }
-
-    public Bloc update(Bloc bloc) {
-        if(blocRepository.findById(bloc.getId()).isEmpty())
-            throw new NotFoundException("no bloc with id " + bloc.getId() + " exists");
-        return blocRepository.save(bloc);
     }
 }
