@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import java.util.Map;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder
 public class Recette {
 
     @Id
@@ -18,7 +20,7 @@ public class Recette {
     private int id;
     private String nom;
 
-    @ManyToMany(mappedBy="recettesWhereImComponent")
+    @ManyToMany
     private Map<Integer, Bloc> ingredients; // quantité-bloc
 
     @ManyToOne
