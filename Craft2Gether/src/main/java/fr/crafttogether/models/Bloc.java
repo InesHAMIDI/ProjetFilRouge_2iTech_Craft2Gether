@@ -1,18 +1,14 @@
 package fr.crafttogether.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import jakarta.persistence.*;
+import lombok.*;
+import java.util.Collection;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class Bloc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +17,15 @@ public class Bloc {
     private String nom;
     private String outilNecessaire;
 
-    private types type;
+    private BLOCK_TYPE type;
 
-    public enum types {
+    @ManyToMany
+    private Collection<Recette> recettesWhereImComponent;
+
+    @OneToMany(mappedBy="resultat")
+    private Collection<Recette> recettesToMakeMe;
+    public enum BLOCK_TYPE
+    {
         NATUREL,
         MANUFACTURE,
         DECORATIF,

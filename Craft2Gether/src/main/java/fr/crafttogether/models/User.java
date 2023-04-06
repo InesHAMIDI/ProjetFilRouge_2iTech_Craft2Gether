@@ -1,10 +1,9 @@
 package fr.crafttogether.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Collection;
 
 @Entity
 @Data
@@ -15,12 +14,18 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    int id;
 
     @NonNull
     String username;
 
     @NonNull
     String password;
+
+    @OneToMany(mappedBy = "createur")
+    private Collection<Liste> listesICreated;
+
+    @ManyToMany(mappedBy = "collaborateurs")
+    private Collection<Liste> listeIParticipate;
 
 }

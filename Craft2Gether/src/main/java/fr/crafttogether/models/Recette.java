@@ -17,8 +17,10 @@ public class Recette {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nom;
-    @ManyToMany
-    private Map<Integer, Bloc> ingredients;
-    @OneToMany
-    private Map<Integer, Bloc> resultat;
+
+    @ManyToMany(mappedBy="recettesWhereImComponent")
+    private Map<Integer, Bloc> ingredients; // quantité-bloc
+
+    @ManyToOne
+    private Bloc resultat; // quantité-bloc
 }
