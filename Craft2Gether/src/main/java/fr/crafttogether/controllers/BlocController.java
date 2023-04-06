@@ -47,30 +47,6 @@ public class BlocController {
         return bloc;
     }
 
-    // POST : SAVE
-    @PostMapping()
-    //@ResponseStatus(code = HttpStatus.CREATED) //Permet de changer le code serveur
-    public Bloc saveBloc(@RequestBody Bloc bloc) {
-        if (bloc.getId() != 0)
-            throw new BadRequestException("id needs to be 0");
-        return blocService.save(bloc);
-    }
+    // On ne prévoit pas le reste car personne ne peut modifier la base de données des blocs / recettes
 
-    // POST : UPDATE
-    @PutMapping("{id}")
-    public Bloc updateBloc(@PathVariable long id, @Valid @RequestBody Bloc bloc){
-        if(bloc.getId() != id)
-            throw new BadRequestException("ids in url and object do no match");
-        return blocService.update(bloc);
-    };
-
-    // DELETE
-    @DeleteMapping("/delete/{id}")
-    public void deleteBloc(@PathVariable int id) {
-        Bloc bloc = blocService.findById(id);
-        if (bloc == null) {
-            throw new NotFoundException("ids in url and object do no match");
-        }
-        blocService.deleteById(id);
-    }
 }

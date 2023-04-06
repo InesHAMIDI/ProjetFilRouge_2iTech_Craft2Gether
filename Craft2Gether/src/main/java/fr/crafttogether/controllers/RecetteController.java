@@ -49,31 +49,5 @@ public class RecetteController {
         return recette;
     }
 
-
-    // POST : SAVE
-    @PostMapping()
-    @ResponseStatus(code = HttpStatus.CREATED) //Permet de changer le code serveur
-    public Recette saveOrUpdateRecette(@RequestBody Recette recette) {
-        if (recette.getId() != 0)
-            throw new BadRequestException("id needs to be 0");
-        return recetteService.save(recette);
-    }
-
-    // POST : UPDATE
-    @PutMapping("{id}")
-    public Recette updateRecette(@PathVariable long id, @Valid @RequestBody Recette recette){
-        if(recette.getId() != id)
-            throw new BadRequestException("ids in url and object do no match");
-        return recetteService.update(recette);
-    };
-
-    // DELETE
-    @DeleteMapping("/delete/{id}")
-    public void deleteRecette(@PathVariable int id) {
-        Recette recette = recetteService.findById(id);
-        if (recette == null) {
-            throw new NotFoundException("La recette recherchée n'existe pas");
-        }
-        recetteService.deleteById(id);
-    }
+    // On ne prévoit pas le reste car personne ne peut modifier la base de données des blocs / recettes
 }
