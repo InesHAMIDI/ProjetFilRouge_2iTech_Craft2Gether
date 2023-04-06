@@ -20,7 +20,7 @@ public class ListeService {
     public Liste findById(int id) {
         return listeRepository.findById(id).orElseThrow(() -> new NotFoundException("no list with id " + id + " exists"));
     }
-    public Liste findByName(String nom){ return listeRepository.findByNom(nom); }
+    public Liste findByNom(String nom){ return listeRepository.findByNom(nom); }
 
 
     public Liste save(Liste liste) {

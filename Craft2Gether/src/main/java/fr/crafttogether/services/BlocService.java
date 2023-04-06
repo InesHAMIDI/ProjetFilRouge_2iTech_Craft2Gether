@@ -22,7 +22,7 @@ public class BlocService {
         return blocRepository.findById(id).orElseThrow(() -> new NotFoundException("no bloc with id " + id + " exists"));
     }
 
-    public Bloc findByName(String name){ return blocRepository.findByName(name); }
+    public Bloc findByNom(String name){ return blocRepository.findByName(name); }
 
     public Bloc save(Bloc bloc) {
         return blocRepository.save(bloc);

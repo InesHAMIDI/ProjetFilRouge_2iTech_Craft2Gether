@@ -17,7 +17,7 @@ public class RecetteService {
         return recetteRepository.findById(id).orElseThrow(() -> new NotFoundException("no recette with id " + id + " exists"));
     }
 
-    public Recette findByName(String name){ return recetteRepository.findByName(name); }
+    public Recette findByNom(String name){ return recetteRepository.findByName(name); }
 
     public Recette save(Recette recette) {
         return recetteRepository.save(recette);

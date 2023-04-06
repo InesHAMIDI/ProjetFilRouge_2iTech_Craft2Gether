@@ -18,7 +18,7 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new NotFoundException("no user with id " + id + " exists"));
     }
 
-    public User findByName(String name){ return userRepository.findByName(name); }
+    public User findByNom(String name){ return userRepository.findByName(name); }
 
     public User save(User user) {
         return userRepository.save(user);
