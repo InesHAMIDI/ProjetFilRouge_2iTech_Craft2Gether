@@ -1,8 +1,12 @@
 package fr.crafttogether.controllers;
 
+import fr.crafttogether.exceptions.BadRequestException;
+import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Liste;
 import fr.crafttogether.services.ListeService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +18,7 @@ import java.util.List;
 @RequestMapping("/listes") //Route general
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring
+@NoArgsConstructor
 public class ListeController {
     private ListeService listeService;
 
@@ -25,51 +30,47 @@ public class ListeController {
 
     // GET BY ID
     @GetMapping("/{id}")
-    public ResponseEntity<Liste> getListeById(@PathVariable int id) {
+    public Liste getListeById(@PathVariable int id) {
         Liste list = listeService.findById(id);
         if (list == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "La liste recherchée n'existe pas");
+            throw new NotFoundException("La liste recherchée n'existe pas");
         }
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        return list;
     }
 
     // GET BY NOM
-    @GetMapping("{nom}")
-    public ResponseEntity<Liste> getListeByName(@PathVariable String nom) {
-        Liste liste = listeService.findByNom(nom);
+    @GetMapping("{titre}")
+    public Liste findByTitre(@PathVariable String titre) {
+        Liste liste = listeService.findByTitre(titre);
         if (liste == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "La liste recherchée n'existe pas");
+            throw new NotFoundException("La liste recherchée n'existe pas");
         }
-        return new ResponseEntity<>(liste, HttpStatus.OK);
+        return liste;
     }
 
-    // POST : SAVE OR UPDATE
+    // POST : SAVE
     @PostMapping()
-    @ResponseStatus(code = HttpStatus.CREATED) //Permet de changer le code serveur
-    public Liste saveOrUpdateListe(@RequestBody Liste liste) {
+    public Liste saveListe(@RequestBody Liste liste) {
+        if (liste.getId() != 0)
+            throw new BadRequestException("id needs to be 0");
         return listeService.save(liste);
     }
 
+    // POST : UPDATE
+    @PutMapping("{id}")
+    public Liste updateListe(@PathVariable long id, @Valid @RequestBody Liste liste){
+        if(liste.getId() != id)
+            throw new BadRequestException("ids in url and object do no match");
+        return listeService.update(liste);
+    };
+
     // DELETE
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Boolean> deleteListe(@PathVariable int id) {
+    public void deleteListe(@PathVariable int id) {
         Liste list = listeService.findById(id);
         if (list == null) {
-            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+            throw new NotFoundException("La liste recherchée n'existe pas");
         }
         listeService.deleteById(id);
-        return new ResponseEntity<>(true, HttpStatus.NO_CONTENT);
-    }
-
-    //PUT
-    @PutMapping("/{id}")
-    public ResponseEntity<Liste> updateListe(@RequestBody Liste liste, @PathVariable int id) {
-        if (id != liste.getId()) {
-            return new ResponseEntity<>(liste, HttpStatus.BAD_REQUEST);
-        } else if (listeService.findById(id) == null) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(listeService.save(liste), HttpStatus.ACCEPTED);
-
     }
 }

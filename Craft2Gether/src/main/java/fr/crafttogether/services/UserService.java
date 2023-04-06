@@ -3,9 +3,12 @@ package fr.crafttogether.services;
 import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.User;
 import fr.crafttogether.repositories.UserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
+@AllArgsConstructor
 public class UserService {
 
     private UserRepository userRepository;
@@ -18,7 +21,7 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new NotFoundException("no user with id " + id + " exists"));
     }
 
-    public User findByNom(String name){ return userRepository.findByName(name); }
+    public User findByUsername(String nom){ return userRepository.findByUsername(nom).orElseThrow(() -> new NotFoundException("no user with nom " + nom + " exists")); }
 
     public User save(User user) {
         return userRepository.save(user);

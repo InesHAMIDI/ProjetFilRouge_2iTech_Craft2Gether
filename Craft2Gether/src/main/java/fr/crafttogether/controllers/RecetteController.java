@@ -1,8 +1,13 @@
 package fr.crafttogether.controllers;
 
+import fr.crafttogether.exceptions.BadRequestException;
+import fr.crafttogether.exceptions.NotFoundException;
+import fr.crafttogether.models.Bloc;
 import fr.crafttogether.models.Recette;
 import fr.crafttogether.services.RecetteService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +19,7 @@ import java.util.List;
 @RequestMapping("/recettes") //Route general
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring
+@NoArgsConstructor
 public class RecetteController {
 
     private RecetteService recetteService;
@@ -25,54 +31,49 @@ public class RecetteController {
 
     // GET BY ID
     @GetMapping("/{id}")
-    public ResponseEntity<Recette> getRecetteById(@PathVariable int id) {
+    public Recette getRecetteById(@PathVariable int id) {
         Recette recette = recetteService.findById(id);
         if (recette == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "La recette recherchée n'existe pas");
+            throw new NotFoundException("La recette recherchée n'existe pas");
         }
-        return new ResponseEntity<>(recette, HttpStatus.OK);
+        return recette;
     }
 
     // GET BY NOM
     @GetMapping("{nom}")
-    public ResponseEntity<Recette> getRecetteByName(@PathVariable String nom) {
+    public Recette getRecetteByName(@PathVariable String nom) {
         Recette recette = recetteService.findByNom(nom);
         if (recette == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Le recette recherché n'existe pas");
+            throw new NotFoundException("La recette recherchée n'existe pas");
         }
-        return new ResponseEntity<>(recette, HttpStatus.OK);
+        return recette;
     }
 
 
-    // POST : SAVE OR UPDATE
+    // POST : SAVE
     @PostMapping()
     @ResponseStatus(code = HttpStatus.CREATED) //Permet de changer le code serveur
     public Recette saveOrUpdateRecette(@RequestBody Recette recette) {
+        if (recette.getId() != 0)
+            throw new BadRequestException("id needs to be 0");
         return recetteService.save(recette);
     }
 
+    // POST : UPDATE
+    @PutMapping("{id}")
+    public Recette updateRecette(@PathVariable long id, @Valid @RequestBody Recette recette){
+        if(recette.getId() != id)
+            throw new BadRequestException("ids in url and object do no match");
+        return recetteService.update(recette);
+    };
+
     // DELETE
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Boolean> deleteRecette(@PathVariable int id) {
+    public void deleteRecette(@PathVariable int id) {
         Recette recette = recetteService.findById(id);
         if (recette == null) {
-            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+            throw new NotFoundException("La recette recherchée n'existe pas");
         }
         recetteService.deleteById(id);
-        return new ResponseEntity<>(true, HttpStatus.NO_CONTENT);
-    }
-
-    //PUT
-    @PutMapping("/{id}")
-    public ResponseEntity<Recette> updateRecette(@RequestBody Recette recette, @PathVariable int id) {
-        if (id == recette.getId()) {
-            if (recetteService.findById(id) == null) {
-                return new ResponseEntity<>(recette, HttpStatus.NOT_FOUND);
-            }
-        } else {
-            return new ResponseEntity<>(recette, HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(recetteService.save(recette), HttpStatus.ACCEPTED);
-
     }
 }

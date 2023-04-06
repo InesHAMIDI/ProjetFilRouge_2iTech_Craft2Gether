@@ -1,5 +1,6 @@
 package fr.crafttogether.exceptions;
 
+import lombok.EqualsAndHashCode;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 

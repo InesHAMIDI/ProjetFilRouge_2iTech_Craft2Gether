@@ -1,19 +1,25 @@
 package fr.crafttogether.controllers;
 
+import fr.crafttogether.exceptions.BadRequestException;
+import fr.crafttogether.exceptions.NotFoundException;
+import fr.crafttogether.models.Liste;
 import fr.crafttogether.models.User;
 import fr.crafttogether.services.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @CrossOrigin //authorise le front sur le port 5500 de live server
 @RequestMapping("/users") //Route general
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring
+@NoArgsConstructor
 public class UserController {
 
     private UserService userService;
@@ -26,54 +32,61 @@ public class UserController {
 
     // GET BY ID
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable int id) {
+    public User getUserById(@PathVariable int id) {
         User user = userService.findById(id);
         if (user == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Le user recherché n'existe pas");
+            throw new NotFoundException("Le user recherché n'existe pas");
         }
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return user;
     }
 
     // GET BY NOM
     @GetMapping("{nom}")
-    public ResponseEntity<User> getUserByName(@PathVariable String nom) {
-        User user = userService.findByNom(nom);
+    public User getUserByName(@PathVariable String nom) {
+        User user = userService.findByUsername(nom);
         if (user == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Le user recherché n'existe pas");
+            throw new NotFoundException("Le user recherché n'existe pas");
         }
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return user;
     }
 
+    // GET LISTS FROM USER
+    @GetMapping("/{id}/listes")
+    public Collection<Liste> getListes(@PathVariable int id){
+        User user = userService.findById(id);
+        if (user == null) {
+            throw new NotFoundException("Le user recherché n'existe pas");
+        }
+        Collection<Liste> listes = new ArrayList<Liste>();
+        listes.addAll(user.getListeIParticipate());
+        listes.addAll(user.getListesICreated());
+        return listes;
+    }
 
-    // POST : SAVE OR UPDATE
+    // POST : SAVE
     @PostMapping()
     @ResponseStatus(code = HttpStatus.CREATED) //Permet de changer le code serveur
     public User saveOrUpdateUser(@RequestBody User user) {
+        if (user.getId() != 0)
+            throw new BadRequestException("id needs to be 0");
         return userService.save(user);
     }
 
+    // POST : UPDATE
+    @PutMapping("{id}")
+    public User updateUser(@PathVariable long id, @Valid @RequestBody User user){
+        if(user.getId() != id)
+            throw new BadRequestException("ids in url and object do no match");
+        return userService.update(user);
+    };
+
     // DELETE
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Boolean> deleteUser(@PathVariable int id) {
+    public void deleteUser(@PathVariable int id) {
         User user = userService.findById(id);
         if (user == null) {
-            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+            throw new NotFoundException("Le user recherché n'existe pas");
         }
         userService.deleteById(id);
-        return new ResponseEntity<>(true, HttpStatus.NO_CONTENT);
-    }
-
-    //PUT
-    @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable int id) {
-        if (id == user.getId()) {
-            if (userService.findById(id) == null) {
-                return new ResponseEntity<>(user, HttpStatus.NOT_FOUND);
-            }
-        } else {
-            return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(userService.save(user), HttpStatus.ACCEPTED);
-
     }
 }

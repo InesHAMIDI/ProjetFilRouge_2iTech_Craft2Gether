@@ -4,6 +4,7 @@ import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Bloc;
 import fr.crafttogether.repositories.BlocRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class BlocService {
 
+    @Autowired
     BlocRepository blocRepository;
 
     public List<Bloc> findAll() {
@@ -22,7 +24,7 @@ public class BlocService {
         return blocRepository.findById(id).orElseThrow(() -> new NotFoundException("no bloc with id " + id + " exists"));
     }
 
-    public Bloc findByNom(String name){ return blocRepository.findByName(name); }
+    public Bloc findByNom(String nom){ return blocRepository.findByNom(nom).orElseThrow(() -> new NotFoundException("no bloc with nom " + nom + " exists")); }
 
     public Bloc save(Bloc bloc) {
         return blocRepository.save(bloc);
