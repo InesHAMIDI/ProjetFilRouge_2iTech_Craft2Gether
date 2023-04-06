@@ -30,7 +30,7 @@ import static org.mockito.Mockito.when;
 class RecetteControllerTest extends UnitTestsBase {
 
     @MockBean
-    RecetteService recetteService;
+    private RecetteService recetteService;
 
     @Autowired
     private MockMvc mockMvc;

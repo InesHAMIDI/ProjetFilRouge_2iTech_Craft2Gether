@@ -12,9 +12,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class BlocService {
-
-    @Autowired
-    BlocRepository blocRepository;
+    private BlocRepository blocRepository;
 
     public List<Bloc> findAll() {
         return blocRepository.findAll();
@@ -24,7 +22,10 @@ public class BlocService {
         return blocRepository.findById(id).orElseThrow(() -> new NotFoundException("no bloc with id " + id + " exists"));
     }
 
-    public Bloc findByNom(String nom){ return blocRepository.findByNom(nom).orElseThrow(() -> new NotFoundException("no bloc with nom " + nom + " exists")); }
+    public Bloc findByNom(String nom)
+    {
+        return blocRepository.findByNom(nom).orElseThrow(() -> new NotFoundException("no bloc with nom " + nom + " exists"));
+    }
 
     public Bloc save(Bloc bloc) {
         return blocRepository.save(bloc);
@@ -41,5 +42,4 @@ public class BlocService {
             throw new NotFoundException("no bloc with id " + bloc.getId() + " exists");
         return blocRepository.save(bloc);
     }
-
 }
