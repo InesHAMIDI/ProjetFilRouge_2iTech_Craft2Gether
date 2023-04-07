@@ -45,7 +45,7 @@ class RecetteControllerTest extends UnitTestsBase {
     }
 
     @Test
-    @WithMockUser(roles = "ADMIN")
+    @WithMockUser(roles = "PLAYER")
     void testGetRecettesSuccess() throws Exception{
         // Arrange
         List<Recette> dummyRecettes = List.of(
@@ -60,6 +60,35 @@ class RecetteControllerTest extends UnitTestsBase {
                 .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(jsonPath("$[2].nom", is("chocolat")));
         verify(recetteService, times(1)).findAll();
+        verifyNoMoreInteractions(recetteService);
+    }
+
+    @Test
+    @WithMockUser(roles = "PLAYER")
+    void testGetRecetteByIdSuccess() throws Exception{
+        // Arrange
+        int id = 3;
+        Recette dummyRecette = Recette.builder().id(id).nom("chocolat").build();
+        when(recetteService.findById(id)).thenReturn(dummyRecette);
+        // Act & Assert
+        mockMvc.perform(get("/recettes/i/" + id))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("nom", is("chocolat")));
+        verify(recetteService, times(1)).findById(id);
+        verifyNoMoreInteractions(recetteService);
+    }
+
+    @Test
+    @WithMockUser(roles = "PLAYER")
+    void testGetRecetteByNomSuccess() throws Exception{
+        // Arrange
+        Recette dummyRecette = Recette.builder().id(3).nom("chocolat").build();
+        when(recetteService.findByNom("chocolat")).thenReturn(dummyRecette);
+        // Act & Assert
+        mockMvc.perform(get("/recettes/n/" + "chocolat"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("id", is(3)));
+        verify(recetteService, times(1)).findByNom("chocolat");
         verifyNoMoreInteractions(recetteService);
     }
 }
