@@ -18,7 +18,6 @@ import java.util.List;
 @RequestMapping("/users") //Route general
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring
-@NoArgsConstructor
 public class UserController {
 
     private UserService userService;
@@ -64,7 +63,6 @@ public class UserController {
 
     // POST : SAVE
     @PostMapping()
-    @ResponseStatus(code = HttpStatus.CREATED) //Permet de changer le code serveur
     public User saveOrUpdateUser(@Valid @RequestBody User user) {
         if (user.getId() != 0)
             throw new BadRequestException("id needs to be 0");

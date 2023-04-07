@@ -15,7 +15,6 @@ import java.util.Collection;
 @RequestMapping("/blocs") //Route general
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring@NoArgsConstructor
-@NoArgsConstructor
 public class BlocController {
     private BlocService blocService;
 

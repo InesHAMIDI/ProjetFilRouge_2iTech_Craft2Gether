@@ -14,7 +14,6 @@ import java.util.Collection;
 @RequestMapping("/listes") //Route general
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring
-@NoArgsConstructor
 public class ListeController {
     private ListeService listeService;
 
