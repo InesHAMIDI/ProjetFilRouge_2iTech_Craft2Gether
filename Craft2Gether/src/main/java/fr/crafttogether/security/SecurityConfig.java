@@ -12,7 +12,7 @@ import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 public class SecurityConfig {
-    private final RequestMatcher adminUrls = new OrRequestMatcher(
+    /*private final RequestMatcher adminUrls = new OrRequestMatcher(
             //users
             new AntPathRequestMatcher("/users", "GET"), //get all users
             new AntPathRequestMatcher("/users/{id}", "GET"), //get user[id]
@@ -40,13 +40,13 @@ public class SecurityConfig {
     private final RequestMatcher publicUrls = new OrRequestMatcher(
             //recettes
             new AntPathRequestMatcher("/recettes", "GET"),
-            new AntPathRequestMatcher("/recettes/{id}", "GET"),
-            new AntPathRequestMatcher("/recettes/{nom}", "GET"),
+            new AntPathRequestMatcher("/recettes/i/{id}", "GET"),
+            new AntPathRequestMatcher("/recettes/n/{nom}", "GET"),
 
             //blocs
             new AntPathRequestMatcher("/blocs", "GET"),
-            new AntPathRequestMatcher("/blocs/{id}", "GET"),
-            new AntPathRequestMatcher("/blocs/{nom}", "GET")
+            new AntPathRequestMatcher("/blocs/i/{id}", "GET"),
+            new AntPathRequestMatcher("/blocs/n/{nom}", "GET")
     );
 
 
@@ -71,7 +71,7 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .httpBasic();
         return http.build();
-    }
+    }*/
 
     @Bean
     public PasswordEncoder passwordEncoder() {
