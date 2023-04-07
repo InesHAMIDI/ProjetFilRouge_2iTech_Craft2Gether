@@ -1,6 +1,5 @@
 package fr.crafttogether.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.crafttogether.UnitTestsBase;
 import fr.crafttogether.models.Recette;
 import fr.crafttogether.services.RecetteService;
@@ -9,23 +8,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import java.util.List;
 
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.when;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
 class RecetteControllerTest extends UnitTestsBase {
@@ -36,16 +28,13 @@ class RecetteControllerTest extends UnitTestsBase {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     @BeforeEach
     void setUp() throws Exception {
         reset(recetteService);
     }
 
     @Test
-    @WithMockUser(roles = "PLAYER")
+    //@WithMockUser(roles = "PLAYER")
     void testGetRecettesSuccess() throws Exception{
         // Arrange
         List<Recette> dummyRecettes = List.of(
@@ -64,7 +53,7 @@ class RecetteControllerTest extends UnitTestsBase {
     }
 
     @Test
-    @WithMockUser(roles = "PLAYER")
+    //@WithMockUser(roles = "PLAYER")
     void testGetRecetteByIdSuccess() throws Exception{
         // Arrange
         int id = 3;
@@ -79,7 +68,7 @@ class RecetteControllerTest extends UnitTestsBase {
     }
 
     @Test
-    @WithMockUser(roles = "PLAYER")
+    //@WithMockUser(roles = "PLAYER")
     void testGetRecetteByNomSuccess() throws Exception{
         // Arrange
         Recette dummyRecette = Recette.builder().id(3).nom("chocolat").build();
