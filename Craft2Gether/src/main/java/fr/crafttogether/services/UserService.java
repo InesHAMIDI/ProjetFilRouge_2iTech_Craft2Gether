@@ -4,17 +4,17 @@ import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.User;
 import fr.crafttogether.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Collection;
 @Service
-@AllArgsConstructor
 public class UserService {
-
+    @Autowired
     private UserRepository userRepository;
 
-    public List<User> findAll() {
+    public Collection<User> findAll() {
         return userRepository.findAll();
     }
 

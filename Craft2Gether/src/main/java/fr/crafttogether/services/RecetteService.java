@@ -4,16 +4,16 @@ import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Recette;
 import fr.crafttogether.repositories.RecetteRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Collection;
 @Service
-@AllArgsConstructor
 public class RecetteService {
-    RecetteRepository recetteRepository;
+    @Autowired
+    private RecetteRepository recetteRepository;
 
-    public List<Recette> findAll() {
+    public Collection<Recette> findAll() {
         return recetteRepository.findAll();
     }
 

@@ -4,18 +4,17 @@ import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Liste;
 import fr.crafttogether.repositories.ListeRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+import java.util.Collection;
 @Service
-@AllArgsConstructor
 public class ListeService {
+    @Autowired
     private ListeRepository listeRepository;
 
-    public List<Liste> findAll() {
+    public Collection<Liste> findAll() {
         return listeRepository.findAll();
     }
     public Liste findById(int id) {
@@ -41,6 +40,4 @@ public class ListeService {
             throw new NotFoundException("no list with id " + liste.getId() + " exists");
         return listeRepository.save(liste);
     }
-
-
 }

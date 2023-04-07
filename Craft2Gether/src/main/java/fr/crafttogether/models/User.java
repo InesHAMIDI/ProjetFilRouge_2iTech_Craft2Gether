@@ -7,12 +7,11 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
-@Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
 @SuperBuilder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@NoArgsConstructor
+@Entity
 public class User {
 
     @Id

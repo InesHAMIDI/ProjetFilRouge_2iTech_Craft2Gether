@@ -10,12 +10,11 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.HashMap;
 import java.util.List;
 
-@Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
 @SuperBuilder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@NoArgsConstructor
+@Entity
 public class Liste {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

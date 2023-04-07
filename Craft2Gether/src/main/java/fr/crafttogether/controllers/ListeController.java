@@ -7,14 +7,10 @@ import fr.crafttogether.services.ListeService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import java.util.Collection;
 
-@CrossOrigin //authorise le front sur le port 5500 de live server
 @RequestMapping("/listes") //Route general
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring
@@ -24,7 +20,7 @@ public class ListeController {
 
     // GET
     @GetMapping
-    public List<Liste> getListes() {
+    public Collection<Liste> getListes() {
         return listeService.findAll();
     }
 
@@ -50,7 +46,7 @@ public class ListeController {
 
     // POST : SAVE
     @PostMapping()
-    public Liste saveListe(@RequestBody Liste liste) {
+    public Liste saveListe(@Valid @RequestBody Liste liste) {
         if (liste.getId() != 0)
             throw new BadRequestException("id needs to be 0");
         return listeService.save(liste);

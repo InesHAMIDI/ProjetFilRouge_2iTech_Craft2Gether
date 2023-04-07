@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@CrossOrigin //authorise le front sur le port 5500 de live server
 @RequestMapping("/users") //Route general
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring
@@ -26,7 +25,7 @@ public class UserController {
 
     // GET
     @GetMapping
-    public List<User> getUsers() {
+    public Collection<User> getUsers() {
         return userService.findAll();
     }
 
@@ -66,7 +65,7 @@ public class UserController {
     // POST : SAVE
     @PostMapping()
     @ResponseStatus(code = HttpStatus.CREATED) //Permet de changer le code serveur
-    public User saveOrUpdateUser(@RequestBody User user) {
+    public User saveOrUpdateUser(@Valid @RequestBody User user) {
         if (user.getId() != 0)
             throw new BadRequestException("id needs to be 0");
         return userService.save(user);

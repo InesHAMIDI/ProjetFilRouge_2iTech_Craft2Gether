@@ -3,19 +3,16 @@ package fr.crafttogether.services;
 import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Bloc;
 import fr.crafttogether.repositories.BlocRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+import java.util.Collection;
 @Service
-@AllArgsConstructor
 public class BlocService {
+    @Autowired
     private BlocRepository blocRepository;
 
-    public List<Bloc> findAll() {
+    public Collection<Bloc> findAll() {
         return blocRepository.findAll();
     }
 

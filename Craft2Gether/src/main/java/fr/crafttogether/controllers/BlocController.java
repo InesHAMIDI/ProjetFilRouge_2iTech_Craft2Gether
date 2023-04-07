@@ -1,29 +1,27 @@
 package fr.crafttogether.controllers;
 
-import fr.crafttogether.exceptions.BadRequestException;
 import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Bloc;
 import fr.crafttogether.services.BlocService;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Collection;
 
-//@CrossOrigin //authorise le front sur le port 5500 de live server
 @RequestMapping("/blocs") //Route general
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring@NoArgsConstructor
+@NoArgsConstructor
 public class BlocController {
     private BlocService blocService;
 
     // GET
     @GetMapping
-    public List<Bloc> getBlocs() {
+    public Collection<Bloc> getBlocs() {
         return blocService.findAll();
     }
 

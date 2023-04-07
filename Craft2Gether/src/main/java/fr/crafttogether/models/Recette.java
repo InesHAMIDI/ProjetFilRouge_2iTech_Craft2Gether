@@ -1,20 +1,16 @@
 package fr.crafttogether.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Map;
 
-@Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
 @SuperBuilder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@NoArgsConstructor
+@Entity
 public class Recette {
 
     @Id
@@ -22,9 +18,9 @@ public class Recette {
     private int id;
     private String nom;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST})
     private Map<Integer, Bloc> ingredients; // quantité-bloc
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Bloc resultat; // quantité-bloc
 }

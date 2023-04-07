@@ -3,7 +3,9 @@ package fr.crafttogether;
 import fr.crafttogether.models.Bloc;
 import fr.crafttogether.models.Recette;
 import fr.crafttogether.repositories.BlocRepository;
+import fr.crafttogether.repositories.ListeRepository;
 import fr.crafttogether.repositories.RecetteRepository;
+import fr.crafttogether.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +24,20 @@ import static fr.crafttogether.models.Bloc.BLOCK_TYPE.MANUFACTURE;
 import static fr.crafttogether.models.Bloc.BLOCK_TYPE.NATUREL;
 
 @SpringBootApplication
-@AllArgsConstructor
-@NoArgsConstructor
 public class Craft2GetherApplication implements ApplicationRunner {
-
-    //private BlocRepository blocRepository;
-    //private ListeRepository listeRepository;
-    //private UserRepository userRepository;
-    //private RecetteRepository recetteRepository;
-
+    @Autowired
+    private BlocRepository blocRepository;
+    @Autowired
+    private ListeRepository listeRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private RecetteRepository recetteRepository;
+    @Value("${frontend.url}")
+    private String frontendUrl;
     public static void main(String[] args) {
         SpringApplication.run(Craft2GetherApplication.class, args);
     }
-    @Value("${frontend.url}")
-    private String frontendUrl;
-
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
@@ -50,8 +51,25 @@ public class Craft2GetherApplication implements ApplicationRunner {
     }
     @Override
     public void run(ApplicationArguments args){
+        Bloc bois = Bloc.builder().nom("bois").outilNecessaire("hache").type(NATUREL).build();
+        Bloc pierre = Bloc.builder().nom("pierre").outilNecessaire("pioche").type(NATUREL).build();
+        Bloc pierreTailleeBL = Bloc.builder().nom("pierreTaillee").outilNecessaire("pioche").type(MANUFACTURE).build();
+        Bloc plancheBL = Bloc.builder().nom("plancheBL").outilNecessaire("hache").type(MANUFACTURE).build();
 
+        HashMap<Integer, Bloc> quantite1 = new HashMap<>();
+        quantite1.put(1, pierre);
+
+        HashMap<Integer, Bloc> quantite2 = new HashMap<>();
+        quantite2.put(1, bois);
+
+        Recette pierreTaillee = Recette.builder().nom("pierreTaillee").ingredients(quantite1).resultat(pierreTailleeBL).build();
+        Recette planche = Recette.builder().nom("planche").ingredients(quantite2).resultat(plancheBL).build();
+
+        recetteRepository.save(pierreTaillee);
+        recetteRepository.save(planche);
+        blocRepository.save(bois);
+        blocRepository.save(pierre);
+        blocRepository.save(pierreTailleeBL);
+        blocRepository.save(plancheBL);
     }
-
-
 }

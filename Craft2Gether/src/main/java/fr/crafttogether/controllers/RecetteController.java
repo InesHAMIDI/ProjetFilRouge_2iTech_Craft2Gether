@@ -1,31 +1,23 @@
 package fr.crafttogether.controllers;
 
-import fr.crafttogether.exceptions.BadRequestException;
 import fr.crafttogether.exceptions.NotFoundException;
-import fr.crafttogether.models.Bloc;
 import fr.crafttogether.models.Recette;
 import fr.crafttogether.services.RecetteService;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import java.util.Collection;
 
-@CrossOrigin //authorise le front sur le port 5500 de live server
 @RequestMapping("/recettes") //Route general
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring
 @NoArgsConstructor
 public class RecetteController {
-
     private RecetteService recetteService;
 
     @GetMapping
-    public List<Recette> getRecettes() {
+    public Collection<Recette> getRecettes() {
         return recetteService.findAll();
     }
 
