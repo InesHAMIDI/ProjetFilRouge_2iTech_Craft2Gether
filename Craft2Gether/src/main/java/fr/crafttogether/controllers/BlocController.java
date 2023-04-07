@@ -25,7 +25,7 @@ public class BlocController {
     }
 
     // GET BY ID
-    @GetMapping("/{id}")
+    @GetMapping("/i/{id}")
     public Bloc getBlocById(@PathVariable int id) {
         Bloc bloc = blocService.findById(id);
         if (bloc == null) {
@@ -35,7 +35,7 @@ public class BlocController {
     }
 
     // GET BY NOM
-    @GetMapping("/{nom}")
+    @GetMapping("/n/{nom}")
     public Bloc getBlocByNom(@PathVariable String nom) {
         Bloc bloc = blocService.findByNom(nom);
         if (bloc == null) {

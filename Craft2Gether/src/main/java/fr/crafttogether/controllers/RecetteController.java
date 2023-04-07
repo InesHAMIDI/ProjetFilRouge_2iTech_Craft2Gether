@@ -21,7 +21,7 @@ public class RecetteController {
     }
 
     // GET BY ID
-    @GetMapping("/{id}")
+    @GetMapping("/i/{id}")
     public Recette getRecetteById(@PathVariable int id) {
         Recette recette = recetteService.findById(id);
         if (recette == null) {
@@ -31,7 +31,7 @@ public class RecetteController {
     }
 
     // GET BY NOM
-    @GetMapping("{nom}")
+    @GetMapping("/n/{nom}")
     public Recette getRecetteByName(@PathVariable String nom) {
         Recette recette = recetteService.findByNom(nom);
         if (recette == null) {
