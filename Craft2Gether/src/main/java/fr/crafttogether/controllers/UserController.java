@@ -7,13 +7,10 @@ import fr.crafttogether.models.User;
 import fr.crafttogether.services.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @RequestMapping("/users") //Route general
 @RestController //Controller rest qui ne retourne pas de vue

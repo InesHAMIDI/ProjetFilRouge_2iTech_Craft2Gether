@@ -1,9 +1,6 @@
 package fr.crafttogether;
 
-import fr.crafttogether.models.Bloc;
-import fr.crafttogether.models.Recette;
-import fr.crafttogether.models.User;
-import fr.crafttogether.models.UserRole;
+import fr.crafttogether.models.*;
 import fr.crafttogether.repositories.BlocRepository;
 import fr.crafttogether.repositories.ListeRepository;
 import fr.crafttogether.repositories.RecetteRepository;
@@ -19,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.HashMap;
+import java.util.List;
 
 import static fr.crafttogether.models.Bloc.BLOCK_TYPE.MANUFACTURE;
 import static fr.crafttogether.models.Bloc.BLOCK_TYPE.NATUREL;
@@ -51,7 +49,7 @@ public class Craft2GetherApplication implements ApplicationRunner {
     }
     @Override
     public void run(ApplicationArguments args){
-        Bloc bois = Bloc.builder().nom("bois").outilNecessaire("hache").type(NATUREL).build();
+        Bloc bois = Bloc.builder().nom("bois").outilNecessaire("hache").biomeOrigine("Plaine").type(NATUREL).build();
         Bloc pierre = Bloc.builder().nom("pierre").outilNecessaire("pioche").type(NATUREL).build();
         Bloc pierreTailleeBL = Bloc.builder().nom("pierreTaillee").outilNecessaire("pioche").type(MANUFACTURE).build();
         Bloc plancheBL = Bloc.builder().nom("plancheBL").outilNecessaire("hache").type(MANUFACTURE).build();
@@ -72,6 +70,10 @@ public class Craft2GetherApplication implements ApplicationRunner {
         blocRepository.save(pierreTailleeBL);
         blocRepository.save(plancheBL);
         
-        userRepository.save(User.builder().username("admin").role(UserRole.ADMIN).password("admin").build());
+        User user = userRepository.save(User.builder().username("admin").role(UserRole.ADMIN).password("admin").build());
+        User user2 = userRepository.save(User.builder().username("player").role(UserRole.PLAYER).password("player123").build());
+        User user3 = userRepository.save(User.builder().username("akaba").role(UserRole.PLAYER).password("akaba456").build());
+
+        listeRepository.save(Liste.builder().createur(user).titre("jolieListe").collaborateurs(List.of(user2,user3)).recettes(List.of(pierreTaillee, planche)).build());
     }
 }

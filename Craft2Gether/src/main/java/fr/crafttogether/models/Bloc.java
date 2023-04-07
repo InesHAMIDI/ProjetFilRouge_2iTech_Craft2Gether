@@ -1,12 +1,12 @@
 package fr.crafttogether.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -19,12 +19,13 @@ public class Bloc {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nom;
+    private String biomeOrigine;
     private String outilNecessaire;
 
     private BLOCK_TYPE type;
 
-    @OneToMany(mappedBy="resultat")
-    @JsonIgnoreProperties
+    @OneToMany(mappedBy= "resultat")
+    @JsonIgnore
     private List<Recette> recettesToMakeMe;
     public enum BLOCK_TYPE
     {

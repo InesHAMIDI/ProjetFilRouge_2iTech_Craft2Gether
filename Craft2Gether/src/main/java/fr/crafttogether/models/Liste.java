@@ -1,5 +1,7 @@
 package fr.crafttogether.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +16,7 @@ import java.util.List;
 @SuperBuilder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
+@Table(name = "Liste")
 @Entity
 public class Liste {
     @Id
@@ -23,16 +26,20 @@ public class Liste {
     @NotBlank
     private String titre;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST})
+    @JsonIgnore
     private List<Recette> recettes;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST})
+    @JsonIgnore
     private HashMap<Integer, Bloc> blocs;//On a quantité-bloc
 
     @ManyToMany
+    @JsonIgnore
     private List<User> collaborateurs;
 
     @ManyToOne
+    @JsonIgnore
     private User createur;
 
 }
