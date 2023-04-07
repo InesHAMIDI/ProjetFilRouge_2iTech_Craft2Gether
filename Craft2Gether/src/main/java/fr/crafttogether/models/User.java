@@ -22,6 +22,8 @@ public class User {
 
     String password;
 
+    private UserRole role;
+
     @OneToMany(mappedBy = "createur")
     private List<Liste> listesICreated;
 

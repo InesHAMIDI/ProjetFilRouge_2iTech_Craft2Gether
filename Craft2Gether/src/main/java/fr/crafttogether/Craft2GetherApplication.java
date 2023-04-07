@@ -2,12 +2,12 @@ package fr.crafttogether;
 
 import fr.crafttogether.models.Bloc;
 import fr.crafttogether.models.Recette;
+import fr.crafttogether.models.User;
+import fr.crafttogether.models.UserRole;
 import fr.crafttogether.repositories.BlocRepository;
 import fr.crafttogether.repositories.ListeRepository;
 import fr.crafttogether.repositories.RecetteRepository;
 import fr.crafttogether.repositories.UserRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
@@ -71,5 +71,7 @@ public class Craft2GetherApplication implements ApplicationRunner {
         blocRepository.save(pierre);
         blocRepository.save(pierreTailleeBL);
         blocRepository.save(plancheBL);
+        
+        userRepository.save(User.builder().username("admin").role(UserRole.ADMIN).password("admin").build());
     }
 }
