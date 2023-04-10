@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Cascade;
 
 import java.util.Map;
 
@@ -22,6 +23,6 @@ public class Recette {
     @ManyToMany(cascade = {CascadeType.PERSIST})
     private Map<Integer, Bloc> ingredients; // quantité-bloc
 
-    @ManyToOne(cascade = {CascadeType.PERSIST})
-    private Bloc resultat; // quantité-bloc
+    @OneToOne(cascade = {CascadeType.ALL})
+    private Bloc resultat;
 }

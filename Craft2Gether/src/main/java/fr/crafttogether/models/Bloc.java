@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 
@@ -23,10 +24,6 @@ public class Bloc {
     private String outilNecessaire;
 
     private BLOCK_TYPE type;
-
-    @OneToMany(mappedBy= "resultat")
-    @JsonIgnore
-    private List<Recette> recettesToMakeMe;
     public enum BLOCK_TYPE
     {
         NATUREL,
