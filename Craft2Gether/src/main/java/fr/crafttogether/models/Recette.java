@@ -1,12 +1,11 @@
 package fr.crafttogether.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.Cascade;
 
-import java.nio.MappedByteBuffer;
 import java.util.Map;
 
 @Data

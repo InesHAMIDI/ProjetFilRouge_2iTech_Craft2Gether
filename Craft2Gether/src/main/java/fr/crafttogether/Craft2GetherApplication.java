@@ -15,8 +15,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static fr.crafttogether.models.Bloc.BLOCK_TYPE.MANUFACTURE;
 import static fr.crafttogether.models.Bloc.BLOCK_TYPE.NATUREL;
@@ -49,6 +52,24 @@ public class Craft2GetherApplication implements ApplicationRunner {
     }
     @Override
     public void run(ApplicationArguments args){
+
+        Bloc chene = Bloc.builder().nom("chene").biomeOrigine("all").outilNecessaire("hache_bois").type(NATUREL).build();
+        Bloc plancheCheneBloc = Bloc.builder().nom("planche de chene").biomeOrigine("all").outilNecessaire("hache_bois").type(MANUFACTURE).build();
+
+        Map<Integer, Bloc> quantiteChene = new HashMap<Integer, Bloc>();
+        quantiteChene.put(1, chene);
+
+        Recette plancheCheneRecette = Recette.builder().nom("Planche de chene").ingredients(quantiteChene).resultat(plancheCheneBloc).build();
+
+        List<Recette> recettesList1 = new ArrayList<>();
+        recettesList1.add(plancheCheneRecette);
+
+        Liste liste1 = Liste.builder().titre("Planches à faire").recettes(recettesList1).build();
+
+        listeRepository.save(liste1);
+        blocRepository.save(chene);
+        blocRepository.save(plancheCheneBloc);
+        recetteRepository.save(plancheCheneRecette);
 
     }
 }
