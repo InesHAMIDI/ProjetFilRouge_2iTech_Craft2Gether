@@ -1,6 +1,7 @@
 package fr.crafttogether.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Cascade;
 
+import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -24,6 +26,10 @@ public class Bloc {
     private String outilNecessaire;
 
     private BLOCK_TYPE type;
+
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "resultat")
+    @JsonIgnoreProperties
+    private Collection<Recette> mesRecettes;
     public enum BLOCK_TYPE
     {
         NATUREL,

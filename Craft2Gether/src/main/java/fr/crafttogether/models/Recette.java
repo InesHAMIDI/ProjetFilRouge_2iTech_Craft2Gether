@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Cascade;
 
+import java.nio.MappedByteBuffer;
 import java.util.Map;
 
 @Data
@@ -23,6 +24,6 @@ public class Recette {
     @ManyToMany(cascade = {CascadeType.PERSIST})
     private Map<Integer, Bloc> ingredients; // quantité-bloc
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Bloc resultat;
 }
