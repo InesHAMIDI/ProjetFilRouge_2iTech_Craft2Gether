@@ -1,9 +1,10 @@
 package fr.crafttogether.models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 @SuperBuilder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-@Table(name = "MyUser")
+//@Table(name = "ctg_User")
 @Entity
 public class User {
 
