@@ -41,4 +41,10 @@ public class Liste {
     @JsonIgnore
     private User createur;
 
+    private STATUS status;
+
+    public enum STATUS{
+        EN_COURS,
+        FINISHED
+    }
 }
