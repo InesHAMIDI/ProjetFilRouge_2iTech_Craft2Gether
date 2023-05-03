@@ -1,6 +1,9 @@
 <template>
     <div>
-        {{ bloc.nom }} {{ bloc.biomeOrigine }} {{ bloc.outilNecessaire }} {{ bloc.type }}
+       <h2>
+        {{ bloc.nom }}
+       </h2> 
+       {{ bloc.biomeOrigine }}  {{ bloc.outilNecessaire }} {{ bloc.type }}
     </div>
 </template>
 <script>
@@ -13,4 +16,4 @@ export default {
 </script>
 <style scoped>
     
-</style>
+</style>npm i -D vfonts
