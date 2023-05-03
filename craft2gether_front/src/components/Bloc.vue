@@ -16,4 +16,4 @@ export default {
 </script>
 <style scoped>
     
-</style>npm i -D vfonts
+</style>
