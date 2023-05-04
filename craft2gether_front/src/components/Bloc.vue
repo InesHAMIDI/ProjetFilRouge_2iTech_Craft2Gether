@@ -1,9 +1,6 @@
 <template>
     <div>
-       <h2>
-        {{ bloc.nom }}
-       </h2> 
-       {{ bloc.biomeOrigine }}  {{ bloc.outilNecessaire }} {{ bloc.type }}
+        {{ bloc.nom }} {{ bloc.biomeOrigine }} {{ bloc.outilNecessaire }} {{ bloc.type }}
     </div>
 </template>
 <script>

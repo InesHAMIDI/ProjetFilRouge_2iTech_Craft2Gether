@@ -1,5 +1,4 @@
 /.idea/
-Craft2Gether/node_modules/@babel/runtime/helpers/esm/createClass.js
 .DS_Store
 node_modules
 /dist
@@ -23,4 +22,3 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-
