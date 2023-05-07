@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-import BlocComponent from "@/components/Bloc.vue"
+import BlocComponent from "@/components/BlocComponent.vue"
 export default {
     name:"RecetteComponent",
     components: {

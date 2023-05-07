@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-import ListeComponent from '@/components/Liste.vue'
+import ListeComponent from '@/components/ListeComponent.vue'
 export default {
     name:"UserComponent",
     components:{

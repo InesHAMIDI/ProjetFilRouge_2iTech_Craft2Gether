@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Collection;
@@ -18,10 +19,14 @@ public class Bloc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NonNull
     private String nom;
+    @NonNull
     private String biomeOrigine;
+    @NonNull
     private String outilNecessaire;
 
+    @NonNull
     private BLOCK_TYPE type;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "resultat")
