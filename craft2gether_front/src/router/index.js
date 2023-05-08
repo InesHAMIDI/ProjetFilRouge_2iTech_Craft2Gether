@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ListeDetailsView from '../views/ListeDetailsView.vue'
+import BlocDetailView from '../views/BlocDetailView.vue'
+
 
 const routes = [
   {
@@ -12,6 +15,12 @@ const routes = [
     path: '/listes/:id',
     name: 'liste-details',
     component: ListeDetailsView
+  },
+
+  {
+    path: '/blocs/:id',
+    name: 'bloc-details',
+    component: BlocDetailView
   },
 
 ]

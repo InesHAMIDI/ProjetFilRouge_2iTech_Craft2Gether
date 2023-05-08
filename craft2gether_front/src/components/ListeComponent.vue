@@ -13,33 +13,30 @@
           <td>{{ elt.name }}</td>
           <td>{{ elt.status }}</td>
           <td><router-link :to="{
-              name:'liste-details',
-              params:{id: elt.id}
-            }"></router-link>
+            name: 'liste-details',
+            params: { id: elt.id }
+          }"></router-link>
           </td>
         </tr>
       </tbody>
-
     </table>
   </div>
 </template>
 
 <script>
 export default {
-    name: "ListeComponent",
-    props: {
-        listes: [],
-    },
-    computed:{
-      /*statusRow(value)  {
-        if(){
-          statusRow = "success";
-        }
-        return statusRow;
-      }*/
-    }
+  name: "ListeComponent",
+  props: {
+    listes: [{id: 1, name: "aaaa", status: "fini" }],
+  },
+  computed: {
+    /*statusRow(value)  {
+      if(){
+        statusRow = "success";
+      }
+      return statusRow;
+    }*/
+  }
 }
 </script>
-<style scoped>
-    
-</style>
+<style scoped></style>

@@ -15,7 +15,7 @@ export default {
   name: 'HomeView',
   components: {
     MenuNav,
-    FooterComponent, 
+    FooterComponent,
     ListeComponent
   }
 }

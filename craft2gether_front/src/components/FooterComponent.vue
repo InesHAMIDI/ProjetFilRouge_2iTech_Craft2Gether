@@ -6,32 +6,33 @@
     </div>
 </template>
 <script>
-import {ref} from 'vue'
+import { ref } from 'vue'
 export default {
     name: 'FooterComponent',
 
     data() {
         return {
-            githubLien: ref({href:"https://github.com/InesHAMIDI/ProjetFilRouge_2iTech_Craft2Gether", target: "_blank"})
+            githubLien: ref({ href: "https://github.com/InesHAMIDI/ProjetFilRouge_2iTech_Craft2Gether", target: "_blank" })
         }
     },
 }
 </script>
 <style scoped>
-    .footer{
-        background-color: grey;
-        position: fixed;
-        height: auto;
-        width: 100%;
-        bottom:0;
-        align-items: flex-start;
-    }
-    a{
-        color:white;
-        font-size: 32px;
-    }
-    p{
-        color:lightblue;
-    }
+.footer {
+    background-color: grey;
+    position: fixed;
+    height: auto;
+    width: 100%;
+    bottom: 0;
+    align-items: flex-start;
+}
 
+a {
+    color: white;
+    font-size: 32px;
+}
+
+p {
+    color: lightblue;
+}
 </style>
