@@ -52,7 +52,7 @@ public class UserController {
         if (user == null) {
             throw new NotFoundException("Le user recherché n'existe pas");
         }
-        Collection<Liste> listes = new ArrayList<Liste>();
+        Collection<Liste> listes = new ArrayList<>();
         listes.addAll(user.getListeIParticipate());
         listes.addAll(user.getListesICreated());
         return listes;
