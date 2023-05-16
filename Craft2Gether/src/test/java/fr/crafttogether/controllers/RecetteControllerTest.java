@@ -60,7 +60,7 @@ class RecetteControllerTest extends UnitTestsBase {
         Recette dummyRecette = Recette.builder().id(id).nom("chocolat").build();
         when(recetteService.findById(id)).thenReturn(dummyRecette);
         // Act & Assert
-        mockMvc.perform(get("/recettes/i/" + id))
+        mockMvc.perform(get("/recettes/" + id))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("nom", is("chocolat")));
         verify(recetteService, times(1)).findById(id);
@@ -74,7 +74,7 @@ class RecetteControllerTest extends UnitTestsBase {
         Recette dummyRecette = Recette.builder().id(3).nom("chocolat").build();
         when(recetteService.findByNom("chocolat")).thenReturn(dummyRecette);
         // Act & Assert
-        mockMvc.perform(get("/recettes/n/" + "chocolat"))
+        mockMvc.perform(get("/recettes/" + "chocolat"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", is(3)));
         verify(recetteService, times(1)).findByNom("chocolat");

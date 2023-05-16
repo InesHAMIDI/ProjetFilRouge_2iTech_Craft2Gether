@@ -24,8 +24,8 @@ public class ListeController {
     }
 
     // GET BY ID
-    @GetMapping("/{id}")
-    public Liste getListeById(@PathVariable int id) {
+    @GetMapping()
+    public Liste getListeById(@RequestParam int id) {
         Liste list = listeService.findById(id);
         if (list == null) {
             throw new NotFoundException("La liste recherchée n'existe pas");
@@ -34,8 +34,8 @@ public class ListeController {
     }
 
     // GET BY NOM
-    @GetMapping("/{titre}")
-    public Liste findByTitre(@PathVariable String titre) {
+    @GetMapping()
+    public Liste findByTitre(@RequestParam String titre) {
         Liste liste = listeService.findByTitre(titre);
         if (liste == null) {
             throw new NotFoundException("La liste recherchée n'existe pas");

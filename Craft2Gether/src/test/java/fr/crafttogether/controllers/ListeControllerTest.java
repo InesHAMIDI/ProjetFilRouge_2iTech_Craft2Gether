@@ -1,7 +1,6 @@
 package fr.crafttogether.controllers;
 
 import fr.crafttogether.models.Liste;
-import fr.crafttogether.models.Recette;
 import fr.crafttogether.services.ListeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,11 +20,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 class ListeControllerTest {
-    @MockBean
-    private ListeService listeService;
-
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private ListeService listeService;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -34,14 +33,14 @@ class ListeControllerTest {
 
     @Test
         //@WithMockUser(roles = "PLAYER")
-    void testGetRecettesSuccess() throws Exception{
+    void testGetListesSuccess() throws Exception{
         // Arrange
-        List<Liste> dummyRecettes = List.of(
+        List<Liste> dummyListes = List.of(
                 Liste.builder().id(1).build(),
                 Liste.builder().id(2).build(),
                 Liste.builder().id(3).titre("chocolat").build()
         );
-        when(listeService.findAll()).thenReturn(dummyRecettes);
+        when(listeService.findAll()).thenReturn(dummyListes);
         // Act & Assert
         mockMvc.perform(get("/listes"))
                 .andExpect(status().isOk())
@@ -53,13 +52,13 @@ class ListeControllerTest {
 
     @Test
         //@WithMockUser(roles = "PLAYER")
-    void testGetRecetteByIdSuccess() throws Exception{
+    void testGetListesByIdSuccess() throws Exception{
         // Arrange
         int id = 3;
         Liste dummyListe = Liste.builder().id(id).titre("chocolat").build();
         when(listeService.findById(id)).thenReturn(dummyListe);
         // Act & Assert
-        mockMvc.perform(get("/listes/i/" + id))
+        mockMvc.perform(get("/listes?id=" + id))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("titre", is("chocolat")));
         verify(listeService, times(1)).findById(id);
@@ -68,12 +67,12 @@ class ListeControllerTest {
 
     @Test
         //@WithMockUser(roles = "PLAYER")
-    void testGetRecetteByNomSuccess() throws Exception{
+    void testGetListesByTitreSuccess() throws Exception{
         // Arrange
         Liste dummyListe = Liste.builder().id(3).titre("chocolat").build();
         when(listeService.findByTitre("chocolat")).thenReturn(dummyListe);
         // Act & Assert
-        mockMvc.perform(get("/recettes/n/" + "chocolat"))
+        mockMvc.perform(get("/listes?name=" + "chocolat"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", is(3)));
         verify(listeService, times(1)).findByTitre("chocolat");

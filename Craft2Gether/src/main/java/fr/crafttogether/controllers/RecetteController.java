@@ -21,8 +21,8 @@ public class RecetteController {
     }
 
     // GET BY ID
-    @GetMapping("/{id}")
-    public Recette getRecetteById(@PathVariable int id) {
+    @GetMapping()
+    public Recette getRecetteById(@RequestParam int id) {
         Recette recette = recetteService.findById(id);
         if (recette == null) {
             throw new NotFoundException("La recette recherchée n'existe pas");
@@ -31,8 +31,8 @@ public class RecetteController {
     }
 
     // GET BY NOM
-    @GetMapping("/{nom}")
-    public Recette getRecetteByName(@PathVariable String nom) {
+    @GetMapping()
+    public Recette getRecetteByName(@RequestParam String nom) {
         Recette recette = recetteService.findByNom(nom);
         if (recette == null) {
             throw new NotFoundException("La recette recherchée n'existe pas");
