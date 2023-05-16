@@ -3,6 +3,7 @@ package fr.crafttogether.controllers;
 import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Bloc;
 import fr.crafttogether.services.BlocService;
+import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,21 +26,21 @@ public class BlocController {
     }
 
     // GET BY ID
-    @GetMapping("/i/{id}")
+    @GetMapping("/{id}")
     public Bloc getBlocById(@PathVariable int id) {
         Bloc bloc = blocService.findById(id);
         if (bloc == null) {
-            throw new NotFoundException("Le bloc recherchée n'existe pas");
+            throw new NotFoundException("Le bloc recherché n'existe pas");
         }
         return bloc;
     }
 
     // GET BY NOM
-    @GetMapping("/n/{nom}")
+    @GetMapping("/{nom}")
     public Bloc getBlocByNom(@PathVariable String nom) {
         Bloc bloc = blocService.findByNom(nom);
         if (bloc == null) {
-            throw new NotFoundException("Le bloc recherchée n'existe pas");
+            throw new NotFoundException("Le bloc recherché n'existe pas");
         }
         return bloc;
     }

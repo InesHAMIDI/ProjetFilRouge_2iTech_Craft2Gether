@@ -34,7 +34,7 @@ public class ListeController {
     }
 
     // GET BY NOM
-    @GetMapping("{titre}")
+    @GetMapping("/{titre}")
     public Liste findByTitre(@PathVariable String titre) {
         Liste liste = listeService.findByTitre(titre);
         if (liste == null) {
@@ -52,7 +52,7 @@ public class ListeController {
     }
 
     // POST : UPDATE
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public Liste updateListe(@PathVariable long id, @Valid @RequestBody Liste liste){
         if(liste.getId() != id)
             throw new BadRequestException("ids in url and object do no match");

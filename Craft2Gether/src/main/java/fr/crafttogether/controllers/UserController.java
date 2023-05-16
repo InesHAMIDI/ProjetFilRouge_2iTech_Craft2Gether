@@ -36,7 +36,7 @@ public class UserController {
     }
 
     // GET BY NOM
-    @GetMapping("{nom}")
+    @GetMapping("/{nom}")
     public User getUserByName(@PathVariable String nom) {
         User user = userService.findByUsername(nom);
         if (user == null) {
@@ -67,7 +67,7 @@ public class UserController {
     }
 
     // POST : UPDATE
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public User updateUser(@PathVariable long id, @Valid @RequestBody User user){
         if(user.getId() != id)
             throw new BadRequestException("ids in url and object do no match");
