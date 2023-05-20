@@ -11,11 +11,13 @@
       <tbody>
         <tr v-for="elt in listes" :key="elt">
           <td>{{ elt.titre }}</td>
-          <td>{{ elt.status }}</td>
+          <td v-if="elt.status == 'EN_COURS'"><font-awesome-icon :icon="['fasr', 'badge']" /></td>
+          <td v-if="elt.status == 'FINISHED'"><font-awesome-icon :icon="['far', 'badge-check']" /></td>
+          
           <td><router-link :to="{
             name: 'liste-details',
             params: { id: elt.id }
-          }"><i class="fa-regular fa-folder-open"></i></router-link>
+          }"><font-awesome-icon :icon="['fas', 'folder-open']" /></router-link>
           </td>
         </tr>
       </tbody>
@@ -27,12 +29,6 @@
 export default {
   name: "ListeComponent",
   methods: {
-    AfficheStatus(status, ind){
-      if(status == "EN_COURS")
-        this.listes[ind].status = ""
-      else
-      this.listes[ind].status = ""
-    }
   },
   mounted() {
     this.axios.get(`${this.baseUrl}/listes`)
