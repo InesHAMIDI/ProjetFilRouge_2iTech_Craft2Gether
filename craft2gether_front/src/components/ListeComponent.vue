@@ -11,13 +11,13 @@
       <tbody>
         <tr v-for="elt in listes" :key="elt">
           <td>{{ elt.titre }}</td>
-          <td v-if="elt.status == 'EN_COURS'"><font-awesome-icon :icon="['fasr', 'badge']" /></td>
-          <td v-if="elt.status == 'FINISHED'"><font-awesome-icon :icon="['far', 'badge-check']" /></td>
+          <td v-if="elt.status == 'EN_COURS'"><i class="fa-regular fa-badge"></i></td>
+          <td v-if="elt.status == 'FINISHED'"><i class="fa-regular fa-badge-check"></i></td>
           
           <td><router-link :to="{
             name: 'liste-details',
             params: { id: elt.id }
-          }"><font-awesome-icon :icon="['fas', 'folder-open']" /></router-link>
+          }"><i class="fa-solid fa-folder-open"></i></router-link>
           </td>
         </tr>
       </tbody>

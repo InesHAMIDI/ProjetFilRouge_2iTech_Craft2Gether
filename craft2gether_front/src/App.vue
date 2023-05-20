@@ -28,7 +28,7 @@ button:hover{
   color: #81acff;
 }
 
-.footer a, .header a {
+i {
   color:white;
   font-size: 30px;
 }
