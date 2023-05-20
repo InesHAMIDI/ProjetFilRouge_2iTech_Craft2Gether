@@ -1,6 +1,7 @@
 package fr.crafttogether.controllers;
 
 import fr.crafttogether.UnitTestsBase;
+import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Recette;
 import fr.crafttogether.services.RecetteService;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,8 +39,8 @@ class RecetteControllerTest extends UnitTestsBase {
     void testGetRecettesSuccess() throws Exception{
         // Arrange
         List<Recette> dummyRecettes = List.of(
-                Recette.builder().id(1).build(),
-                Recette.builder().id(2).build(),
+                Recette.builder().id(1).nom("chco").build(),
+                Recette.builder().id(2).nom("coc").build(),
                 Recette.builder().id(3).nom("chocolat").build()
                 );
         when(recetteService.findAll()).thenReturn(dummyRecettes);
@@ -66,18 +67,15 @@ class RecetteControllerTest extends UnitTestsBase {
         verify(recetteService, times(1)).findById(id);
         verifyNoMoreInteractions(recetteService);
     }
-
     @Test
-    //@WithMockUser(roles = "PLAYER")
-    void testGetRecetteByNomSuccess() throws Exception{
+        //@WithMockUser(roles = "PLAYER")
+    void testGetRecetteByIdFail() throws Exception{
         // Arrange
-        Recette dummyRecette = Recette.builder().id(3).nom("chocolat").build();
-        when(recetteService.findByNom("chocolat")).thenReturn(dummyRecette);
+        doThrow(new NotFoundException("element does not exist")).when(recetteService).findById(45);
         // Act & Assert
-        mockMvc.perform(get("/recettes/" + "chocolat"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is(3)));
-        verify(recetteService, times(1)).findByNom("chocolat");
+        mockMvc.perform(get("/recettes/" + 45))
+                .andExpect(status().isNotFound());
+        verify(recetteService, times(1)).findById(45);
         verifyNoMoreInteractions(recetteService);
     }
 }

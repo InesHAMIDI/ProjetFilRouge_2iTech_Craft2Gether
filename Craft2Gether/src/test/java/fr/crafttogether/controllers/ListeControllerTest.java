@@ -1,5 +1,7 @@
 package fr.crafttogether.controllers;
 
+import fr.crafttogether.UnitTestsBase;
+import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Liste;
 import fr.crafttogether.services.ListeService;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,18 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
-class ListeControllerTest {
+class ListeControllerTest extends UnitTestsBase {
     @Autowired
     private MockMvc mockMvc;
 
@@ -58,7 +60,7 @@ class ListeControllerTest {
         Liste dummyListe = Liste.builder().id(id).titre("chocolat").build();
         when(listeService.findById(id)).thenReturn(dummyListe);
         // Act & Assert
-        mockMvc.perform(get("/listes?id=" + id))
+        mockMvc.perform(get("/listes/" + id))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("titre", is("chocolat")));
         verify(listeService, times(1)).findById(id);
@@ -67,15 +69,13 @@ class ListeControllerTest {
 
     @Test
         //@WithMockUser(roles = "PLAYER")
-    void testGetListesByTitreSuccess() throws Exception{
+    void testGetListesByIdFail() throws Exception{
         // Arrange
-        Liste dummyListe = Liste.builder().id(3).titre("chocolat").build();
-        when(listeService.findByTitre("chocolat")).thenReturn(dummyListe);
+        doThrow(new NotFoundException("element does not exist")).when(listeService).findById(45);
         // Act & Assert
-        mockMvc.perform(get("/listes?name=" + "chocolat"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is(3)));
-        verify(listeService, times(1)).findByTitre("chocolat");
+        mockMvc.perform(get("/listes/" + 45))
+                .andExpect(status().isNotFound());
+        verify(listeService, times(1)).findById(45);
         verifyNoMoreInteractions(listeService);
     }
 }
