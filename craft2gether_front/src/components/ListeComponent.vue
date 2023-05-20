@@ -10,12 +10,12 @@
       </thead>
       <tbody>
         <tr v-for="elt in listes" :key="elt">
-          <td>{{ elt.name }}</td>
+          <td>{{ elt.titre }}</td>
           <td>{{ elt.status }}</td>
           <td><router-link :to="{
             name: 'liste-details',
             params: { id: elt.id }
-          }"></router-link>
+          }"><i class="fa-regular fa-folder-open"></i></router-link>
           </td>
         </tr>
       </tbody>
@@ -26,17 +26,26 @@
 <script>
 export default {
   name: "ListeComponent",
-  props: {
-    listes: [{id: 1, name: "aaaa", status: "fini" }],
+  methods: {
+    AfficheStatus(status, ind){
+      if(status == "EN_COURS")
+        this.listes[ind].status = ""
+      else
+      this.listes[ind].status = ""
+    }
   },
-  computed: {
-    /*statusRow(value)  {
-      if(){
-        statusRow = "success";
-      }
-      return statusRow;
-    }*/
-  }
+  mounted() {
+    this.axios.get(`${this.baseUrl}/listes`)
+    .then(response => this.listes = response.data)
+    .catch(err => this.erreur = err);
+    },
+
+    data(){
+    return{
+      listes: [],
+      erreur: ""
+    }
+  },
 }
 </script>
 <style scoped></style>

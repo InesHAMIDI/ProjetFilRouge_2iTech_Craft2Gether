@@ -10,6 +10,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @SuperBuilder
@@ -31,7 +32,7 @@ public class Liste {
 
     @ManyToMany(cascade = {CascadeType.PERSIST})
     @JsonIgnore
-    private HashMap<Integer, Bloc> blocs;//On a quantité-bloc
+    private Map<Integer, Bloc> blocs;//On a quantité-bloc
 
     @ManyToMany
     @JsonIgnore
