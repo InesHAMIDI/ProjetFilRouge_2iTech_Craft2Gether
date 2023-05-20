@@ -1,7 +1,11 @@
 <template>
-    <div class="dropdown">
+    
+    <div>
+        {{ liste.titre }}
+    </div>
+    <div class="dropdown" v-for="recette in recettes" :key="recette">
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{ liste.titre }}
+            {{ recette.titre }}
         </a>
 
         <table class="dropdown-menu table table-striped">
@@ -13,9 +17,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="elt in ingredients" :key="elt">
-                    <td>{{ elt.name }}</td>
-                    <td>{{ elt.status }}</td>
+                <tr v-for="ingredient in ingredients" :key="ingredient">
+                    <td>{{ ingredient.name }}</td>
+                    <td>{{ ingredient.status }}</td>
                     <td><router-link :to="{
                         name: 'liste-details',
                         params: { id: elt.id }
@@ -31,14 +35,18 @@ export default {
     data() {
         return {
             liste: {},
-            ingredients: []
+            recette: {},
+            ingredient: []
         }
     },
 
     computed:{
         id(){
             return this.$route.params.id;
-        }
+        },
+        recettes(){
+            return this.liste.recettes;
+        },
     },
 
     mounted() {
@@ -47,6 +55,13 @@ export default {
             .catch(err => this.erreur = err);
     },
 
+    methods: {
+        getRecette(ind){
+            this.axios.get(`${this.baseUrl}/recettes/${this.liste.recettes[ind].id}`)
+            .then(response => this.recette = response.data)
+            .catch(err => this.erreur = err);
+        }
+    },
 }
 </script>
 <style></style>
