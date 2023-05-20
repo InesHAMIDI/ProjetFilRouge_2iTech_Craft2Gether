@@ -36,14 +36,14 @@ public class BlocController {
     }
 
     // GET BY NOM
-    @GetMapping("/{nom}")
+    /*@GetMapping("/{nom}")
     public Bloc getBlocByNom(@PathVariable String nom) {
         Bloc bloc = blocService.findByNom(nom);
         if (bloc == null) {
             throw new NotFoundException("Le bloc recherché n'existe pas");
         }
         return bloc;
-    }
+    }*/
 
     // On ne prévoit pas le reste car personne ne peut modifier la base de données des blocs / recettes
 

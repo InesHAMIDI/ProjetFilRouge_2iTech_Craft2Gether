@@ -26,8 +26,8 @@ public class UserController {
     }
 
     // GET BY ID
-    @GetMapping()
-    public User getUserById(@RequestParam int id) {
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable int id) {
         User user = userService.findById(id);
         if (user == null) {
             throw new NotFoundException("Le user recherché n'existe pas");
@@ -36,14 +36,14 @@ public class UserController {
     }
 
     // GET BY NOM
-    @GetMapping()
+    /*@GetMapping()
     public User getUserByName(@RequestParam String nom) {
         User user = userService.findByUsername(nom);
         if (user == null) {
             throw new NotFoundException("Le user recherché n'existe pas");
         }
         return user;
-    }
+    }*/
 
     // GET LISTS FROM USER
     @GetMapping("/{id}/listes")

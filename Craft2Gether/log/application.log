@@ -3810,3 +3810,128 @@ fr.crafttogether.controllers.ListeController#findByTitre(String) mapped.
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1758) ~[spring-beans-6.0.6.jar:6.0.6]
 	... 93 common frames omitted
 
+2023-05-20T13:11:04.818+02:00  INFO 19836 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : Starting Craft2GetherApplication using Java 19.0.1 with PID 19836 (C:\Users\Toki\Desktop\COURS\FilRouge\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether\target\classes started by Toki in C:\Users\Toki\Desktop\COURS\FilRouge\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether)
+2023-05-20T13:11:04.820+02:00  INFO 19836 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-05-20T13:11:04.849+02:00  INFO 19836 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-05-20T13:11:04.849+02:00  INFO 19836 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-05-20T13:11:05.228+02:00  INFO 19836 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-20T13:11:05.273+02:00  INFO 19836 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 4 JPA repository interfaces.
+2023-05-20T13:11:05.632+02:00  INFO 19836 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 3000 (http)
+2023-05-20T13:11:05.638+02:00  INFO 19836 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-20T13:11:05.638+02:00  INFO 19836 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-05-20T13:11:05.673+02:00  INFO 19836 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/ctg]    : Initializing Spring embedded WebApplicationContext
+2023-05-20T13:11:05.673+02:00  INFO 19836 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 824 ms
+2023-05-20T13:11:05.762+02:00  INFO 19836 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-20T13:11:05.793+02:00  INFO 19836 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-05-20T13:11:05.979+02:00  INFO 19836 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-20T13:11:06.149+02:00  INFO 19836 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@a387c82
+2023-05-20T13:11:06.150+02:00  INFO 19836 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-20T13:11:06.179+02:00  INFO 19836 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-05-20T13:11:06.838+02:00  INFO 19836 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-20T13:11:06.844+02:00  INFO 19836 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-20T13:11:07.119+02:00  WARN 19836 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-20T13:11:07.232+02:00  WARN 19836 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'recetteController' method 
+fr.crafttogether.controllers.RecetteController#getRecette(int)
+to {GET [/recettes]}: There is already 'recetteController' bean method
+fr.crafttogether.controllers.RecetteController#getRecettes() mapped.
+2023-05-20T13:11:07.233+02:00  INFO 19836 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-05-20T13:11:07.234+02:00  INFO 19836 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-05-20T13:11:07.238+02:00  INFO 19836 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-05-20T13:11:07.240+02:00  INFO 19836 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-05-20T13:11:07.247+02:00  INFO 19836 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-05-20T13:11:07.260+02:00 ERROR 19836 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'recetteController' method 
+fr.crafttogether.controllers.RecetteController#getRecette(int)
+to {GET [/recettes]}: There is already 'recetteController' bean method
+fr.crafttogether.controllers.RecetteController#getRecettes() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1762) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:961) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:917) ~[spring-context-6.0.6.jar:6.0.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:584) ~[spring-context-6.0.6.jar:6.0.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.0.4.jar:3.0.4]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732) ~[spring-boot-3.0.4.jar:3.0.4]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434) ~[spring-boot-3.0.4.jar:3.0.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:310) ~[spring-boot-3.0.4.jar:3.0.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304) ~[spring-boot-3.0.4.jar:3.0.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293) ~[spring-boot-3.0.4.jar:3.0.4]
+	at fr.crafttogether.Craft2GetherApplication.main(Craft2GetherApplication.java:40) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-3.0.4.jar:3.0.4]
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'recetteController' method 
+fr.crafttogether.controllers.RecetteController#getRecette(int)
+to {GET [/recettes]}: There is already 'recetteController' bean method
+fr.crafttogether.controllers.RecetteController#getRecettes() mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:667) ~[spring-webmvc-6.0.6.jar:6.0.6]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:633) ~[spring-webmvc-6.0.6.jar:6.0.6]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331) ~[spring-webmvc-6.0.6.jar:6.0.6]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:438) ~[spring-webmvc-6.0.6.jar:6.0.6]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:76) ~[spring-webmvc-6.0.6.jar:6.0.6]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298) ~[spring-webmvc-6.0.6.jar:6.0.6]
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:729) ~[na:na]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296) ~[spring-webmvc-6.0.6.jar:6.0.6]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265) ~[spring-webmvc-6.0.6.jar:6.0.6]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224) ~[spring-webmvc-6.0.6.jar:6.0.6]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212) ~[spring-webmvc-6.0.6.jar:6.0.6]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:225) ~[spring-webmvc-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1808) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1758) ~[spring-beans-6.0.6.jar:6.0.6]
+	... 19 common frames omitted
+
+2023-05-20T13:16:00.829+02:00  INFO 6848 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : Starting Craft2GetherApplication using Java 19.0.1 with PID 6848 (C:\Users\Toki\Desktop\COURS\FilRouge\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether\target\classes started by Toki in C:\Users\Toki\Desktop\COURS\FilRouge\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether)
+2023-05-20T13:16:00.831+02:00  INFO 6848 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-05-20T13:16:00.858+02:00  INFO 6848 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-05-20T13:16:00.858+02:00  INFO 6848 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-05-20T13:16:01.263+02:00  INFO 6848 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-20T13:16:01.307+02:00  INFO 6848 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 4 JPA repository interfaces.
+2023-05-20T13:16:01.651+02:00  INFO 6848 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 3000 (http)
+2023-05-20T13:16:01.657+02:00  INFO 6848 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-20T13:16:01.657+02:00  INFO 6848 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-05-20T13:16:01.692+02:00  INFO 6848 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/ctg]    : Initializing Spring embedded WebApplicationContext
+2023-05-20T13:16:01.692+02:00  INFO 6848 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 833 ms
+2023-05-20T13:16:01.778+02:00  INFO 6848 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-20T13:16:01.807+02:00  INFO 6848 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-05-20T13:16:01.984+02:00  INFO 6848 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-20T13:16:02.152+02:00  INFO 6848 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@32a66f87
+2023-05-20T13:16:02.153+02:00  INFO 6848 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-20T13:16:02.182+02:00  INFO 6848 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-05-20T13:16:02.837+02:00  INFO 6848 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-20T13:16:02.843+02:00  INFO 6848 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-20T13:16:03.114+02:00  WARN 6848 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-20T13:16:03.310+02:00  INFO 6848 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-05-20T13:16:03.334+02:00  INFO 6848 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 3000 (http) with context path '/ctg'
+2023-05-20T13:16:03.340+02:00  INFO 6848 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : Started Craft2GetherApplication in 2.765 seconds (process running for 3.19)
+2023-05-20T13:16:59.010+02:00  INFO 6676 --- [main] f.c.controllers.RecetteControllerTest    : Starting RecetteControllerTest using Java 19.0.1 with PID 6676 (started by Toki in C:\Users\Toki\Desktop\COURS\FilRouge\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether)
+2023-05-20T13:16:59.011+02:00  INFO 6676 --- [main] f.c.controllers.RecetteControllerTest    : The following 1 profile is active: "unit-tests"
+2023-05-20T13:17:00.417+02:00  INFO 6676 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-05-20T13:17:00.418+02:00  INFO 6676 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-05-20T13:17:00.419+02:00  INFO 6676 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2023-05-20T13:17:00.441+02:00  INFO 6676 --- [main] f.c.controllers.RecetteControllerTest    : Started RecetteControllerTest in 1.664 seconds (process running for 2.458)
+2023-05-20T13:17:00.523+02:00  WARN 6676 --- [main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "chocolat"]
+2023-05-20T13:31:09.648+02:00  INFO 21284 --- [main] f.c.controllers.ListeControllerTest      : Starting ListeControllerTest using Java 19.0.1 with PID 21284 (started by Toki in C:\Users\Toki\Desktop\COURS\FilRouge\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether)
+2023-05-20T13:31:09.649+02:00  INFO 21284 --- [main] f.c.controllers.ListeControllerTest      : The following 1 profile is active: "unit-tests"
+2023-05-20T13:31:11.196+02:00  INFO 21284 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-05-20T13:31:11.197+02:00  INFO 21284 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-05-20T13:31:11.197+02:00  INFO 21284 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-05-20T13:31:11.223+02:00  INFO 21284 --- [main] f.c.controllers.ListeControllerTest      : Started ListeControllerTest in 1.826 seconds (process running for 2.689)
+2023-05-20T13:31:17.309+02:00  INFO 7336 --- [main] f.c.controllers.ListeControllerTest      : Starting ListeControllerTest using Java 19.0.1 with PID 7336 (started by Toki in C:\Users\Toki\Desktop\COURS\FilRouge\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether)
+2023-05-20T13:31:17.310+02:00  INFO 7336 --- [main] f.c.controllers.ListeControllerTest      : The following 1 profile is active: "unit-tests"
+2023-05-20T13:31:18.911+02:00  INFO 7336 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-05-20T13:31:18.911+02:00  INFO 7336 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-05-20T13:31:18.912+02:00  INFO 7336 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2023-05-20T13:31:18.932+02:00  INFO 7336 --- [main] f.c.controllers.ListeControllerTest      : Started ListeControllerTest in 1.876 seconds (process running for 2.625)
+2023-05-20T13:32:44.547+02:00  INFO 20176 --- [main] f.c.controllers.RecetteControllerTest    : Starting RecetteControllerTest using Java 19.0.1 with PID 20176 (started by Toki in C:\Users\Toki\Desktop\COURS\FilRouge\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether)
+2023-05-20T13:32:44.548+02:00  INFO 20176 --- [main] f.c.controllers.RecetteControllerTest    : The following 1 profile is active: "unit-tests"
+2023-05-20T13:32:45.934+02:00  INFO 20176 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-05-20T13:32:45.934+02:00  INFO 20176 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-05-20T13:32:45.935+02:00  INFO 20176 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2023-05-20T13:32:45.954+02:00  INFO 20176 --- [main] f.c.controllers.RecetteControllerTest    : Started RecetteControllerTest in 1.645 seconds (process running for 2.387)

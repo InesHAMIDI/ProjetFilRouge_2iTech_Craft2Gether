@@ -24,23 +24,13 @@ public class ListeController {
     }
 
     // GET BY ID
-    @GetMapping()
-    public Liste getListeById(@RequestParam int id) {
+    @GetMapping("/{id}")
+    public Liste getListeById(@PathVariable int id) {
         Liste list = listeService.findById(id);
         if (list == null) {
             throw new NotFoundException("La liste recherchée n'existe pas");
         }
         return list;
-    }
-
-    // GET BY NOM
-    @GetMapping()
-    public Liste findByTitre(@RequestParam String titre) {
-        Liste liste = listeService.findByTitre(titre);
-        if (liste == null) {
-            throw new NotFoundException("La liste recherchée n'existe pas");
-        }
-        return liste;
     }
 
     // POST : SAVE
