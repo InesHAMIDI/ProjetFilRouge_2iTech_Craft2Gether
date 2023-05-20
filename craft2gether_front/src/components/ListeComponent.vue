@@ -3,9 +3,9 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">Titre</th>
-          <th scope="col">Status</th>
-          <th scope="col"></th>
+          <th scope="col"></th> <!-- Titre -->
+          <th scope="col"></th> <!-- Status -->
+          <th scope="col"></th> <!-- Open button -->
         </tr>
       </thead>
       <tbody>

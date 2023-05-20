@@ -1,7 +1,7 @@
 <template>
     <div class="dropdown">
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{ titre }}
+            {{ liste.titre }}
         </a>
 
         <table class="dropdown-menu table table-striped">
@@ -30,11 +30,22 @@
 export default {
     data() {
         return {
-            titre: "",
-            ingredients: [{name: "aaa", status: "aaa"}]
+            liste: {},
+            ingredients: []
         }
     },
 
+    computed:{
+        id(){
+            return this.$route.params.id;
+        }
+    },
+
+    mounted() {
+        this.axios.get(`${this.baseUrl}/listes/${this.id}`)
+            .then(response => this.liste = response.data)
+            .catch(err => this.erreur = err);
+    },
 
 }
 </script>
