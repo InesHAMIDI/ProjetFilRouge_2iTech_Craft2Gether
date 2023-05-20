@@ -19,7 +19,6 @@ export default {
 </script>
 <style scoped>
 .footer {
-    background-color: grey;
     position: fixed;
     height: auto;
     width: 100%;
@@ -27,12 +26,4 @@ export default {
     align-items: flex-start;
 }
 
-a {
-    color: white;
-    font-size: 32px;
-}
-
-p {
-    color: lightblue;
-}
 </style>

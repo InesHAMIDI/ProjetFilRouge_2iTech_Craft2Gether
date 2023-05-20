@@ -15,12 +15,21 @@ nav {
   padding: 30px;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+button{
+   background-color:antiquewhite; 
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+button:hover{
+    background-color: #111;
+}
+
+.header, .footer{
+  background-color: #717171;
+  color: #81acff;
+}
+
+.footer a, .header a {
+  color:white;
+  font-size: 30px;
 }
 </style>
