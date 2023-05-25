@@ -2,13 +2,7 @@
     <div class="footer">
         <div class="credits">
             <a v-bind="githubLien"><i class="fab fa-github"></i></a>
-            <div>
-                <p>Created and Developped by : Ines HAMIDI</p>
-                <p>2023</p>
-            </div>
-        </div>
-        <div class="dl">
-            <a v-bind="downloadLien"><i class="fas fa-download"></i></a>
+            <p>Created and Developped by : Ines HAMIDI</p>
         </div>
     </div>
 </template>
@@ -20,7 +14,6 @@ export default {
     data() {
         return {
             githubLien: ref({ href: "https://github.com/InesHAMIDI/ProjetFilRouge_2iTech_Craft2Gether", target: "_blank" }),
-            downloadLien: ref({ href: "", target: "_blank" })
         }
     },
 }
@@ -38,13 +31,6 @@ export default {
     align-items: center;
     flex-direction: column;
     text-align: center;
-}
-.dl{
-    justify-content: center;
-    text-align: end;
-    margin-top: 10px;
-    margin-bottom: 10px;
-
 }
 
 

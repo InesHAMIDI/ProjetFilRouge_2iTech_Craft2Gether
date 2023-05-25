@@ -41,6 +41,10 @@ button:hover{
 
 i {
   color:white;
-  font-size: 30px;
+  font-size: 35px;
+}
+
+p{
+  font-size: 17px;
 }
 </style>
