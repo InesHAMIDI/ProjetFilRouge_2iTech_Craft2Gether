@@ -1,6 +1,11 @@
 <template>
-    <div>
-        <ListeComponent v-for="elt in listes" :key="elt.nom" :liste="elt"></ListeComponent>
+    <div class="card">
+        <img class="card-img-top" v-bind="profilePic" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{ user.name }}</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
     </div>
 </template>
 <script>
@@ -12,14 +17,25 @@ export default {
     },
     data(){
         return{
-            listes:[
-                //placeholders en attendant les vrais résultats
-                {titre:"LISTE1", recettes:[ { }, { } ], collaborateurs: [ { } ],  createur: this },
-                {titre:"liste2", recettes:[ { }, { } ], collaborateurs: [ { } ],  createur: this }
-            ]
+            user:{}
         }
-    }
+    },
+    computed:{
+        profilePic() {
+            const randomFile = require('select-random-file')
+            const dir = '@/public/Profile_pictures'
+            randomFile(dir, (err, file) => {
+                return this.randomFile;
+            })
+        }
+    },
+    mounted() {
+        this.axios.get(`${this.baseUrl}/users/${this.id}`)
+            .then(response => this.user = response.data)
+            .catch(err => this.erreur = err);
+    },
 }
+
 </script>
 <style scoped>
     
