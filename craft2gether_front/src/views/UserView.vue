@@ -9,24 +9,28 @@
     </div>
 </template>
 <script>
-import ListeComponent from '@/components/ListeComponent.vue'
 export default {
-    name:"UserComponent",
     components:{
-        ListeComponent
+        
     },
     data(){
         return{
-            user:{}
+            user:{},
+
         }
     },
     computed:{
         profilePic() {
             const randomFile = require('select-random-file')
-            const dir = '@/public/Profile_pictures'
-            randomFile(dir, (err, file) => {
-                return this.randomFile;
-            })
+            const dir = '../public/Profile_pictures'
+            randomFile(dir, (file) => {
+                return file
+            });
+            return ""
+        },
+
+        nombredeListes(){
+            return 0
         }
     },
     mounted() {
