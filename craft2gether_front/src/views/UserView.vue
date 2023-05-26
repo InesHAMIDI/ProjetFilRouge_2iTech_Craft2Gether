@@ -1,11 +1,12 @@
 <template>
-    <div class="card">
-        <img class="card-img-top" v-bind="profilePic" alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title">{{ user.name }}</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
+    <div class="user-card">
+        <div class="card">
+            <img class="card-img-top" :src="profilePic" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ user.name }}</h5>
+            <p class="card-text">Listes : {{ nombredeListes }}</p>
+        </div>
+        </div>
     </div>
 </template>
 <script>
@@ -16,21 +17,15 @@ export default {
     data(){
         return{
             user:{},
-
+            profilePic: ""
         }
     },
     computed:{
-        profilePic() {
-            const randomFile = require('select-random-file')
-            const dir = '../public/Profile_pictures'
-            randomFile(dir, (file) => {
-                return file
-            });
-            return ""
-        },
-
         nombredeListes(){
-            return 0
+            if(this.user.listes == undefined || this.user.listes == null)
+                return 0;
+            else
+                return this.user.listes.lenght;
         }
     },
     mounted() {
@@ -42,5 +37,8 @@ export default {
 
 </script>
 <style scoped>
-    
+    .user-card{
+        align-items: center;
+        border:2px;
+    }
 </style>

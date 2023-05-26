@@ -2,7 +2,7 @@
     <div class="footer">
         <div class="credits">
             <a v-bind="githubLien"><i class="fab fa-github"></i></a>
-            <p>Created and Developped by : Ines HAMIDI</p>
+            <p>Created and Developped by Ines HAMIDI</p>
         </div>
     </div>
 </template>

@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import ListeDetailsView from '../views/ListeDetailsView.vue'
 import BlocDetailView from '../views/BlocDetailView.vue'
 import UserView from '@/views/UserView.vue'
+import ListeCreateView from '@/views/ListeCreateView.vue'
 
 const routes = [
   {
@@ -28,6 +29,12 @@ const routes = [
     path: '/users/:id',
     name: 'user',
     component: UserView
+  },
+
+  {
+    path: '/createListe',
+    name: 'create-liste',
+    component: ListeCreateView
   },
 
 ]
