@@ -3,6 +3,7 @@ package fr.crafttogether.controllers;
 import fr.crafttogether.exceptions.BadRequestException;
 import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Liste;
+import fr.crafttogether.models.Recette;
 import fr.crafttogether.services.ListeService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,16 @@ public class ListeController {
             throw new NotFoundException("La liste recherchée n'existe pas");
         }
         return list;
+    }
+
+    // GET LISTE CONTENT RECETTES
+    @GetMapping("/{id}/recettes")
+    public Collection<Recette> getRecettesFromListe(@PathVariable int id) {
+        Liste list = listeService.findById(id);
+        if (list == null) {
+            throw new NotFoundException("La liste recherchée n'existe pas");
+        }
+        return list.getRecettes();
     }
 
     // POST : SAVE

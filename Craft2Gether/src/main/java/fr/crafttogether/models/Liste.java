@@ -27,7 +27,6 @@ public class Liste {
     private String titre;
 
     @ManyToMany(cascade = {CascadeType.PERSIST})
-    @JsonIgnore
     private List<Recette> recettes;
 
     @ManyToMany(cascade = {CascadeType.PERSIST})

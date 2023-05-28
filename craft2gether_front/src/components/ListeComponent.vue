@@ -48,4 +48,8 @@ export default {
   },
 }
 </script>
-<style scoped></style>
+<style scoped>
+.fa-solid, .fa-regular {
+  color: #717171;
+}
+</style>
