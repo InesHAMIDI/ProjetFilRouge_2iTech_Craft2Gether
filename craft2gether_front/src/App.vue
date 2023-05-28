@@ -23,15 +23,11 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+  align-items: center;
 }
 
-nav {
-  padding: 30px;
-}
-
-button{
+button {
    background-color:antiquewhite; 
 }
 
@@ -46,6 +42,10 @@ button:hover{
 
 i {
   color:white;
-  font-size: 30px;
+  font-size: 35px;
+}
+
+p{
+  font-size: 17px;
 }
 </style>

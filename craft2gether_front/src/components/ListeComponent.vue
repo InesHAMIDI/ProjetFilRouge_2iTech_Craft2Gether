@@ -22,6 +22,10 @@
         </tr>
       </tbody>
     </table>
+    <div v-if="listes == []">
+      <p>>Vous n'avez pas encore créé de liste !</p>
+      <button><router-link to="/createListe"><i class="fa-solid fa-plus"></i></router-link></button>
+    </div>
   </div>
 </template>
 
