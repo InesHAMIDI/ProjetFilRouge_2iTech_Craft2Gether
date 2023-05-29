@@ -19,6 +19,7 @@
             params: { id: elt.id }
           }"><i class="fa-solid fa-folder-open"></i></router-link>
           </td>
+          <td><i class="fas fa-trash"></i></td>
         </tr>
       </tbody>
     </table>
