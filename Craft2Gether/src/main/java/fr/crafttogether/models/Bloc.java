@@ -1,5 +1,6 @@
 package fr.crafttogether.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -25,13 +26,8 @@ public class Bloc {
     private String biomeOrigine;
     @NonNull
     private String outilNecessaire;
-
     @NonNull
     private BLOCK_TYPE type;
-
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "resultat")
-    @JsonIgnoreProperties
-    private Collection<Recette> mesRecettes;
     public enum BLOCK_TYPE
     {
         NATUREL,
