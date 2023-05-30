@@ -26,16 +26,20 @@ import static fr.crafttogether.models.Bloc.BLOCK_TYPE.NATUREL;
 
 @SpringBootApplication
 public class Craft2GetherApplication implements ApplicationRunner {
-    @Autowired
-    private BlocRepository blocRepository;
-    @Autowired
-    private ListeRepository listeRepository;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private RecetteRepository recetteRepository;
+    private final BlocRepository blocRepository;
+    private final ListeRepository listeRepository;
+    private final UserRepository userRepository;
+    private final RecetteRepository recetteRepository;
     @Value("${frontend.url}")
     private String frontendUrl;
+
+    public Craft2GetherApplication(BlocRepository blocRepository, ListeRepository listeRepository, UserRepository userRepository, RecetteRepository recetteRepository) {
+        this.blocRepository = blocRepository;
+        this.listeRepository = listeRepository;
+        this.userRepository = userRepository;
+        this.recetteRepository = recetteRepository;
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(Craft2GetherApplication.class, args);
     }
@@ -64,8 +68,8 @@ public class Craft2GetherApplication implements ApplicationRunner {
         List<Recette> recettesList1 = new ArrayList<>();
         recettesList1.add(plancheCheneRecette);
 
-        Liste liste1 = Liste.builder().titre("Planches à faire").recettes(recettesList1).status(Liste.STATUS.EN_COURS).build();
-        Liste liste2 = Liste.builder().titre("EPEES POUR EQUIPE").recettes(recettesList1).status(Liste.STATUS.FINISHED).build();
+        Liste liste1 = Liste.builder().titre("Planches à faire").status(Liste.STATUS.EN_COURS).build();
+        Liste liste2 = Liste.builder().titre("EPEES POUR EQUIPE").status(Liste.STATUS.FINISHED).build();
         Liste liste3 = Liste.builder().titre("BOucliers").status(Liste.STATUS.EN_COURS).build();
         blocRepository.save(chene);
         blocRepository.save(plancheCheneBloc);

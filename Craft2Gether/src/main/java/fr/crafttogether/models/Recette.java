@@ -15,7 +15,6 @@ import java.util.Map;
 @NoArgsConstructor
 @Entity
 public class Recette {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
