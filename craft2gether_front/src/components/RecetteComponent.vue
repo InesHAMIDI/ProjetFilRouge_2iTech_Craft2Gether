@@ -12,11 +12,7 @@ export default {
     },
     data(){
         return{
-            ingredients:[
-                //placeholders en attendant les vrais résultats
-                {nom:"aa", biomeOrigine:"", outilNecessaire:"bbb", type:""},
-                {nom:"bb", biomeOrigine:"aaazff", outilNecessaire:"bbcccb", type:"afaf"}
-            ]
+            ingredients:[]
         }
     }
 }

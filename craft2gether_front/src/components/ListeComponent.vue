@@ -6,10 +6,11 @@
           <th scope="col"></th> <!-- Titre -->
           <th scope="col"></th> <!-- Status -->
           <th scope="col"></th> <!-- Open button -->
+          <th scope="col"></th> <!-- Delete button -->
         </tr>
       </thead>
       <tbody>
-        <tr v-for="elt in listes" :key="elt">
+        <tr v-for="elt in listes" :key="elt.id">
           <td>{{ elt.titre }}</td>
           <td v-if="elt.status == 'EN_COURS'"><i class="fa-regular fa-badge"></i></td>
           <td v-if="elt.status == 'FINISHED'"><i class="fa-regular fa-badge-check"></i></td>
@@ -19,7 +20,7 @@
             params: { id: elt.id }
           }"><i class="fa-solid fa-folder-open"></i></router-link>
           </td>
-          <td><i class="fas fa-trash"></i></td>
+          <td><button @click="deleteList(elt.id, ind)"><i class="fas fa-trash"></i></button></td>
         </tr>
       </tbody>
     </table>
@@ -34,6 +35,11 @@
 export default {
   name: "ListeComponent",
   methods: {
+    deleteList(id, ind){
+      this.axios.delete(`${this.baseUrl}/listes/${id}`)
+                .then(( ) => { this.listes.splice(ind, 1) })
+                .catch(err => this.erreur = err);
+    }
   },
   mounted() {
     this.axios.get(`${this.baseUrl}/listes`)
