@@ -7,6 +7,7 @@
                 <Field id="titre" type="text" name="titre" :rules="validateTitre"/>
                 <ErrorMessage name="titre" />
             </div>
+            <p>{{ this.recettes }}</p>
             <SearchBarComponent />
             
             <button>Valider</button>
@@ -33,7 +34,7 @@ export default {
             
             erreur: ""
         }
-    },
+    },    
 
     methods: {
         creerListe(values) {
@@ -46,6 +47,12 @@ export default {
                 .catch(err => this.erreur = err);
         },
     },
+
+    computed:{
+        recettes(){
+            return SearchBarComponent.recettesSelectionnees;
+        },
+    }
 }
 </script>
 <style scoped>

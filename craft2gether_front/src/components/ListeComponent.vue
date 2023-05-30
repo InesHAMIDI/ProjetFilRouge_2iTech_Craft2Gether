@@ -24,10 +24,9 @@
         </tr>
       </tbody>
     </table>
-    <div v-if="listes.length == 0">
-      <p>Vous n'avez pas encore créé de liste !</p>
-      <button><router-link to="/createListe"><i class="fa-solid fa-plus"></i></router-link></button>
-    </div>
+    <p v-if="listes.length == 0">Vous n'avez pas encore créé de liste !</p>
+    <button><router-link to="/createListe"><i class="fa-solid fa-plus"></i></router-link></button>
+
   </div>
 </template>
 
