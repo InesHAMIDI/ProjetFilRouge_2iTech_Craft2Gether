@@ -7,14 +7,15 @@
                 <Field id="titre" type="text" name="titre" :rules="validateTitre"/>
                 <ErrorMessage name="titre" />
             </div>
-        
-            <table>
+            
+            <table class="table table-striped">
+                <input id="searchbar" type="text" placeholder="Recette.." v-bind="searchQuery"/> 
                 <thead>
                     <th scope="col"></th> <!-- Titre -->
                 </thead>
                 <tbody>
-                    <tr v-for="recette in recettes" :key="recette">
-                        <td>{{ recette.titre }}</td>
+                    <tr v-for="recette in recettesRecherchees" :key="recette">
+                        <td>{{ recette.nom }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -33,7 +34,6 @@ export default {
         ErrorMessage,
     },
 
-    
     data() {
         return {
             validateTitre: yup
@@ -42,6 +42,7 @@ export default {
             
             erreur: "",
             recettes: [],
+            searchQuery: ""
         }
     },    
 
@@ -63,8 +64,18 @@ export default {
     },
 
     computed:{
-
+        recettesRecherchees(){
+            if (this.searchQuery == "") {
+                return this.recettes;
+            }
+            return this.recettes.filter((r) => {
+                return r.nom
+                .toLowerCase()
+                .indexOf(valueOf(this.searchQuery).toLowerCase()) != -1 
+            });
+        }
     }
+
 }
 </script>
 <style scoped>

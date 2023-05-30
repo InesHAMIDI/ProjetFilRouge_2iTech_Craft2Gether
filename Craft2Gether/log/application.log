@@ -21375,3 +21375,5 @@ java.sql.SQLSyntaxErrorException: Unknown database 'craft_to_gether_db'
 2023-05-30T15:52:28.764+02:00  INFO 4404 --- [http-nio-3000-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/ctg]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2023-05-30T15:52:28.765+02:00  INFO 4404 --- [http-nio-3000-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2023-05-30T15:52:28.766+02:00  INFO 4404 --- [http-nio-3000-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-05-30T15:55:41.505+02:00  WARN 4404 --- [http-nio-3000-exec-8] .w.s.m.a.ResponseStatusExceptionResolver : Resolved [fr.crafttogether.exceptions.NotFoundException: 404 NOT_FOUND "no list with id 3 exists"]
+2023-05-30T15:55:43.191+02:00  WARN 4404 --- [http-nio-3000-exec-9] .w.s.m.a.ResponseStatusExceptionResolver : Resolved [fr.crafttogether.exceptions.NotFoundException: 404 NOT_FOUND "no list with id 3 exists"]
