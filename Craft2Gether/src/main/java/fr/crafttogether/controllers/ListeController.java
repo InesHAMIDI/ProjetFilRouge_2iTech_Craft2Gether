@@ -61,7 +61,7 @@ public class ListeController {
     };
 
     // DELETE
-    @DeleteMapping("    /{id}")
+    @DeleteMapping("/{id}")
     public void deleteListe(@PathVariable int id) {
         Liste list = listeService.findById(id);
         if (list == null) {
