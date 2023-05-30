@@ -59,14 +59,21 @@ public class Craft2GetherApplication implements ApplicationRunner {
 
         Bloc chene = Bloc.builder().nom("chene").biomeOrigine("all").outilNecessaire("hache_bois").type(NATUREL).build();
         Bloc plancheCheneBloc = Bloc.builder().nom("planche de chene").biomeOrigine("all").outilNecessaire("hache_bois").type(MANUFACTURE).build();
-
         Map<Integer, Bloc> quantiteChene = new HashMap<Integer, Bloc>();
         quantiteChene.put(1, chene);
 
+        Bloc fer = Bloc.builder().nom("minerai de fer").biomeOrigine("all").outilNecessaire("pioche").type(NATUREL).build();
+        Bloc lingoFerBloc = Bloc.builder().nom("lingot de fer").biomeOrigine("all").outilNecessaire("pioche").type(MANUFACTURE).build();
+        Map<Integer, Bloc> quantiteLingot = new HashMap<Integer, Bloc>();
+        quantiteLingot.put(1, lingoFerBloc);
+
         Recette plancheCheneRecette = Recette.builder().nom("Planche de chene").ingredients(quantiteChene).resultat(plancheCheneBloc).build();
+        Recette lingotFerRecette = Recette.builder().nom("lingot de fer").ingredients(quantiteLingot).resultat(lingoFerBloc).build();
+
 
         List<Recette> recettesList1 = new ArrayList<>();
         recettesList1.add(plancheCheneRecette);
+        recettesList1.add(lingotFerRecette);
 
         Liste liste1 = Liste.builder().titre("Planches à faire").status(Liste.STATUS.EN_COURS).build();
         Liste liste2 = Liste.builder().titre("EPEES POUR EQUIPE").status(Liste.STATUS.FINISHED).build();
