@@ -32,6 +32,7 @@ export default {
     data() {
         return {
             liste: {},
+            recettes: []
         }
     },
 
@@ -42,24 +43,19 @@ export default {
         ingredients(){
             return this.liste.recettes.ingredients()
         },
-        
-        recettes(){
-            return this.getRecettes();
-        }
     },
 
     mounted() {
         this.axios.get(`${this.baseUrl}/listes/${this.id}`)
             .then(response => this.liste = response.data)
             .catch(err => this.erreur = err);
+
+        this.axios.get(`${this.baseUrl}/${this.id}/recettes`)
+            .then(response => this.recettes = response.data)
+            .catch(err => this.erreur = err);
     },
 
     methods: {
-        getRecettes(){
-            this.axios.get(`${this.baseUrl}/${this.id}/recettes`)
-            .then(response => this.recettes = response.data)
-            .catch(err => this.erreur = err);
-        }
     },
 }
 </script>

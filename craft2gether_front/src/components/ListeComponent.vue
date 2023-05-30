@@ -12,9 +12,11 @@
       <tbody>
         <tr v-for="elt in listes" :key="elt.id">
           <td>{{ elt.titre }}</td>
-          <td v-if="elt.status == 'EN_COURS'"><i class="fa-regular fa-badge"></i></td>
-          <td v-if="elt.status == 'FINISHED'"><i class="fa-regular fa-badge-check"></i></td>
-          
+          <td>
+              <i v-if="elt.status == 'FINISHED'" class="fa-sharp fa-regular fa-circle-check"></i>
+              <i v-else class="fa-regular fa-circle"></i>
+          </td>
+                    
           <td><router-link :to="{
             name: 'liste-details',
             params: { id: elt.id }
@@ -24,9 +26,10 @@
         </tr>
       </tbody>
     </table>
-    <p v-if="listes.length == 0">Vous n'avez pas encore créé de liste !</p>
-    <button><router-link to="/createListe"><i class="fa-solid fa-plus"></i></router-link></button>
-
+    <div class="alwaysAffiche">
+      <p v-if="listes.length == 0">Vous n'avez pas encore créé de liste !</p>
+      <router-link to="/createListe"><i class="fa-solid fa-plus"></i></router-link>
+    </div>
   </div>
 </template>
 
@@ -55,7 +58,12 @@ export default {
 }
 </script>
 <style scoped>
-.fa-solid, .fa-regular {
+.fa, .fas, .fa-solid, .fa-regular {
   color: #717171;
+}
+
+.liste{
+  justify-content: center;
+  align-items: center;
 }
 </style>

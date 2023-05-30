@@ -32,14 +32,17 @@ export default {
                 .string()
                 .required("Champ Obligatoire"),
             
-            erreur: ""
+            erreur: "", 
+            listeAEnregistrer: {}
         }
     },    
 
     methods: {
         creerListe(values) {
-            values.adresses= []
-            this.axios.post(`${this.baseUrl}/listes`, values)
+            this.listeAEnregistrer = values;
+            this.listeAEnregistrer.status = "EN_COURS"
+            
+            this.axios.post(`${this.baseUrl}/listes`,  this.listeAEnregistrer)
                 .then(response => {
                     this.$emit('sendData', response.data)
                     this.$refs.listeForm.resetForm()

@@ -28,14 +28,6 @@ export default {
   justify-content: center;
 }
 
-button {
-   background-color:antiquewhite; 
-}
-
-button:hover{
-    background-color: #111;
-}
-
 .header, .footer{
   background-color: #717171;
   color: #81acff;
@@ -48,5 +40,13 @@ i {
 
 p{
   font-size: 17px;
+}
+
+button{
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0;
+  border: none;
+  background: none;
 }
 </style>
