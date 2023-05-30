@@ -7,8 +7,17 @@
                 <Field id="titre" type="text" name="titre" :rules="validateTitre"/>
                 <ErrorMessage name="titre" />
             </div>
-            <p>{{ this.recettes }}</p>
-            <SearchBarComponent />
+        
+            <table>
+                <thead>
+                    <th scope="col"></th> <!-- Titre -->
+                </thead>
+                <tbody>
+                    <tr v-for="recette in recettes" :key="recette">
+                        <td>{{ recette.titre }}</td>
+                    </tr>
+                </tbody>
+            </table>
             
             <button>Valider</button>
         </Form>
@@ -17,28 +26,33 @@
 <script>
 import { Field, Form, ErrorMessage } from 'vee-validate'
 import * as yup from 'yup'
-import SearchBarComponent from '@/components/SearchBarComponent.vue'
 export default {
     components: {
         Field,
         Form,
         ErrorMessage,
-        SearchBarComponent,
     },
 
+    
     data() {
         return {
             validateTitre: yup
                 .string()
                 .required("Champ Obligatoire"),
             
-            erreur: ""
+            erreur: "",
+            recettes: [],
         }
     },    
 
+    mounted() {
+        this.axios.get(`${this.baseUrl}/recettes`)
+            .then(response => this.recettes = response.data)
+            .catch(err => this.erreur = err);
+    },
+
     methods: {
         creerListe(values) {
-            
             this.axios.post(`${this.baseUrl}/listes`, values)
                 .then(response => {
                     this.$emit('sendData', response.data)
@@ -49,9 +63,7 @@ export default {
     },
 
     computed:{
-        recettes(){
-            return SearchBarComponent.recettesSelectionnees;
-        },
+
     }
 }
 </script>

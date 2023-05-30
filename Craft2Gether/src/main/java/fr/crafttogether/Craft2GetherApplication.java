@@ -25,7 +25,7 @@ import static fr.crafttogether.models.Bloc.BLOCK_TYPE.MANUFACTURE;
 import static fr.crafttogether.models.Bloc.BLOCK_TYPE.NATUREL;
 
 @SpringBootApplication
-public class Craft2GetherApplication  {
+public class Craft2GetherApplication implements ApplicationRunner {
     private final BlocRepository blocRepository;
     private final ListeRepository listeRepository;
     private final UserRepository userRepository;
@@ -53,5 +53,29 @@ public class Craft2GetherApplication  {
             }
 
         };
+    }
+    @Override
+    public void run(ApplicationArguments args){
+
+        Bloc chene = Bloc.builder().nom("chene").biomeOrigine("all").outilNecessaire("hache_bois").type(NATUREL).build();
+        Bloc plancheCheneBloc = Bloc.builder().nom("planche de chene").biomeOrigine("all").outilNecessaire("hache_bois").type(MANUFACTURE).build();
+        Map<Integer, Bloc> quantiteChene = new HashMap<Integer, Bloc>();
+        quantiteChene.put(1, chene);
+
+        Bloc fer = Bloc.builder().nom("minerai de fer").biomeOrigine("all").outilNecessaire("pioche").type(NATUREL).build();
+        Bloc lingoFerBloc = Bloc.builder().nom("lingot de fer").biomeOrigine("all").outilNecessaire("pioche").type(MANUFACTURE).build();
+        Map<Integer, Bloc> quantiteLingot = new HashMap<Integer, Bloc>();
+        quantiteLingot.put(1, lingoFerBloc);
+
+        Recette plancheCheneRecette = Recette.builder().nom("Planche de chene").ingredients(quantiteChene).resultat(plancheCheneBloc).build();
+        Recette lingotFerRecette = Recette.builder().nom("lingot de fer").ingredients(quantiteLingot).resultat(lingoFerBloc).build();
+
+        blocRepository.save(chene);
+        blocRepository.save(plancheCheneBloc);
+        blocRepository.save(fer);
+        blocRepository.save(lingoFerBloc);
+
+        recetteRepository.save(plancheCheneRecette);
+        recetteRepository.save(lingotFerRecette);
     }
 }
