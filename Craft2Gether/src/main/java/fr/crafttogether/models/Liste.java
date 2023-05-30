@@ -29,10 +29,6 @@ public class Liste {
     @ManyToMany(cascade = {CascadeType.PERSIST})
     private List<Recette> recettes;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST})
-    @JsonIgnore
-    private Map<Integer, Bloc> blocs;//On a quantité-bloc
-
     @ManyToMany
     @JsonIgnore
     private List<User> collaborateurs;

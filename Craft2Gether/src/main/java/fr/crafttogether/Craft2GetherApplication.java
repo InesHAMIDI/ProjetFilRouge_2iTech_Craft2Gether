@@ -71,9 +71,10 @@ public class Craft2GetherApplication implements ApplicationRunner {
         Liste liste1 = Liste.builder().titre("Planches à faire").status(Liste.STATUS.EN_COURS).build();
         Liste liste2 = Liste.builder().titre("EPEES POUR EQUIPE").status(Liste.STATUS.FINISHED).build();
         Liste liste3 = Liste.builder().titre("BOucliers").status(Liste.STATUS.EN_COURS).build();
-        blocRepository.save(chene);
-        blocRepository.save(plancheCheneBloc);
-        recetteRepository.save(plancheCheneRecette);
+        //save une recette save les blocs au passage
+        //recetteRepository.save(plancheCheneRecette);
+        liste1.setRecettes(recettesList1);
+        liste2.setRecettes(recettesList1);
         listeRepository.save(liste1);
         listeRepository.save(liste2);
         listeRepository.save(liste3);
