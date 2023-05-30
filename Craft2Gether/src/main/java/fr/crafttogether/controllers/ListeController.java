@@ -62,11 +62,7 @@ public class ListeController {
 
     // DELETE
     @DeleteMapping("/{id}")
-    public void deleteListe(@PathVariable int id) {
-        Liste list = listeService.findById(id);
-        if (list == null) {
-            throw new NotFoundException("La liste recherchée n'existe pas");
-        }
+    public void deletebyId(@PathVariable int id) throws InterruptedException {
         listeService.deleteById(id);
     }
 }

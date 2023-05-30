@@ -26,7 +26,7 @@ public class Liste {
     @NotBlank
     private String titre;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST})
+    @ManyToMany
     private List<Recette> recettes;
 
     @ManyToMany

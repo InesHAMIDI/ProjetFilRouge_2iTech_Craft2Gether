@@ -21,9 +21,9 @@ public class Recette {
     @NonNull
     private String nom;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST})
+    @ManyToMany
     private Map<Integer, Bloc> ingredients; // quantité-bloc
 
-    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @ManyToOne
     private Bloc resultat;
 }
