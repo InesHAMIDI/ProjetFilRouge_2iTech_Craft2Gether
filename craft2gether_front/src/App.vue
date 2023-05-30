@@ -41,4 +41,12 @@ i {
 p{
   font-size: 17px;
 }
+
+button{
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0;
+  border: none;
+  background: none;
+}
 </style>

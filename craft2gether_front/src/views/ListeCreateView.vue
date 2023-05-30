@@ -12,15 +12,17 @@
                 <input id="searchbar" type="text" placeholder="Recette.." v-bind="searchQuery"/> 
                 <thead>
                     <th scope="col"></th> <!-- Titre -->
+                    <th scope="col"></th> <!-- Sélectionner -->
                 </thead>
                 <tbody>
                     <tr v-for="recette in recettesRecherchees" :key="recette">
                         <td>{{ recette.nom }}</td>
+                        <td><button><i class="fa-solid fa-check"></i></button></td>
                     </tr>
                 </tbody>
             </table>
             
-            <button>Valider</button>
+            <button><i class="fa-solid fa-check"></i></button>
         </Form>
     </div>
 </template>
@@ -79,5 +81,7 @@ export default {
 }
 </script>
 <style scoped>
-    
+.fa, .fas, .fa-solid, .fa-regular {
+    color: #717171;
+}
 </style>
