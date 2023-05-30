@@ -2,24 +2,27 @@
     <div>
         <h2>Créer une liste</h2>
         <Form @submit="creerListe" ref="listeForm">
-        <div>
-            <label for="titre">Titre</label>
-            <Field id="titre" type="text" name="titre" :rules="validateTitre"/>
-            <ErrorMessage name="titre" />
-        </div>
-        
-        <button>Valider</button>
-    </Form>
+            <div>
+                <label for="titre">Titre</label>
+                <Field id="titre" type="text" name="titre" :rules="validateTitre"/>
+                <ErrorMessage name="titre" />
+            </div>
+            <SearchBarComponent />
+            
+            <button>Valider</button>
+        </Form>
     </div>
 </template>
 <script>
 import { Field, Form, ErrorMessage } from 'vee-validate'
 import * as yup from 'yup'
+import SearchBarComponent from '@/components/SearchBarComponent.vue'
 export default {
     components: {
         Field,
         Form,
-        ErrorMessage
+        ErrorMessage,
+        SearchBarComponent,
     },
 
     data() {

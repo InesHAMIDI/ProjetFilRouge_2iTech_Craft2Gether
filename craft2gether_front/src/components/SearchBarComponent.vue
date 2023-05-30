@@ -1,18 +1,13 @@
 <template>
-    <form class="d-flex" role="search">
-        <input class="form-control me" type="search" placeholder="Recette" aria-label="Search" v-model="searchQuery">
-        <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
-
-    <div class="ui cards" style="margin: 10px">
-        <div class="card ui fluid" v-for="recette in recetteCherchee" :key="recette.id">
-            <div class="content">
-                <div class="header">{{ recette.titre }}</div>
-            </div>
-        </div>
+    <input class="search-bar" type="text" placeholder="Recette..." aria-label="Search" v-model="searchQuery">
+    <div class="list-group" v-for="recette in recetteCherchee" :key="recette.id">
+        <a href="#" class="list-group-item list-group-item-action">{{ recette.titre }}</a>
     </div>
 </template>
+
 <script>
+import router from '@/router';
+
 export default {
     data() {
         return {
@@ -31,6 +26,9 @@ export default {
             })
         },
         recetteCherchee(){
+            if(this.recettes.value != []){
+                router.push({name:'home'})
+            }
             return this.recettes.value.filter((recette) => {
                 return (
                     recette.titre
@@ -43,7 +41,7 @@ export default {
 }
 </script>
 <style scoped>
-form{
+body{
     font-size: 20px;
 }
 </style>
