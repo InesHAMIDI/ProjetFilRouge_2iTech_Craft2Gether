@@ -21377,3 +21377,87 @@ java.sql.SQLSyntaxErrorException: Unknown database 'craft_to_gether_db'
 2023-05-30T15:52:28.766+02:00  INFO 4404 --- [http-nio-3000-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2023-05-30T15:55:41.505+02:00  WARN 4404 --- [http-nio-3000-exec-8] .w.s.m.a.ResponseStatusExceptionResolver : Resolved [fr.crafttogether.exceptions.NotFoundException: 404 NOT_FOUND "no list with id 3 exists"]
 2023-05-30T15:55:43.191+02:00  WARN 4404 --- [http-nio-3000-exec-9] .w.s.m.a.ResponseStatusExceptionResolver : Resolved [fr.crafttogether.exceptions.NotFoundException: 404 NOT_FOUND "no list with id 3 exists"]
+2023-05-31T09:22:14.121+02:00  INFO 17236 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : Starting Craft2GetherApplication using Java 19.0.1 with PID 17236 (C:\Users\Toki\Desktop\COURS\FilRouge\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether\target\classes started by Toki in C:\Users\Toki\Desktop\COURS\FilRouge\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether)
+2023-05-31T09:22:14.125+02:00  INFO 17236 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-05-31T09:22:14.159+02:00  INFO 17236 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-05-31T09:22:14.159+02:00  INFO 17236 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-05-31T09:22:14.706+02:00  INFO 17236 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-31T09:22:14.759+02:00  INFO 17236 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 4 JPA repository interfaces.
+2023-05-31T09:22:15.121+02:00  INFO 17236 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 3000 (http)
+2023-05-31T09:22:15.129+02:00  INFO 17236 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-31T09:22:15.130+02:00  INFO 17236 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-05-31T09:22:15.170+02:00  INFO 17236 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/ctg]    : Initializing Spring embedded WebApplicationContext
+2023-05-31T09:22:15.170+02:00  INFO 17236 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1011 ms
+2023-05-31T09:22:15.270+02:00  INFO 17236 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-31T09:22:15.310+02:00  INFO 17236 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-05-31T09:22:15.541+02:00  INFO 17236 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-31T09:22:15.866+02:00  INFO 17236 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@29131b91
+2023-05-31T09:22:15.867+02:00  INFO 17236 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-31T09:22:15.923+02:00  INFO 17236 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-05-31T09:22:16.844+02:00  INFO 17236 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-31T09:22:16.851+02:00  INFO 17236 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-31T09:22:17.141+02:00  WARN 17236 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-31T09:22:17.341+02:00  INFO 17236 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-05-31T09:22:17.365+02:00  INFO 17236 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 3000 (http) with context path '/ctg'
+2023-05-31T09:22:17.371+02:00  INFO 17236 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : Started Craft2GetherApplication in 3.543 seconds (process running for 4.351)
+2023-05-31T09:44:34.117+02:00  INFO 17236 --- [http-nio-3000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/ctg]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-31T09:44:34.117+02:00  INFO 17236 --- [http-nio-3000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-31T09:44:34.118+02:00  INFO 17236 --- [http-nio-3000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-05-31T10:12:56.638+02:00  INFO 17236 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-05-31T10:12:56.641+02:00  INFO 17236 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-05-31T10:12:56.643+02:00  INFO 17236 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-05-31T10:12:59.992+02:00  INFO 21984 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : Starting Craft2GetherApplication using Java 19.0.1 with PID 21984 (C:\Users\Toki\Desktop\COURS\FilRouge\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether\target\classes started by Toki in C:\Users\Toki\Desktop\COURS\FilRouge\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether)
+2023-05-31T10:12:59.993+02:00  INFO 21984 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-05-31T10:13:00.026+02:00  INFO 21984 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-05-31T10:13:00.027+02:00  INFO 21984 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-05-31T10:13:00.406+02:00  INFO 21984 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-31T10:13:00.451+02:00  INFO 21984 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 4 JPA repository interfaces.
+2023-05-31T10:13:00.803+02:00  INFO 21984 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 3000 (http)
+2023-05-31T10:13:00.810+02:00  INFO 21984 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-31T10:13:00.810+02:00  INFO 21984 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-05-31T10:13:00.846+02:00  INFO 21984 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/ctg]    : Initializing Spring embedded WebApplicationContext
+2023-05-31T10:13:00.847+02:00  INFO 21984 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 819 ms
+2023-05-31T10:13:00.935+02:00  INFO 21984 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-31T10:13:00.966+02:00  INFO 21984 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-05-31T10:13:01.144+02:00  INFO 21984 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-31T10:13:01.314+02:00  INFO 21984 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@48f20c2a
+2023-05-31T10:13:01.315+02:00  INFO 21984 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-31T10:13:01.344+02:00  INFO 21984 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-05-31T10:13:02.005+02:00  INFO 21984 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-31T10:13:02.012+02:00  INFO 21984 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-31T10:13:02.269+02:00  WARN 21984 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-31T10:13:02.457+02:00  INFO 21984 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-05-31T10:13:02.478+02:00  INFO 21984 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 3000 (http) with context path '/ctg'
+2023-05-31T10:13:02.485+02:00  INFO 21984 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : Started Craft2GetherApplication in 2.77 seconds (process running for 3.291)
+2023-05-31T10:13:08.365+02:00  INFO 21984 --- [http-nio-3000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/ctg]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-31T10:13:08.365+02:00  INFO 21984 --- [http-nio-3000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-31T10:13:08.366+02:00  INFO 21984 --- [http-nio-3000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-05-31T10:25:21.729+02:00  INFO 21984 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-05-31T10:25:21.732+02:00  INFO 21984 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-05-31T10:25:21.736+02:00  INFO 21984 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-05-31T10:25:24.898+02:00  INFO 8228 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : Starting Craft2GetherApplication using Java 19.0.1 with PID 8228 (C:\Users\Toki\Desktop\COURS\FilRouge\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether\target\classes started by Toki in C:\Users\Toki\Desktop\COURS\FilRouge\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether)
+2023-05-31T10:25:24.899+02:00  INFO 8228 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-05-31T10:25:24.930+02:00  INFO 8228 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-05-31T10:25:24.930+02:00  INFO 8228 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-05-31T10:25:25.309+02:00  INFO 8228 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-31T10:25:25.355+02:00  INFO 8228 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 4 JPA repository interfaces.
+2023-05-31T10:25:25.702+02:00  INFO 8228 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 3000 (http)
+2023-05-31T10:25:25.708+02:00  INFO 8228 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-31T10:25:25.709+02:00  INFO 8228 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-05-31T10:25:25.744+02:00  INFO 8228 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/ctg]    : Initializing Spring embedded WebApplicationContext
+2023-05-31T10:25:25.744+02:00  INFO 8228 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 814 ms
+2023-05-31T10:25:25.829+02:00  INFO 8228 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-31T10:25:25.859+02:00  INFO 8228 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-05-31T10:25:26.035+02:00  INFO 8228 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-31T10:25:26.213+02:00  INFO 8228 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4e809d5d
+2023-05-31T10:25:26.214+02:00  INFO 8228 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-31T10:25:26.246+02:00  INFO 8228 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-05-31T10:25:27.050+02:00  INFO 8228 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-31T10:25:27.056+02:00  INFO 8228 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-31T10:25:27.316+02:00  WARN 8228 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-31T10:25:27.509+02:00  INFO 8228 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-05-31T10:25:27.531+02:00  INFO 8228 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 3000 (http) with context path '/ctg'
+2023-05-31T10:25:27.537+02:00  INFO 8228 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : Started Craft2GetherApplication in 2.897 seconds (process running for 3.372)
+2023-05-31T10:26:47.871+02:00  INFO 8228 --- [http-nio-3000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/ctg]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-31T10:26:47.871+02:00  INFO 8228 --- [http-nio-3000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-31T10:26:47.872+02:00  INFO 8228 --- [http-nio-3000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
