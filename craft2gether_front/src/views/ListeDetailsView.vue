@@ -32,7 +32,6 @@ export default {
     data() {
         return {
             liste: {},
-            recettes: []
         }
     },
 
@@ -41,8 +40,11 @@ export default {
             return this.$route.params.id;
         },
         ingredients(){
-            return this.liste.recettes.ingredients()
+            return this.liste.recettes.ingredients;
         },
+        recettes(){
+            return this.liste.recettes;
+        }
     },
 
     mounted() {
@@ -50,9 +52,6 @@ export default {
             .then(response => this.liste = response.data)
             .catch(err => this.erreur = err);
 
-        this.axios.get(`${this.baseUrl}/${this.id}/recettes`)
-            .then(response => this.recettes = response.data)
-            .catch(err => this.erreur = err);
     },
 
     methods: {

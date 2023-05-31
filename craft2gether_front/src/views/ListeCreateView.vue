@@ -3,7 +3,7 @@
         <h2>Créer une liste</h2>
         <Form @submit="creerListe" ref="listeForm">
             <div>
-                <label for="titre">Titre</label>
+                <label for="titre">Titre </label>
                 <Field id="titre" type="text" name="titre" :rules="validateTitre"/>
                 <ErrorMessage name="titre" />
             </div>
@@ -25,8 +25,8 @@
                 </div>
 
                 <div class="recettesSelectionees">
+                    <p>Liste sélectionnées</p>
                     <table class="table table-striped">
-                        <input id="searchbar" type="text" placeholder="Recette.." v-model="searchQuery"/> 
                         <thead>
                             <th scope="col"></th> <!-- Titre -->
                             <th scope="col"></th> <!-- Sélectionner -->
@@ -39,8 +39,8 @@
                         </tbody>
                     </table>
                 </div>
-        </div>
-            <button type="submit"><i class="fa-solid fa-check"></i></button>
+            </div>
+            <button type="submit"><i class="fa-solid fa-plus"></i></button>
         </Form>
     </div>
 </template>
@@ -116,7 +116,7 @@ export default {
 }
 
 .rechercheRecettes, .recettesSelectionees{
-    width: 90px;
+    width: 200px;
     margin-top: 10px;
 }
 
