@@ -7,21 +7,39 @@
                 <Field id="titre" type="text" name="titre" :rules="validateTitre"/>
                 <ErrorMessage name="titre" />
             </div>
-            <div class="rechercheRecettes">
-                <table class="table table-striped">
-                    <input id="searchbar" type="text" placeholder="Recette.." v-model="searchQuery"/> 
-                    <thead>
-                        <th scope="col"></th> <!-- Titre -->
-                        <th scope="col"></th> <!-- Sélectionner -->
-                    </thead>
-                    <tbody>
-                        <tr v-for="recette in recettesRecherchees" :key="recette.nom">
-                            <td>{{ recette.nom }}</td>
-                            <td><button @click="selectionnerRecette(recette)"><i class="fa-solid fa-check"></i></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <div class="selection-deselectionRecettes">
+                <div class="rechercheRecettes">
+                    <table class="table table-striped">
+                        <input id="searchbar" type="text" placeholder="Recette.." v-model="searchQuery"/> 
+                        <thead>
+                            <th scope="col"></th> <!-- Titre -->
+                            <th scope="col"></th> <!-- Sélectionner -->
+                        </thead>
+                        <tbody>
+                            <tr v-for="recette in recettesRecherchees" :key="recette.nom">
+                                <td>{{ recette.nom }}</td>
+                                <td><button @click="selectionnerRecette(recette)"><i class="fa-solid fa-check"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="recettesSelectionees">
+                    <table class="table table-striped">
+                        <input id="searchbar" type="text" placeholder="Recette.." v-model="searchQuery"/> 
+                        <thead>
+                            <th scope="col"></th> <!-- Titre -->
+                            <th scope="col"></th> <!-- Sélectionner -->
+                        </thead>
+                        <tbody>
+                            <tr v-for="recette in recettesSelectionees" :key="recette.nom">
+                                <td>{{ recette.nom }}</td>
+                                <td><button @click="deselectionnerRecette(recette, ind)"><i class="fa-solid fa-xmark"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
             <button type="submit"><i class="fa-solid fa-check"></i></button>
         </Form>
     </div>
@@ -46,7 +64,7 @@ export default {
             recettes: [],
             searchQuery: "",
             recettesSelectionees: [],
-
+            listeAEnvoyer: {},
 
         }
     },    
@@ -59,10 +77,9 @@ export default {
 
     methods: {
         creerListe(values) {
-            let listeAEnvoyer = {};
-            listeAEnvoyer.titre = values.titre;
-            listeAEnvoyer.recettes = this.recettesSelectionees;
-            this.axios.post(`${this.baseUrl}/listes`, listeAEnvoyer)
+            this.listeAEnvoyer.titre = values.titre;
+            this.listeAEnvoyer.recettes = this.recettesSelectionees;
+            this.axios.post(`${this.baseUrl}/listes`, this.listeAEnvoyer)
                 .then(response => {
                     this.$emit('sendData', response.data)
                     this.$refs.listeForm.resetForm()
@@ -72,7 +89,12 @@ export default {
         },
 
         selectionnerRecette(recette){
-            this.recettesSelectionees += recette;
+            this.recettesSelectionees.push(recette);
+        },
+
+        deselectionnerRecette(recette, ind){
+            this.recettesSelectionees.splice(ind, 1);
+
         }
     },
 
@@ -93,13 +115,18 @@ export default {
     color: #717171;
 }
 
-.rechercheRecettes{
+.rechercheRecettes, .recettesSelectionees{
     width: 90px;
     margin-top: 10px;
 }
 
 .creerListe{
-    flex-direction: column;
     justify-content: center;
+}
+
+.selection-deselectionRecettes{
+    flex-direction: row;
+    padding-left: 10px;
+
 }
 </style>
