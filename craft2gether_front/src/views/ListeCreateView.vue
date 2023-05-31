@@ -22,7 +22,7 @@
                     </tbody>
                 </table>
             </div>
-            <button><i class="fa-solid fa-check"></i></button>
+            <button type="submit"><i class="fa-solid fa-check"></i></button>
         </Form>
     </div>
 </template>
@@ -59,11 +59,14 @@ export default {
 
     methods: {
         creerListe(values) {
-            values += this.recettesSelectionees;
-            this.axios.post(`${this.baseUrl}/listes`, values)
+            let listeAEnvoyer = {};
+            listeAEnvoyer.titre = values.titre;
+            listeAEnvoyer.recettes = this.recettesSelectionees;
+            this.axios.post(`${this.baseUrl}/listes`, listeAEnvoyer)
                 .then(response => {
                     this.$emit('sendData', response.data)
                     this.$refs.listeForm.resetForm()
+                    this.$router.push({ name: 'home'})
                 })
                 .catch(err => this.erreur = err);
         },
