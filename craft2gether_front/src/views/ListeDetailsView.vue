@@ -1,7 +1,7 @@
 <template>
-    <h1>
-        {{ liste.titre }}
-    </h1>
+    <h1>{{ liste.titre }}</h1>
+    <p>{{ liste.status }}</p>
+
     <div v-for="recette in recettes" :key="recette">
         <h2>{{ recette.titre }}</h2>
 
