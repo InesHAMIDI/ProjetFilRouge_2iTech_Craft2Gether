@@ -2,30 +2,36 @@
     <h1>{{ liste.titre }}</h1>
     <p>{{ liste.status }}</p>
 
-    <div v-for="recette in recettes" :key="recette">
-        <h2>{{ recette.titre }}</h2>
+   <div>
+    <p>Ingredients</p>
+    <table class="table table-striped">
+        <thead>
+            <th scope="col"></th> <!-- Nom -->
+            <th scope="col"></th> <!-- Quantite farmée / quantité -->
+            <th scope="col"></th> <!-- Status -->
+        </thead>
+        <tbody>
 
-        <table class="dropdown-menu table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Bloc</th>
-                    <th scope="col">Status</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="ingredient in ingredients" :key="ingredient">
-                    <td>{{ ingredient.name }}</td>
-                    <td>{{ ingredient.status }}</td>
-                    <td><router-link :to="{
-                        name: 'liste-details',
-                        params: { id: elt.id }
-                    }"></router-link>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+
+    <p>Recettes</p>
+    <table class="table table-striped">
+        <thead>
+            <th scope="col"></th> <!-- Titre -->
+            <th scope="col"></th> <!-- Status -->
+        </thead>
+        <tbody>
+            <tr v-for="recette in liste.recettes" :key="recette.nom">
+                <td>{{ recette.nom }}</td>
+                <td>
+                    <button v-if="elt.status == 'FINISHED'" @click="recettePasFinie(recette)" ><i class="fa-sharp fa-regular fa-circle-check"></i></button>
+                    <button v-else><i class="fa-regular fa-circle" @click="recetteFinie(recette)"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+   </div>
 </template>
 <script>
 export default {
@@ -55,6 +61,22 @@ export default {
     },
 
     methods: {
+
+    recetteFinie(elt){
+      elt.status = "FINISHED";
+      this.updateRecette(elt);
+    },
+
+    recettePasFinie(elt){
+     elt.status = "EN_COURS";
+     this.updateRecette(elt);
+    },
+
+    updateRecette(recette){
+        this.axios.put(`${this.baseUrl}/recettes/${recette.id}`, recette)
+            .then(() => this.$router.push({ name: 'home'}))
+            .catch(err => alert(err))
+    }
     },
 }
 </script>

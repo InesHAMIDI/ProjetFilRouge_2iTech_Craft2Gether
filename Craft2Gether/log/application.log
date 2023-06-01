@@ -76,3 +76,7 @@
 2023-06-01T10:23:29.242+02:00  INFO 18224 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
 2023-06-01T10:23:29.265+02:00  INFO 18224 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 3000 (http) with context path '/ctg'
 2023-06-01T10:23:29.271+02:00  INFO 18224 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : Started Craft2GetherApplication in 3.336 seconds (process running for 3.894)
+2023-06-01T10:24:28.579+02:00  INFO 18224 --- [http-nio-3000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/ctg]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-06-01T10:24:28.579+02:00  INFO 18224 --- [http-nio-3000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-06-01T10:24:28.580+02:00  INFO 18224 --- [http-nio-3000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-06-01T10:24:28.641+02:00  WARN 18224 --- [http-nio-3000-exec-1] .w.s.m.a.ResponseStatusExceptionResolver : Resolved [fr.crafttogether.exceptions.NotFoundException: 404 NOT_FOUND "no list with id 6 exists"]
