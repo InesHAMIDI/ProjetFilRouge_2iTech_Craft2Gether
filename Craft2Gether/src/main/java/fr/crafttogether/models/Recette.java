@@ -26,4 +26,11 @@ public class Recette {
 
     @ManyToOne
     private Bloc resultat;
+
+    private RECETTE_STATUS status;
+
+    public enum RECETTE_STATUS{
+        EN_COURS,
+        FINISHED
+    }
 }
