@@ -14,10 +14,6 @@
                 <tr v-for="ingredient in recette.ingredients" :key="ingredient">
                     <td>{{ ingredient.nom }}</td>
                     <td>{{ ingredient.quantite }}</td>
-                    <td>
-                        <button v-if="recette.status == 'FINISHED'" @click="recettePasFinie(recette)" ><i class="fa-sharp fa-regular fa-circle-check"></i></button>
-                        <button v-else><i class="fa-regular fa-circle" @click="recetteFinie(recette)"></i></button>
-                    </td>
                 </tr>
         </tbody>
     </table>
