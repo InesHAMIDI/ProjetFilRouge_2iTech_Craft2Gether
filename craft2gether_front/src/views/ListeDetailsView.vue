@@ -11,7 +11,16 @@
             <th scope="col"></th> <!-- Status -->
         </thead>
         <tbody>
-
+            <div v-for="recette in recettes" :key="recette"> 
+                <tr v-for="ingredient in recette.ingredients" :key="ingredient.id">
+                    <td>{{ ingredient.nom }}</td>
+                    <td>{{ ingredient.quantite }}</td>
+                    <td>
+                        <button v-if="recette.status == 'FINISHED'" @click="recettePasFinie(recette)" ><i class="fa-sharp fa-regular fa-circle-check"></i></button>
+                        <button v-else><i class="fa-regular fa-circle" @click="recetteFinie(recette)"></i></button>
+                    </td>
+                </tr>
+            </div>
         </tbody>
     </table>
 
@@ -22,15 +31,20 @@
             <th scope="col"></th> <!-- Status -->
         </thead>
         <tbody>
-            <tr v-for="recette in liste.recettes" :key="recette.nom">
+            <tr v-for="recette in liste.recettes" :key="recette.id">
                 <td>{{ recette.nom }}</td>
                 <td>
-                    <button v-if="elt.status == 'FINISHED'" @click="recettePasFinie(recette)" ><i class="fa-sharp fa-regular fa-circle-check"></i></button>
+                    <button v-if="recette.status == 'FINISHED'" @click="recettePasFinie(recette)" ><i class="fa-sharp fa-regular fa-circle-check"></i></button>
                     <button v-else><i class="fa-regular fa-circle" @click="recetteFinie(recette)"></i></button>
                 </td>
             </tr>
         </tbody>
     </table>
+    <div class="boutons-list">
+        <button @click="deleteList"><i class="fas fa-trash"></i></button>
+        <button v-if="this.liste.status == 'FINISHED'" @click="listePasFinie" ><i class="fa-sharp fa-regular fa-circle-check"></i></button>
+        <button v-else><i class="fa-regular fa-circle" @click="listeFinie"></i></button>
+    </div>
    </div>
 </template>
 <script>
@@ -45,12 +59,9 @@ export default {
         id(){
             return this.$route.params.id;
         },
-        ingredients(){
-            return this.liste.recettes.ingredients;
-        },
         recettes(){
             return this.liste.recettes;
-        }
+        },
     },
 
     mounted() {
@@ -62,22 +73,54 @@ export default {
 
     methods: {
 
-    recetteFinie(elt){
-      elt.status = "FINISHED";
-      this.updateRecette(elt);
-    },
+        recetteFinie(elt){
+            elt.status = "FINISHED";
+            this.updateRecette(elt);
+        },
 
-    recettePasFinie(elt){
-     elt.status = "EN_COURS";
-     this.updateRecette(elt);
-    },
+        recettePasFinie(elt){
+            elt.status = "EN_COURS";
+            this.updateRecette(elt);
+        },
 
-    updateRecette(recette){
-        this.axios.put(`${this.baseUrl}/recettes/${recette.id}`, recette)
-            .then(() => this.$router.push({ name: 'home'}))
-            .catch(err => alert(err))
-    }
+        listeFinie(elt){
+            elt.status = "FINISHED";
+            this.updateListe(elt);
+        },
+
+        listePasFinie(elt){
+            elt.status = "EN_COURS";
+            this.updateListe(elt);
+        },
+
+        updateRecette(recette){
+            for(let ing in recette.ingredients){
+                ing.quantiteFarmee = ing.quantite
+            }
+        },
+
+        updateListe(val){
+            this.axios.put(`${this.baseUrl}/listes/${this.id}`, val)
+                .then()
+                .catch(err => alert(err))
+        },
+            
+        deleteList(){
+        this.axios.delete(`${this.baseUrl}/listes/${this.id}`)
+                .then(() => this.$router.push({ name: 'home'}))
+                .catch(err => this.erreur = err);
+        },
     },
 }
 </script>
-<style></style>
+<style scoped>
+.fa, .fas, .fa-solid, .fa-regular {
+  color: #717171;
+}
+
+.boutons-list{
+    justify-content: space-evenly;
+    padding-left: 10px;    
+    display: flex;
+}
+</style>
