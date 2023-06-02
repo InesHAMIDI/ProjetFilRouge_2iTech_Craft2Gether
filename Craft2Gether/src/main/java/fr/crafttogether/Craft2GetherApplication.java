@@ -57,7 +57,7 @@ public class Craft2GetherApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args){
 
-        Bloc chene = Bloc.builder().nom("chene").biomeOrigine("all").outilNecessaire("hache_bois").type(NATUREL).build();
+       /*Bloc chene = Bloc.builder().nom("chene").biomeOrigine("all").outilNecessaire("hache_bois").type(NATUREL).build();
         Bloc plancheCheneBloc = Bloc.builder().nom("planche de chene").biomeOrigine("all").outilNecessaire("hache_bois").type(MANUFACTURE).build();
         Map<Integer, Bloc> quantiteChene = new HashMap<Integer, Bloc>();
         quantiteChene.put(1, chene);
@@ -67,15 +67,22 @@ public class Craft2GetherApplication implements ApplicationRunner {
         Map<Integer, Bloc> quantiteLingot = new HashMap<Integer, Bloc>();
         quantiteLingot.put(1, lingoFerBloc);
 
+        Bloc epee = Bloc.builder().nom("minerai de fer").biomeOrigine("all").outilNecessaire("pioche").type(MANUFACTURE).build();
+        Map<Integer, Bloc> quantiteLingotpourepee = new HashMap<Integer, Bloc>();
+        quantiteLingot.put(3, lingoFerBloc);
+
         Recette plancheCheneRecette = Recette.builder().nom("Planche de chene").ingredients(quantiteChene).resultat(plancheCheneBloc).build();
         Recette lingotFerRecette = Recette.builder().nom("lingot de fer").ingredients(quantiteLingot).resultat(lingoFerBloc).build();
+        Recette epeeRecette = Recette.builder().nom("Epee en fer").ingredients(quantiteLingotpourepee).resultat(epee).build();
 
         blocRepository.save(chene);
         blocRepository.save(plancheCheneBloc);
         blocRepository.save(fer);
         blocRepository.save(lingoFerBloc);
+        blocRepository.save(epee);
 
         recetteRepository.save(plancheCheneRecette);
         recetteRepository.save(lingotFerRecette);
+        recetteRepository.save(epeeRecette);*/
     }
 }

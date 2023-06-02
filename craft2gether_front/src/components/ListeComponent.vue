@@ -13,8 +13,8 @@
         <tr v-for="elt in listes" :key="elt.id">
           <td>{{ elt.titre }}</td>
           <td>
-              <i v-if="elt.status == 'FINISHED'" class="fa-sharp fa-regular fa-circle-check"></i>
-              <i v-else class="fa-regular fa-circle"></i>
+              <button v-if="elt.status == 'FINISHED'" @click="listePasFinie(elt)" ><i class="fa-sharp fa-regular fa-circle-check"></i></button>
+              <button v-else><i class="fa-regular fa-circle" @click="listeFinie(elt)"></i></button>
           </td>
                     
           <td><router-link :to="{
@@ -41,7 +41,23 @@ export default {
       this.axios.delete(`${this.baseUrl}/listes/${id}`)
                 .then(( ) => { this.listes.splice(ind, 1) })
                 .catch(err => this.erreur = err);
-    }
+    },
+
+    listeFinie(elt){
+      elt.status = "FINISHED";
+      this.updateListe(elt);
+    },
+
+    listePasFinie(elt){
+     elt.status = "EN_COURS";
+     this.updateListe(elt);
+    },
+
+    updateListe(elt){
+      this.axios.put(`${this.baseUrl}/listes/${elt.id}`, elt)
+            .then(() => this.$router.push({ name: 'home'}))
+            .catch(err => alert(err))
+    },
   },
   mounted() {
     this.axios.get(`${this.baseUrl}/listes`)

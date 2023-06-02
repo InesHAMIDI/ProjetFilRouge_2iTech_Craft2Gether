@@ -30,6 +30,9 @@ public class Liste {
     private List<Recette> recettes;
 
     @ManyToMany
+    private Map<Integer, Bloc> quantiteFarmee; // quantité-bloc
+
+    @ManyToMany
     @JsonIgnore
     private List<User> collaborateurs;
 
@@ -37,9 +40,9 @@ public class Liste {
     @JsonIgnore
     private User createur;
 
-    private STATUS status;
+    private LISTE_STATUS status;
 
-    public enum STATUS{
+    public enum LISTE_STATUS{
         EN_COURS,
         FINISHED
     }

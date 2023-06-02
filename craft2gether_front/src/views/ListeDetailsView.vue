@@ -1,38 +1,51 @@
 <template>
-    <h1>
-        {{ liste.titre }}
-    </h1>
-    <div v-for="recette in recettes" :key="recette">
-        <h2>{{ recette.titre }}</h2>
+    <h1>{{ liste.titre }}</h1>
+    <p>{{ liste.status }}</p>
 
-        <table class="dropdown-menu table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Bloc</th>
-                    <th scope="col">Status</th>
-                    <th scope="col"></th>
+   <div>
+    <p>Ingredients</p>
+    <table class="table table-striped">
+        <thead>
+            <th scope="col"></th> <!-- Nom -->
+            <th scope="col"></th> <!-- Quantite farmée / quantité -->
+            <th scope="col"></th> <!-- Status -->
+        </thead>
+        <tbody v-for="recette in liste.recettes" :key="recette">
+                <tr v-for="ingredient in recette.ingredients" :key="ingredient">
+                    <td>{{ ingredient.nom }}</td>
+                    <td>{{ ingredient.quantite }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr v-for="ingredient in ingredients" :key="ingredient">
-                    <td>{{ ingredient.name }}</td>
-                    <td>{{ ingredient.status }}</td>
-                    <td><router-link :to="{
-                        name: 'liste-details',
-                        params: { id: elt.id }
-                    }"></router-link>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        </tbody>
+    </table>
+
+    <p>Recettes</p>
+    <table class="table table-striped">
+        <thead>
+            <th scope="col"></th> <!-- Titre -->
+            <th scope="col"></th> <!-- Status -->
+        </thead>
+        <tbody>
+            <tr v-for="recette in liste.recettes" :key="recette.id">
+                <td>{{ recette.nom }}</td>
+                <td>
+                    <button v-if="recette.status == 'FINISHED'" @click="recettePasFinie(recette)" ><i class="fa-sharp fa-regular fa-circle-check"></i></button>
+                    <button v-else><i class="fa-regular fa-circle" @click="recetteFinie(recette)"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="boutons-list">
+        <button @click="deleteList"><i class="fas fa-trash"></i></button>
+        <button v-if="this.liste.status == 'FINISHED'" @click="listePasFinie" ><i class="fa-sharp fa-regular fa-circle-check"></i></button>
+        <button v-else><i class="fa-regular fa-circle" @click="listeFinie"></i></button>
     </div>
+   </div>
 </template>
 <script>
 export default {
     data() {
         return {
             liste: {},
-            recettes: []
         }
     },
 
@@ -40,8 +53,8 @@ export default {
         id(){
             return this.$route.params.id;
         },
-        ingredients(){
-            return this.liste.recettes.ingredients()
+        recettes(){
+            return this.liste.recettes;
         },
     },
 
@@ -50,13 +63,58 @@ export default {
             .then(response => this.liste = response.data)
             .catch(err => this.erreur = err);
 
-        this.axios.get(`${this.baseUrl}/${this.id}/recettes`)
-            .then(response => this.recettes = response.data)
-            .catch(err => this.erreur = err);
     },
 
     methods: {
+
+        recetteFinie(elt){
+            elt.status = "FINISHED";
+            this.updateRecette(elt);
+        },
+
+        recettePasFinie(elt){
+            elt.status = "EN_COURS";
+            this.updateRecette(elt);
+        },
+
+        listeFinie(elt){
+            elt.status = "FINISHED";
+            this.updateListe(elt);
+        },
+
+        listePasFinie(elt){
+            elt.status = "EN_COURS";
+            this.updateListe(elt);
+        },
+
+        updateRecette(recette){
+            for(let ing in recette.ingredients){
+                ing.quantiteFarmee = ing.quantite
+            }
+        },
+
+        updateListe(val){
+            this.axios.put(`${this.baseUrl}/listes/${this.id}`, val)
+                .then()
+                .catch(err => alert(err))
+        },
+            
+        deleteList(){
+        this.axios.delete(`${this.baseUrl}/listes/${this.id}`)
+                .then(() => this.$router.push({ name: 'home'}))
+                .catch(err => this.erreur = err);
+        },
     },
 }
 </script>
-<style></style>
+<style scoped>
+.fa, .fas, .fa-solid, .fa-regular {
+  color: #717171;
+}
+
+.boutons-list{
+    justify-content: space-evenly;
+    padding-left: 10px;    
+    display: flex;
+}
+</style>

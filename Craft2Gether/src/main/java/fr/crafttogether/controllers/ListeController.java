@@ -34,16 +34,6 @@ public class ListeController {
         return list;
     }
 
-    // GET LISTE CONTENT RECETTES
-    @GetMapping("/{id}/recettes")
-    public Collection<Recette> getRecettesFromListe(@PathVariable int id) {
-        Liste list = listeService.findById(id);
-        if (list == null) {
-            throw new NotFoundException("La liste recherchée n'existe pas");
-        }
-        return list.getRecettes();
-    }
-
     // POST : SAVE
     @PostMapping()
     public Liste saveListe(@Valid @RequestBody Liste liste) {
