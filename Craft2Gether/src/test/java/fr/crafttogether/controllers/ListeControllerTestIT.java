@@ -36,20 +36,24 @@ public class ListeControllerTestIT extends IntegrationTestsBase {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private ObjectMapper objectMapper;
 
+    /* TEST GET LISTES*/
 
     @Test
+    @WithMockUser(roles = "ADMIN")
     void testGetListesSuccess() throws Exception {
-        // arrange
-        // act
-        var result = mockMvc.perform(get("/articles"));
-        // assert
-        result
+        // Arrange
+        // Act & Assert
+        mockMvc.perform(get("/articles"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(6)))
-                .andExpect(jsonPath("$[4].name", is("un nouvel ecran")));
+                .andExpect(jsonPath("$[4].titre", is("un nouvel ecran")));
+    }
+
+    @Test
+    void testGetListesErrorUnauthorized() throws Exception{
+        mockMvc.perform(get("/articles"))
+                .andExpect(status().isUnauthorized());
     }
 
 }
