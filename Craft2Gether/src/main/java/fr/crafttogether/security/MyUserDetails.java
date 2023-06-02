@@ -2,6 +2,7 @@ package fr.crafttogether.security;
 
 import fr.crafttogether.models.User;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 
 @AllArgsConstructor
-@Getter
+@Data
 public class MyUserDetails implements UserDetails {
 
     private static final long serialVersionUID = 1L;

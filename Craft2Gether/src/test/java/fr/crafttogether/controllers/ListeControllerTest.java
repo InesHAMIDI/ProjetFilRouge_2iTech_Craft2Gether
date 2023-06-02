@@ -135,7 +135,7 @@ class ListeControllerTest extends UnitTestsBase {
     /* TEST SAVE */
 
     @Test
-    @WithMockUser(roles = "ADMIN")
+    @WithMockUser(roles = {"ADMIN", "PLAYER"})
     void testSaveListeSuccess() throws Exception {
         // Arrange
         Liste liste = Liste.builder()

@@ -1,8 +1,18 @@
 package fr.crafttogether.security;
 
+import static org.springframework.security.authorization.AuthorizationManagers.anyOf;
+
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import static org.springframework.security.authorization.AuthorityAuthorizationManager.hasRole;
+
+import org.springframework.security.authorization.AuthorizationDecision;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -11,7 +21,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
+@Configuration
+@EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
+
     private final RequestMatcher adminUrls = new OrRequestMatcher(
             //users
             new AntPathRequestMatcher("/users", "GET"), //get all users
@@ -19,10 +33,8 @@ public class SecurityConfig {
             new AntPathRequestMatcher("/users/{nom}", "GET"), //get user[nom]
 
             //listes
-            new AntPathRequestMatcher("/listes", "GET") //get all listes
-    );
+            new AntPathRequestMatcher("/listes", "GET"), //get all listes
 
-    private final RequestMatcher adminOrSelfUrls = new OrRequestMatcher(
             //users
             new AntPathRequestMatcher("/users", "POST"), //save user
             new AntPathRequestMatcher("/users/{id}", "PUT"), //update user
@@ -54,10 +66,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(adminUrls)
                 .hasRole("ADMIN")
-			    .requestMatchers(new AntPathRequestMatcher("/users/{id}", "GET"))
-				.access(new WebExpressionAuthorizationManager("hasRole('ADMIN') or #id == principal.getUser().getId()"))
-                .requestMatchers(adminOrSelfUrls)
-                .access(new WebExpressionAuthorizationManager("hasRole('ADMIN') or #id == principal.getUser().getId()"))
+                .requestMatchers("/users/{id}/**")
+                .access(anyOf(hasRole("ADMIN"), (auth, req) ->
+                        new AuthorizationDecision(((MyUserDetails) auth.get().getPrincipal()).getUser().getId() == Long.parseLong(req.getVariables().get("id")))))
                 .requestMatchers(publicUrls)
                 .permitAll()
                 .requestMatchers("/**")
@@ -69,6 +80,7 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .httpBasic();
         return http.build();
+
     }
 
     @Bean
