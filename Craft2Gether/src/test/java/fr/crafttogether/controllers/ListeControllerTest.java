@@ -88,7 +88,7 @@ class ListeControllerTest extends UnitTestsBase {
     void testGetListesByIdErrorNotFound() throws Exception{
         // Arrange
         int id = 3;
-        when(listeService.findById(id)).thenThrow(NotFoundException.class);
+        doThrow(new NotFoundException("element does not exist")).when(listeService).findById(123);
         // Act & Assert
         mockMvc.perform(get("/listes/" + id))
                 .andExpect(status().isNotFound());
