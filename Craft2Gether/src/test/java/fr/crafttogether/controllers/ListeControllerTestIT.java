@@ -44,7 +44,7 @@ public class ListeControllerTestIT extends IntegrationTestsBase {
     void testGetListesSuccess() throws Exception {
         // Arrange
         // Act & Assert
-        mockMvc.perform(get("/articles"))
+        mockMvc.perform(get("/listes"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(6)))
                 .andExpect(jsonPath("$[4].titre", is("un nouvel ecran")));
@@ -52,8 +52,19 @@ public class ListeControllerTestIT extends IntegrationTestsBase {
 
     @Test
     void testGetListesErrorUnauthorized() throws Exception{
-        mockMvc.perform(get("/articles"))
+        mockMvc.perform(get("/listes"))
                 .andExpect(status().isUnauthorized());
     }
 
+    // TESTS GET BY ID
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    void testGetListeByIdSuccess() throws Exception {
+        // Arrange
+        // Act & Assert
+        mockMvc.perform(get("/articles/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$.titre", is("un nouvel ecran")));
+    }
 }
