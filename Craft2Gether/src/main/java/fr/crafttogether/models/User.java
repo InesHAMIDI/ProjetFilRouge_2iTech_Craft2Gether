@@ -2,11 +2,13 @@ package fr.crafttogether.models;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
 
@@ -23,10 +25,12 @@ public class User {
     int id;
     @NonNull
     String username;
-    @NonNull
-    String password;
+    @NotBlank
+    @Length(min = 8)
+    private String password;
 
     private UserRole role;
+
 
     @OneToMany(mappedBy = "createur")
     private List<Liste> listesICreated;

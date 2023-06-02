@@ -1,6 +1,5 @@
 package fr.crafttogether.models;
-
-public enum UserRole {
-    ADMIN,
-    PLAYER
+ public enum UserRole {
+        ADMIN,
+        CLIENT
 }
