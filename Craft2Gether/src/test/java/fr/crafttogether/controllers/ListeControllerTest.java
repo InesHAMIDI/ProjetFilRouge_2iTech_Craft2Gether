@@ -40,7 +40,7 @@ class ListeControllerTest extends UnitTestsBase {
 
     /* TEST GET LISTES*/
     @Test
-    @WithMockUser(roles = "PLAYER")
+    @WithMockUser(roles = "ADMIN")
     void testGetListesSuccess() throws Exception{
         // Arrange
         List<Liste> dummyListes = List.of(
@@ -64,7 +64,7 @@ class ListeControllerTest extends UnitTestsBase {
 		// Act
 		var result = mockMvc.perform(post("/articles"));
 		// Assert
-		result.andExpect(status().isForbidden());
+		result.andExpect(status().isUnauthorized());
 		verifyNoInteractions(listeService);
     }
 
@@ -115,7 +115,7 @@ class ListeControllerTest extends UnitTestsBase {
         // Act
         var result = mockMvc.perform(delete("/listes/1"));
         // assert
-        result.andExpect(status().isForbidden());
+        result.andExpect(status().isUnauthorized());
         verifyNoInteractions(listeService);
     }
 
@@ -181,7 +181,7 @@ class ListeControllerTest extends UnitTestsBase {
         // act
         var result = mockMvc.perform(post("/articles"));
         // assert
-        result.andExpect(status().isForbidden());
+        result.andExpect(status().isUnauthorized());
         verifyNoInteractions(listeService);
     }
 
