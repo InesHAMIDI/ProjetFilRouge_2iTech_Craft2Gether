@@ -18,7 +18,7 @@ import java.util.Set;
 @Entity
 public class Player extends User {
 
-    @OneToMany(mappedBy="id.client", cascade= CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy="createur", cascade= CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<Liste> listes;
 

@@ -559,3 +559,93 @@ Caused by: java.lang.ClassCastException: class org.hibernate.mapping.BasicValue 
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1758) ~[spring-beans-6.0.6.jar:6.0.6]
 	... 19 common frames omitted
 
+2023-06-02T11:04:13.874+02:00  INFO 12456 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : Starting Craft2GetherApplication using Java 19.0.2 with PID 12456 (C:\Users\inesh\Desktop\ECOLE\JAVA\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether\target\classes started by inesh in C:\Users\inesh\Desktop\ECOLE\JAVA\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether)
+2023-06-02T11:04:13.878+02:00  INFO 12456 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-06-02T11:04:13.990+02:00  INFO 12456 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-02T11:04:13.990+02:00  INFO 12456 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-06-02T11:04:15.430+02:00  INFO 12456 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-02T11:04:15.612+02:00  INFO 12456 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 156 ms. Found 4 JPA repository interfaces.
+2023-06-02T11:04:16.855+02:00  INFO 12456 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 3000 (http)
+2023-06-02T11:04:16.873+02:00  INFO 12456 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-06-02T11:04:16.874+02:00  INFO 12456 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-06-02T11:04:16.988+02:00  INFO 12456 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/ctg]    : Initializing Spring embedded WebApplicationContext
+2023-06-02T11:04:16.989+02:00  INFO 12456 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2998 ms
+2023-06-02T11:04:17.262+02:00  INFO 12456 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-02T11:04:17.391+02:00  INFO 12456 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-06-02T11:04:17.946+02:00  INFO 12456 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-06-02T11:04:18.529+02:00  INFO 12456 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@789c42be
+2023-06-02T11:04:18.533+02:00  INFO 12456 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-06-02T11:04:18.630+02:00  INFO 12456 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-06-02T11:04:19.075+02:00 ERROR 12456 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Collection 'fr.crafttogether.models.Player.listes' is 'mappedBy' a property named 'client' which does not exist in the target entity 'fr.crafttogether.models.Liste'
+2023-06-02T11:04:19.076+02:00  WARN 12456 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Collection 'fr.crafttogether.models.Player.listes' is 'mappedBy' a property named 'client' which does not exist in the target entity 'fr.crafttogether.models.Liste'
+2023-06-02T11:04:19.081+02:00  INFO 12456 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-06-02T11:04:19.093+02:00  INFO 12456 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-06-02T11:04:19.097+02:00  INFO 12456 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-06-02T11:04:19.117+02:00  INFO 12456 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-06-02T11:04:19.157+02:00 ERROR 12456 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Collection 'fr.crafttogether.models.Player.listes' is 'mappedBy' a property named 'client' which does not exist in the target entity 'fr.crafttogether.models.Liste'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1762) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1132) ~[spring-context-6.0.6.jar:6.0.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:907) ~[spring-context-6.0.6.jar:6.0.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:584) ~[spring-context-6.0.6.jar:6.0.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.0.4.jar:3.0.4]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732) ~[spring-boot-3.0.4.jar:3.0.4]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434) ~[spring-boot-3.0.4.jar:3.0.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:310) ~[spring-boot-3.0.4.jar:3.0.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304) ~[spring-boot-3.0.4.jar:3.0.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293) ~[spring-boot-3.0.4.jar:3.0.4]
+	at fr.crafttogether.Craft2GetherApplication.main(Craft2GetherApplication.java:44) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-3.0.4.jar:3.0.4]
+Caused by: org.hibernate.AnnotationException: Collection 'fr.crafttogether.models.Player.listes' is 'mappedBy' a property named 'client' which does not exist in the target entity 'fr.crafttogether.models.Liste'
+	at org.hibernate.cfg.annotations.CollectionBinder.bindStarToManySecondPass(CollectionBinder.java:1568) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
+	at org.hibernate.cfg.annotations.CollectionBinder$1.secondPass(CollectionBinder.java:1524) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
+	at org.hibernate.cfg.CollectionSecondPass.doSecondPass(CollectionSecondPass.java:47) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1782) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1739) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:300) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1348) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1419) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-6.0.6.jar:6.0.6]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.0.6.jar:6.0.6]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.0.6.jar:6.0.6]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.0.6.jar:6.0.6]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1808) ~[spring-beans-6.0.6.jar:6.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1758) ~[spring-beans-6.0.6.jar:6.0.6]
+	... 19 common frames omitted
+
+2023-06-02T11:04:55.363+02:00  INFO 7948 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : Starting Craft2GetherApplication using Java 19.0.2 with PID 7948 (C:\Users\inesh\Desktop\ECOLE\JAVA\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether\target\classes started by inesh in C:\Users\inesh\Desktop\ECOLE\JAVA\ProjetFilRouge_2iTech_Craft2Gether\Craft2Gether)
+2023-06-02T11:04:55.367+02:00  INFO 7948 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-06-02T11:04:55.493+02:00  INFO 7948 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-02T11:04:55.493+02:00  INFO 7948 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-06-02T11:04:56.930+02:00  INFO 7948 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-02T11:04:57.065+02:00  INFO 7948 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 122 ms. Found 4 JPA repository interfaces.
+2023-06-02T11:04:58.157+02:00  INFO 7948 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 3000 (http)
+2023-06-02T11:04:58.175+02:00  INFO 7948 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-06-02T11:04:58.177+02:00  INFO 7948 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-06-02T11:04:58.312+02:00  INFO 7948 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/ctg]    : Initializing Spring embedded WebApplicationContext
+2023-06-02T11:04:58.314+02:00  INFO 7948 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2819 ms
+2023-06-02T11:04:58.637+02:00  INFO 7948 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-02T11:04:58.761+02:00  INFO 7948 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-06-02T11:04:59.302+02:00  INFO 7948 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-06-02T11:04:59.951+02:00  INFO 7948 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5101a30e
+2023-06-02T11:04:59.956+02:00  INFO 7948 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-06-02T11:05:00.081+02:00  INFO 7948 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-06-02T11:05:02.706+02:00  INFO 7948 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-02T11:05:02.721+02:00  INFO 7948 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-02T11:05:03.514+02:00  WARN 7948 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-02T11:05:04.313+02:00  INFO 7948 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@42a4bdbb, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5df111d8, org.springframework.security.web.context.SecurityContextHolderFilter@123e144, org.springframework.security.web.header.HeaderWriterFilter@48f77121, org.springframework.security.web.csrf.CsrfFilter@38550a3f, org.springframework.security.web.authentication.logout.LogoutFilter@18ba6a44, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1f4d0aee, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@66690955, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@6c86f0a6, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7afcb6c9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2a2d128c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@57b29f45, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7110a53c, org.springframework.security.web.access.ExceptionTranslationFilter@4db9aedc, org.springframework.security.web.access.intercept.AuthorizationFilter@255ce4df]
+2023-06-02T11:05:04.382+02:00  INFO 7948 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-06-02T11:05:04.458+02:00  INFO 7948 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 3000 (http) with context path '/ctg'
+2023-06-02T11:05:04.479+02:00  INFO 7948 --- [restartedMain] f.crafttogether.Craft2GetherApplication  : Started Craft2GetherApplication in 9.994 seconds (process running for 11.649)
