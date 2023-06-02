@@ -1,6 +1,8 @@
 package fr.crafttogether.models;
 
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -12,14 +14,21 @@ import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
 
+
 @Data
 @SuperBuilder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-//@Table(name = "ctg_User")
 @Entity
-public class User {
+@Table(name = "MyUser")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "role", visible = true)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Admin.class, name = "ADMIN"),
+        @JsonSubTypes.Type(value = Player.class, name = "CLIENT")
+})
+public abstract class User {
 
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
@@ -30,7 +39,6 @@ public class User {
     private String password;
 
     private UserRole role;
-
 
     @OneToMany(mappedBy = "createur")
     private List<Liste> listesICreated;
