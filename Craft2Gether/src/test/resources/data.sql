@@ -1,4 +1,4 @@
-blocCREATE TABLE `bloc` (
+CREATE TABLE `bloc` (
   `id` int NOT NULL AUTO_INCREMENT,
   `biome_origine` varchar(255) DEFAULT NULL,
   `nom` varchar(255) DEFAULT NULL,
