@@ -26,7 +26,7 @@ import java.util.List;
         @JsonSubTypes.Type(value = Admin.class, name = "ADMIN"),
         @JsonSubTypes.Type(value = Player.class, name = "CLIENT")
 })
-public abstract class User {
+public class User {
 
     @EqualsAndHashCode.Include
     @Id
@@ -34,9 +34,9 @@ public abstract class User {
     int id;
     @NonNull
     String username;
-    @NotBlank
+    /*@NotBlank
     @Length(min = 8)
-    private String password;
+    private String password;*/
 
     private UserRole role;
 
