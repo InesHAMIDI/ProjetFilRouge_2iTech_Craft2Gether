@@ -83,15 +83,14 @@ public class Craft2GetherApplication implements ApplicationRunner {
 
         recetteRepository.save(plancheCheneRecette);
         recetteRepository.save(lingotFerRecette);
-        recetteRepository.save(epeeRecette);
+        recetteRepository.save(epeeRecette);*/
 
         User admin = Admin.builder()
                 .username("admin")
                 .name("admin")
-                .password("adminpass")
                 .role(UserRole.valueOf("ADMIN"))
                 .build();
 
-        userRepository.save(admin);*/
+        userRepository.save(admin);
     }
 }

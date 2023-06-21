@@ -4,6 +4,7 @@ import ListeDetailsView from '../views/ListeDetailsView.vue'
 import BlocDetailView from '../views/BlocDetailView.vue'
 import UserView from '@/views/UserView.vue'
 import ListeCreateView from '@/views/ListeCreateView.vue'
+import AuthView from '@/views/AuthView.vue'
 
 const routes = [
   {
@@ -11,6 +12,12 @@ const routes = [
     name: 'home',
     component: HomeView,
     alias:["/listes", "/accueil", "/home"]
+  },
+
+  {
+    path: '/authentification',
+    name: 'auth',
+    component: AuthView,
   },
 
   {
