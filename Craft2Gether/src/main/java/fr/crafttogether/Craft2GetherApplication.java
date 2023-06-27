@@ -12,6 +12,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -57,7 +58,7 @@ public class Craft2GetherApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args){
 
-       /* Bloc chene = Bloc.builder().nom("chene").biomeOrigine("all").outilNecessaire("hache_bois").type(NATUREL).build();
+       /*Bloc chene = Bloc.builder().nom("chene").biomeOrigine("all").outilNecessaire("hache_bois").type(NATUREL).build();
         Bloc plancheCheneBloc = Bloc.builder().nom("planche de chene").biomeOrigine("all").outilNecessaire("hache_bois").type(MANUFACTURE).build();
         Map<Integer, Bloc> quantiteChene = new HashMap<Integer, Bloc>();
         quantiteChene.put(1, chene);
@@ -83,6 +84,23 @@ public class Craft2GetherApplication implements ApplicationRunner {
 
         recetteRepository.save(plancheCheneRecette);
         recetteRepository.save(lingotFerRecette);
-        recetteRepository.save(epeeRecette);*/
+        recetteRepository.save(epeeRecette);
+         User.builder().username("user").password("{noop}user").roles("USER").build();
+         User.builder().username("admin").password("{noop}admin").roles("ADMIN").build();*/
+    }
+
+    @Bean
+    public User user(){
+        return User.builder().username("admin").password("{noop}admin").roles("ADMIN").build();
+    }
+    @Bean
+    public InMemoryUserDetailsManager inMemoryUserDetailsManager(User user) {
+        return new InMemoryUserDetailsManager(
+                org.springframework.security.core.userdetails.User.builder()
+                        .password(user.getPassword())
+                        .username(user.getUsername())
+                        .roles(user.getRoles())
+                        .build()
+        );
     }
 }

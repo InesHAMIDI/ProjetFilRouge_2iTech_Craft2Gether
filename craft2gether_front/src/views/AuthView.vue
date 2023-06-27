@@ -18,16 +18,20 @@ import axios from 'axios'
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter();
-const user = reactive({ username: '', password: '', grantType: 'password' })
+const user = reactive({ username: '', password: ''})
 
 const seConnecter = () => {
-    axios
-        .post('http://localhost:3000/ctg', user)
-        .then(res => {
-            console.log(res);
-            localStorage.setItem('token', res.data.accessToken)
-            router.push({ name: 'home' })
-        })
-        .catch(err => alert(err))
+    axios.post('http://localhost/ctg/auth', {}, {
+      auth: {
+            username: user.username,
+            password: user.password
+            }
+    })
+    .then(function() {
+      router.push('home')
+    })
+    .catch(function(error) {
+        console.log(error);
+    });
 }
 </script>

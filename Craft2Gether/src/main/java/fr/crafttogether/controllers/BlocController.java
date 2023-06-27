@@ -13,6 +13,7 @@ import java.util.Collection;
 @CrossOrigin
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring@NoArgsConstructor
+@RolesAllowed({"PLAYER", "ADMIN"}) //faut avoir l'un ou l'autre, s'écrit aussi @Secured({"ROLE_ADMIN", "ROLE_USER"})
 public class BlocController {
     private BlocService blocService;
 

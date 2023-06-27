@@ -12,6 +12,7 @@ const routes = [
     path: '/authentification',
     name: 'auth',
     component: AuthView,
+    alias:["/auth"]
   },
 
   {

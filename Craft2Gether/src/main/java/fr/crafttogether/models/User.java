@@ -1,6 +1,7 @@
 package fr.crafttogether.models;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 @Entity
@@ -8,6 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
+@SuperBuilder
 public class User {
     @EqualsAndHashCode.Include
     @Id
