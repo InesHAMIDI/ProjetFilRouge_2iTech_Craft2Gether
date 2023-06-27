@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RequestMapping("/listes") //Route general
+@CrossOrigin
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring
 @RolesAllowed({"PLAYER", "ADMIN"}) //faut avoir l'un ou l'autre, s'écrit aussi @Secured({"ROLE_ADMIN", "ROLE_USER"})
