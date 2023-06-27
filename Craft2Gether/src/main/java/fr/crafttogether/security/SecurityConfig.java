@@ -2,13 +2,21 @@ package fr.crafttogether.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.OrRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+
+import static org.springframework.security.authorization.AuthorityAuthorizationManager.hasRole;
+import static org.springframework.security.authorization.AuthorizationManagers.anyOf;
 
 @Configuration
 @EnableWebSecurity
@@ -21,7 +29,7 @@ public class SecurityConfig {
                 User.builder().username("user").password("{noop}user").roles("PLAYER").build());
     }
 
-    /*private final RequestMatcher adminUrls = new OrRequestMatcher(
+    private final RequestMatcher adminUrls = new OrRequestMatcher(
             //users
             new AntPathRequestMatcher("/users", "GET"), //get all users
 
@@ -41,33 +49,31 @@ public class SecurityConfig {
             new AntPathRequestMatcher("/recettes/{id}", "GET"),
 
             //blocs
-            new AntPathRequestMatcher("/blocs", "GET")
-    );*/
+            new AntPathRequestMatcher("/blocs", "GET"),
+
+            //auth
+            new AntPathRequestMatcher("/auth", "POST")
+
+    );
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .authorizeHttpRequests((auth) -> auth
-                        .anyRequest().authenticated()
-                )
-                .httpBasic(Customizer.withDefaults());
-                /*.authorizeHttpRequests()
-                .requestMatchers(adminUrls)
-                .hasRole("ADMIN")
-                .requestMatchers("/users/{id}/**")
-                .access(anyOf(hasRole("ADMIN"), (auth, req) ->
-                        new AuthorizationDecision(((MyUserDetails) auth.get().getPrincipal()).getUser().getId() == Long.parseLong(req.getVariables().get("id")))))
+                .authorizeHttpRequests()
+                    .requestMatchers(adminUrls)
+                        .hasRole("ADMIN")
 
-                .requestMatchers(publicUrls)
-                .permitAll()
-                .requestMatchers("/**")
-                .denyAll()
+                    .requestMatchers(publicUrls)
+                        .permitAll()
+
                 .and()
+
                 .formLogin().disable()
                 .logout().disable()
                 .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()*/
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .httpBasic();
+
         return http.build();
 
     }

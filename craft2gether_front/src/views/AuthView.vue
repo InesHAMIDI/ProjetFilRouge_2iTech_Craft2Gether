@@ -19,9 +19,10 @@ import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter();
 const user = reactive({ username: '', password: '', grantType: 'password' })
+
 const seConnecter = () => {
     axios
-        .post('http://localhost:3000/ctg/token', user)
+        .post('http://localhost:3000/ctg', user)
         .then(res => {
             console.log(res);
             localStorage.setItem('token', res.data.accessToken)

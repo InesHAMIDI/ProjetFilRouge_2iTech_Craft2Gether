@@ -7,17 +7,18 @@ import ListeCreateView from '@/views/ListeCreateView.vue'
 import AuthView from '@/views/AuthView.vue'
 
 const routes = [
+  
+  {
+    path: '/authentification',
+    name: 'auth',
+    component: AuthView,
+  },
+
   {
     path: '/',
     name: 'home',
     component: HomeView,
     alias:["/listes", "/accueil", "/home"]
-  },
-
-  {
-    path: '/authentification',
-    name: 'auth',
-    component: AuthView,
   },
 
   {
