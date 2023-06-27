@@ -19,6 +19,14 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig {
+
+    @Bean
+    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
+        return new InMemoryUserDetailsManager(
+                User.builder().username("user").password("{noop}user").roles("USER").build(),
+                User.builder().username("admin").password("{noop}admin").roles("USER", "ADMIN").build()
+        );
+    }
     private final RequestMatcher adminUrls = new OrRequestMatcher(
             //users
             new AntPathRequestMatcher("/users", "GET"), //get all users

@@ -21,11 +21,25 @@ const router = useRouter();
 const user = reactive({ username: '', password: ''})
 
 const seConnecter = () => {
-    axios.post('localhost:3000/ctg/auth', {}, {
+    /*axios.post('http://localhost:3000/ctg/auth', {}, {
       auth: {
+                username: user.username,
+                password: user.password
+            }
+    })
+    .then(function() {
+      router.push('home')
+    })
+    .catch(function(error) {
+        console.log(error);
+    });*/
+    axios({
+        method: 'post',
+        url:'http://localhost:3000/ctg/auth',
+        auth:{
             username: user.username,
             password: user.password
-            }
+        }
     })
     .then(function() {
       router.push('home')
