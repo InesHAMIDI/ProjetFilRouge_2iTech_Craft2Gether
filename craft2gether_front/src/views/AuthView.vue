@@ -21,7 +21,7 @@ const router = useRouter();
 const user = reactive({ username: '', password: ''})
 
 const seConnecter = () => {
-    axios.post('http://localhost/ctg/auth', {}, {
+    axios.post('localhost:3000/ctg/auth', {}, {
       auth: {
             username: user.username,
             password: user.password

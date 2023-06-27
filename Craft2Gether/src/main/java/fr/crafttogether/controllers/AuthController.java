@@ -12,17 +12,16 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring@NoArgsConstructor
-@PermitAll()
 public class AuthController {
     private UserService userService;
 
     // POST
     @PermitAll()
     @PostMapping
-    public User authenticate(@RequestParam String username, @RequestParam String password){
-        User user = userService.findByUsername(username);
-        if (user != null){
-            return user;
+    public User authenticate(@RequestBody User user){
+        User u = userService.findByUsername(user.getUsername());
+        if (u != null){
+            return u;
         }
         else{
             throw new NotFoundException("Cet utilisateur n'existe pas");
