@@ -3,6 +3,7 @@ package fr.crafttogether.controllers;
 import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Recette;
 import fr.crafttogether.services.RecetteService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.Collection;
 @RequestMapping("/recettes") //Route general
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring
+@RolesAllowed({"PLAYER", "ADMIN"}) //faut avoir l'un ou l'autre, s'écrit aussi @Secured({"ROLE_ADMIN", "ROLE_USER"})
 public class RecetteController {
     private RecetteService recetteService;
 

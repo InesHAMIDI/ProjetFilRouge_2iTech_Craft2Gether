@@ -5,6 +5,7 @@ import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Liste;
 import fr.crafttogether.models.Recette;
 import fr.crafttogether.services.ListeService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.Collection;
 @RequestMapping("/listes") //Route general
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring
+@RolesAllowed({"PLAYER", "ADMIN"}) //faut avoir l'un ou l'autre, s'écrit aussi @Secured({"ROLE_ADMIN", "ROLE_USER"})
 public class ListeController {
     private ListeService listeService;
 
