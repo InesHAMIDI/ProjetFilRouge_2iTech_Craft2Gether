@@ -58,7 +58,7 @@ public class ListeControllerTestIT extends IntegrationTestsBase {
 
     // TESTS GET BY ID
     @Test
-    @WithMockUser(roles = "ADMIN")
+    @WithMockUser(roles = "PLAYER")
     void testGetListeByIdSuccess() throws Exception {
         // Arrange
         // Act & Assert

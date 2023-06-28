@@ -1,29 +1,17 @@
 package fr.crafttogether;
 
-import fr.crafttogether.models.*;
 import fr.crafttogether.repositories.BlocRepository;
 import fr.crafttogether.repositories.ListeRepository;
 import fr.crafttogether.repositories.RecetteRepository;
 import fr.crafttogether.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static fr.crafttogether.models.Bloc.BLOCK_TYPE.MANUFACTURE;
-import static fr.crafttogether.models.Bloc.BLOCK_TYPE.NATUREL;
 
 @SpringBootApplication
 public class Craft2GetherApplication implements ApplicationRunner {
@@ -50,7 +38,7 @@ public class Craft2GetherApplication implements ApplicationRunner {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "UPDATE", "DELETE", "OPTIONS")
-                        .allowedOrigins(frontendUrl);
+                        .allowedOrigins("**");
             }
 
         };
@@ -89,18 +77,4 @@ public class Craft2GetherApplication implements ApplicationRunner {
          User.builder().username("admin").password("{noop}admin").roles("ADMIN").build();*/
     }
 
-    @Bean
-    public User user(){
-        return User.builder().username("admin").password("{noop}admin").roles("ADMIN").build();
-    }
-    @Bean
-    public InMemoryUserDetailsManager inMemoryUserDetailsManager(User user) {
-        return new InMemoryUserDetailsManager(
-                org.springframework.security.core.userdetails.User.builder()
-                        .password(user.getPassword())
-                        .username(user.getUsername())
-                        .roles(user.getRoles())
-                        .build()
-        );
-    }
 }

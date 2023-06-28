@@ -70,6 +70,7 @@ class ListeControllerTest extends UnitTestsBase {
 
     /* TEST GET BY ID */
     @Test
+    @WithMockUser(roles = "PLAYER")
     void testGetListesByIdSuccess() throws Exception{
         // Arrange
         int id = 3;
