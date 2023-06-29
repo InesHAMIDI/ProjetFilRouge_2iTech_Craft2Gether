@@ -16,3 +16,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.home{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

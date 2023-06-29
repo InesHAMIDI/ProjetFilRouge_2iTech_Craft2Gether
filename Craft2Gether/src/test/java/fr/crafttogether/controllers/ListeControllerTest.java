@@ -147,10 +147,10 @@ class ListeControllerTest extends UnitTestsBase {
             return liste;
         });
         // Act & Assert
-        var result = mockMvc.perform(post("/listes")
+        mockMvc.perform(post("/listes")
                 .content(objectMapper.writeValueAsString(liste))
-                .contentType(MediaType.APPLICATION_JSON));
-        result
+                .contentType(MediaType.APPLICATION_JSON))
+
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id", is(123)))
