@@ -48,15 +48,6 @@ button{
   background: none;
 }
 
-form button{
-  background-color: #717171;
-  color: white;
-}
-
-form button:hover{
-  background-color: #2c3e50;
-}
-
 template{
   display: flex;
   align-items: center;
