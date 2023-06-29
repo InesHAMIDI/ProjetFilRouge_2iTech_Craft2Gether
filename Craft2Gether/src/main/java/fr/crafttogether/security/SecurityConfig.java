@@ -59,7 +59,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests()
                     .requestMatchers(adminUrls)
-                        .hasRole("ADMIN")
+                        .hasRole("ROLE_ADMIN")
                    .requestMatchers(publicUrls)
                         .permitAll()
 

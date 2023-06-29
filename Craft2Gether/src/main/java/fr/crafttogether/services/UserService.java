@@ -4,11 +4,13 @@ import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.User;
 import fr.crafttogether.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 @Service
+@Secured("ROLE_ADMIN")
 public class UserService {
     @Autowired
     private UserRepository userRepository;
