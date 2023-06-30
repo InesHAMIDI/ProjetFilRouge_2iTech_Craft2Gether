@@ -2,31 +2,34 @@ package fr.crafttogether.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
+import static org.springframework.security.authorization.AuthorityAuthorizationManager.hasRole;
+import static org.springframework.security.authorization.AuthorizationManagers.anyOf;
+
+
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
-    @Bean
+/*    @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         return new InMemoryUserDetailsManager(
-                User.builder().username("user").password("{noop}user").roles("USER").build(),
-                User.builder().username("admin").password("{noop}admin").roles("USER", "ADMIN").build()
+                User.builder().username("user").password("{noop}user").roles("PLAYER").build(),
+                User.builder().username("admin").password("{noop}admin").roles("PLAYER", "ADMIN").build()
         );
-    }
+    }*/
     private final RequestMatcher adminUrls = new OrRequestMatcher(
             //users
             new AntPathRequestMatcher("/users", "GET"), //get all users
@@ -57,12 +60,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests()
-                    .requestMatchers(adminUrls)
-                        .hasRole("ROLE_ADMIN")
-                   .requestMatchers(publicUrls)
-                        .permitAll()
-
+		    .authorizeHttpRequests()
+                .requestMatchers(adminUrls)
+                    .hasRole("ADMIN")
+                    .requestMatchers("/users/{id}/**")
+                    .access(anyOf(hasRole("ADMIN"), (auth, req) -> new AuthorizationDecision(((MyUserDetails) auth.get().getPrincipal()).getUser().getId() == Long.parseLong(req.getVariables().get("id")))))
+                .requestMatchers(publicUrls)
+                    .permitAll()
+                .requestMatchers("/**")
+                    .denyAll()
                 .and()
                 .formLogin().disable()
                 .logout().disable()
