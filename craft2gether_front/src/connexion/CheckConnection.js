@@ -3,21 +3,17 @@ import { defineStore } from 'pinia';
 export const useConnection = defineStore('connection', {
     state() {
         return {
-            userConnected: false,
-            userId : null,
-            userRole : null
+            userCredentials: "",
+            userConnected: false
         }
     },
     
     getters: {
-        isConnected(state) {
+        getCredentials(state){
+            return state.userCredentials
+        },
+        isConnected(state){
             return state.userConnected;
-        },
-        getUserId(state) {
-            return state.userId;
-        },
-        getUserRole(state) {
-            return state.userRole;
         }
     },
     
@@ -28,7 +24,6 @@ export const useConnection = defineStore('connection', {
 
         logout() {
             this.userConnected = false;
-            this.userRole = null;
             if(localStorage.getItem("credentials") != undefined) {
                     localStorage.removeItem('credentials');
             }

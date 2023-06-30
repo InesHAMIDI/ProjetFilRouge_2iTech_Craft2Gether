@@ -1,7 +1,7 @@
 <template>
     <div class="form">
         <h1>Authentification</h1>
-        <form @submit.prevent="seConnecter">
+        <form @submit="seConnecter">
             <div class="us">
                 <label for="username">Identifiant </label>
                 <input type="text" id="username">
@@ -31,16 +31,10 @@ const router = useRouter();
 		},
 		methods: {
             seConnecter(values){
-                axios({
-                    method: 'post',
-                    url:'http://localhost:3000/ctg/auth',
-                    body:{
-                        username: values.username,
-                        password: values.password
-                    }
-                })
+                axios.post(`${this.baseUrl}/listes`, values)
                 .then(res => {
                     this.connection.login(res.data);
+                    console.log(res.data)
                     router.push('home');
                 })
                 .catch(function(error) {

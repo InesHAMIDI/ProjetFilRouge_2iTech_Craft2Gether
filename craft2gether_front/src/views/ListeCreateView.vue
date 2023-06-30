@@ -112,7 +112,7 @@ export default {
 </script>
 <style scoped>
 .fa, .fas, .fa-solid, .fa-regular {
-    color: #71717;
+    color: #717171;
 }
 
 .rechercheRecettes, .recettesSelectionees{

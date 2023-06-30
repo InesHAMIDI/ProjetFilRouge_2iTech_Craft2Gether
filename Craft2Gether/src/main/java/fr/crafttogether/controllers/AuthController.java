@@ -1,12 +1,8 @@
 package fr.crafttogether.controllers;
 
-import fr.crafttogether.services.UserService;
 import jakarta.annotation.security.PermitAll;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/auth") //Route general
 @CrossOrigin
@@ -18,6 +14,8 @@ public class AuthController {
     // POST
     @PermitAll()
     @PostMapping
-    public void authenticate(){ };
+    public String authenticate(@RequestBody String values){
+        return values;
+    };
 
 }
