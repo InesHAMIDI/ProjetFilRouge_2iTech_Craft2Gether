@@ -1,5 +1,8 @@
 package fr.crafttogether;
 
+import fr.crafttogether.models.Bloc;
+import fr.crafttogether.models.Recette;
+import fr.crafttogether.models.User;
 import fr.crafttogether.repositories.BlocRepository;
 import fr.crafttogether.repositories.ListeRepository;
 import fr.crafttogether.repositories.RecetteRepository;
@@ -12,6 +15,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static fr.crafttogether.models.Bloc.BLOCK_TYPE.MANUFACTURE;
+import static fr.crafttogether.models.Bloc.BLOCK_TYPE.NATUREL;
 
 @SpringBootApplication
 public class Craft2GetherApplication implements ApplicationRunner {
@@ -46,7 +55,7 @@ public class Craft2GetherApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args){
 
-       /*Bloc chene = Bloc.builder().nom("chene").biomeOrigine("all").outilNecessaire("hache_bois").type(NATUREL).build();
+      /* Bloc chene = Bloc.builder().nom("chene").biomeOrigine("all").outilNecessaire("hache_bois").type(NATUREL).build();
         Bloc plancheCheneBloc = Bloc.builder().nom("planche de chene").biomeOrigine("all").outilNecessaire("hache_bois").type(MANUFACTURE).build();
         Map<Integer, Bloc> quantiteChene = new HashMap<Integer, Bloc>();
         quantiteChene.put(1, chene);
@@ -73,8 +82,11 @@ public class Craft2GetherApplication implements ApplicationRunner {
         recetteRepository.save(plancheCheneRecette);
         recetteRepository.save(lingotFerRecette);
         recetteRepository.save(epeeRecette);
-         User.builder().username("user").password("{noop}user").roles("USER").build();
-         User.builder().username("admin").password("{noop}admin").roles("ADMIN").build();*/
+        User user = User.builder().username("user").password("{noop}user").roles("USER").build();
+        User admin = User.builder().username("admin").password("{noop}admin").roles("ADMIN").build();
+
+        userRepository.save(user);
+        userRepository.save(admin);*/
     }
 
 }

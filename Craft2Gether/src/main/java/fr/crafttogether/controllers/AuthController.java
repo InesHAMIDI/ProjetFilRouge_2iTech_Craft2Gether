@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor //Remplace l'autowired recommandé par spring@NoArgsConstructor
 @PermitAll()
 public class AuthController {
-    private UserService userService;
 
     // POST
     @PermitAll()
     @PostMapping
-    public void authenticate(){
-    };
+    public void authenticate(){ };
 
 }
