@@ -1,8 +1,8 @@
 export function axiosInterceptor(config)
       {
-        if (localStorage.getItem('token') != null && localStorage.getItem('token') != undefined) {
-            const credentials = localStorage.getItem('token');
-            config.headers.setAuthorization(`Basic ${credentials}`)  
+        let cred = localStorage.getItem('credentials');
+        if (cred != null && cred != undefined) {
+            config.headers.setAuthorization(`Basic ${cred}`)
         }
-        return config
+        return config;
     }

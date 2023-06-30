@@ -7,6 +7,7 @@ import fr.crafttogether.repositories.BlocRepository;
 import fr.crafttogether.repositories.ListeRepository;
 import fr.crafttogether.repositories.RecetteRepository;
 import fr.crafttogether.repositories.UserRepository;
+import fr.crafttogether.security.WebMvcConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -41,7 +42,7 @@ public class Craft2GetherApplication implements ApplicationRunner {
     public static void main(String[] args) {
         SpringApplication.run(Craft2GetherApplication.class, args);
     }
-    @Bean
+/*    @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
@@ -49,12 +50,11 @@ public class Craft2GetherApplication implements ApplicationRunner {
                 registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "UPDATE", "DELETE", "OPTIONS")
                         .allowedOrigins("**");
             }
-
         };
-    }
+    }*/
     @Override
     public void run(ApplicationArguments args){
-
+        new WebMvcConfig();
       /* Bloc chene = Bloc.builder().nom("chene").biomeOrigine("all").outilNecessaire("hache_bois").type(NATUREL).build();
         Bloc plancheCheneBloc = Bloc.builder().nom("planche de chene").biomeOrigine("all").outilNecessaire("hache_bois").type(MANUFACTURE).build();
         Map<Integer, Bloc> quantiteChene = new HashMap<Integer, Bloc>();

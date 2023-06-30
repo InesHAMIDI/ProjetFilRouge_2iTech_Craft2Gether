@@ -4,39 +4,50 @@
         <form @submit.prevent="seConnecter">
             <div class="us">
                 <label for="username">Identifiant </label>
-                <input type="text" v-model="user.username" id="username">
+                <input type="text" id="username">
             </div>
             <div class="pass">
                 <label for="password">Mot de passe </label>
-                <input type="password" v-model="user.password" id="password">
+                <input type="password" id="password">
             </div>
             <button> Se connecter </button>
         </form>
     </div>
 </template> 
 
-<script setup>
+<script>
+import { useConnection } from '@/connexion/CheckConnection'
 import axios from 'axios'
-import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter();
-const user = reactive({ username: '', password: ''})
 
-const seConnecter = () => {
-    axios({
-        method: 'post',
-        url:'http://localhost:3000/ctg/auth',
-        auth:{
-            username: user.username,
-            password: user.password
-        }
-    })
-    .then(function() {
-      router.push('home')
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+	export default {
+		components: {
+		},
+		data() {
+			return {
+				connection: useConnection()
+			}
+		},
+		methods: {
+            seConnecter(values){
+                axios({
+                    method: 'post',
+                    url:'http://localhost:3000/ctg/auth',
+                    body:{
+                        username: values.username,
+                        password: values.password
+                    }
+                })
+                .then(res => {
+                    this.connection.login(res.data);
+                    router.push('home');
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+            }
+    }
 }
 </script>
 
