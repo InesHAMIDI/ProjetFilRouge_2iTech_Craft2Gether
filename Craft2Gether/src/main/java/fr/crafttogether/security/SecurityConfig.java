@@ -61,12 +61,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
 		    .authorizeHttpRequests()
-                .requestMatchers(adminUrls)
-                    .hasRole("ADMIN")
-                    .requestMatchers("/users/{id}/**")
-                    .access(anyOf(hasRole("ADMIN"), (auth, req) -> new AuthorizationDecision(((MyUserDetails) auth.get().getPrincipal()).getUser().getId() == Long.parseLong(req.getVariables().get("id")))))
-                .requestMatchers(publicUrls)
-                    .permitAll()
+                .anyRequest()
+                .permitAll()
+
 
                 .and()
                 .formLogin().disable()
