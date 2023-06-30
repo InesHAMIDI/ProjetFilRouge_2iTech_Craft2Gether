@@ -31,7 +31,7 @@ const router = useRouter();
 		},
 		methods: {
             seConnecter(values){
-                axios.post(`${this.baseUrl}/listes`, values)
+                axios.post(`${this.baseUrl}/auth`, values)
                 .then(res => {
                     this.connection.login(res.data);
                     console.log(res.data)

@@ -67,14 +67,15 @@ public class SecurityConfig {
                     .access(anyOf(hasRole("ADMIN"), (auth, req) -> new AuthorizationDecision(((MyUserDetails) auth.get().getPrincipal()).getUser().getId() == Long.parseLong(req.getVariables().get("id")))))
                 .requestMatchers(publicUrls)
                     .permitAll()
-                .requestMatchers("/**")
-                    .denyAll()
+
                 .and()
                 .formLogin().disable()
                 .logout().disable()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .httpBasic();
+                .httpBasic()
+                .and()
+                .cors();
         return http.build();
     }
 

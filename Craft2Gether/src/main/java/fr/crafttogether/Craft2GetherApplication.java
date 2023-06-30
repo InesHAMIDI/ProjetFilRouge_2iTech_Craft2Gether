@@ -1,13 +1,9 @@
 package fr.crafttogether;
 
-import fr.crafttogether.models.Bloc;
-import fr.crafttogether.models.Recette;
-import fr.crafttogether.models.User;
 import fr.crafttogether.repositories.BlocRepository;
 import fr.crafttogether.repositories.ListeRepository;
 import fr.crafttogether.repositories.RecetteRepository;
 import fr.crafttogether.repositories.UserRepository;
-import fr.crafttogether.security.WebMvcConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -16,12 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static fr.crafttogether.models.Bloc.BLOCK_TYPE.MANUFACTURE;
-import static fr.crafttogether.models.Bloc.BLOCK_TYPE.NATUREL;
 
 @SpringBootApplication
 public class Craft2GetherApplication implements ApplicationRunner {
