@@ -4,11 +4,11 @@
         <form @submit="seConnecter">
             <div class="us">
                 <label for="username">Identifiant </label>
-                <input type="text" id="username">
+                <input type="text" v-model="username" id="username">
             </div>
             <div class="pass">
                 <label for="password">Mot de passe </label>
-                <input type="password" id="password">
+                <input type="password" v-model="password" id="password">
             </div>
             <button> Se connecter </button>
         </form>
@@ -26,12 +26,14 @@ const router = useRouter();
 		},
 		data() {
 			return {
-				connection: useConnection()
+				connection: useConnection(),
+                password: "",
+                username: ""
 			}
 		},
 		methods: {
-            seConnecter(values){
-                axios.post(`${this.baseUrl}/auth`, values)
+            seConnecter(){
+                axios.post(`${this.baseUrl}/auth`, this.username, this.password)
                 .then(res => {
                     this.connection.login(res.data);
                     console.log(res.data)
