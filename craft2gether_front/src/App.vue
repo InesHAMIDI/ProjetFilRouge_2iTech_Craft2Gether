@@ -48,10 +48,4 @@ button{
   background: none;
 }
 
-template{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 </style>
