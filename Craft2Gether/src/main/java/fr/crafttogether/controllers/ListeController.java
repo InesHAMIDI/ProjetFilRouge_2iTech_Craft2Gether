@@ -5,10 +5,12 @@ import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Liste;
 import fr.crafttogether.models.Recette;
 import fr.crafttogether.services.ListeService;
+import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -17,7 +19,7 @@ import java.util.Collection;
 @CrossOrigin("http://localhost:8080")
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring
-@RolesAllowed({"PLAYER", "ADMIN"}) //faut avoir l'un ou l'autre, s'écrit aussi @Secured({"ROLE_ADMIN", "ROLE_USER"})
+@PermitAll
 public class ListeController {
     private ListeService listeService;
 
@@ -38,6 +40,7 @@ public class ListeController {
     }
 
     // POST : SAVE
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_PLAYER')")
     @PostMapping()
     public Liste saveListe(@Valid @RequestBody Liste liste) {
         if (liste.getId() != 0)
@@ -46,6 +49,7 @@ public class ListeController {
     }
 
     // POST : UPDATE
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_PLAYER')")
     @PutMapping("/{id}")
     public Liste updateListe(@PathVariable long id, @Valid @RequestBody Liste liste){
         if(liste.getId() != id)
@@ -54,6 +58,7 @@ public class ListeController {
     };
 
     // DELETE
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_PLAYER')")
     @DeleteMapping("/{id}")
     public void deletebyId(@PathVariable int id) throws InterruptedException {
         listeService.deleteById(id);

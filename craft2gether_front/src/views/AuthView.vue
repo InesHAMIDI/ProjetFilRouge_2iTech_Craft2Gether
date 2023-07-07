@@ -18,8 +18,6 @@
 
 <script>
 import { useConnection } from '@/connexion/CheckConnection'
-import { useRouter } from 'vue-router'
-const router = useRouter();
 
 	export default {
 		components: {
@@ -41,12 +39,12 @@ const router = useRouter();
                         password: this.password
                     }
                 })
-                .then(res => {
-                    this.connection.login(res.data);
-                    console.log(res.data)
-                    console.log("------------")
-                    console.log(this.connection.isConnected)
-                    router.push('home');
+                .then(() => {
+                    this.connection.login({
+                        username: this.username, 
+                        password: this.password
+                    });
+                    this.$router.push({ name: 'home'})
                 })
                 .catch(error => {
                     console.log("bboofdbs")

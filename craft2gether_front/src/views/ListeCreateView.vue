@@ -1,11 +1,10 @@
 <template>
     <div class="creerListe">
         <h2>Créer une liste</h2>
-        <Form @submit="creerListe" ref="listeForm">
+        <form @submit.prevent="creerListe" ref="listeForm">
             <div>
                 <label for="titre">Titre </label>
-                <Field id="titre" type="text" name="titre" :rules="validateTitre"/>
-                <ErrorMessage name="titre" />
+                <input id="titre" type="text" name="titre" v-model="titre"/>
             </div>
             <div class="selection-deselectionRecettes">
                 <div class="rechercheRecettes">
@@ -18,14 +17,14 @@
                         <tbody>
                             <tr v-for="recette in recettesRecherchees" :key="recette.nom">
                                 <td>{{ recette.nom }}</td>
-                                <td><button @click="selectionnerRecette(recette)"><i class="fa-solid fa-check"></i></button></td>
+                                <td><button @click.prevent="selectionnerRecette(recette)"><i class="fa-solid fa-check"></i></button></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <div class="recettesSelectionees">
-                    <p>Liste sélectionnées</p>
+                    <p>Recettes sélectionnées</p>
                     <table class="table table-striped">
                         <thead>
                             <th scope="col"></th> <!-- Titre -->
@@ -34,37 +33,30 @@
                         <tbody>
                             <tr v-for="recette in recettesSelectionees" :key="recette.nom">
                                 <td>{{ recette.nom }}</td>
-                                <td><button @click="deselectionnerRecette(recette, ind)"><i class="fa-solid fa-xmark"></i></button></td>
+                                <td><button @click.prevent="deselectionnerRecette(recette, ind)"><i class="fa-solid fa-xmark"></i></button></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <button type="submit"><i class="fa-solid fa-plus"></i></button>
-        </Form>
+        </form>
     </div>
 </template>
 <script>
-import { Field, Form, ErrorMessage } from 'vee-validate'
-import * as yup from 'yup'
 export default {
     components: {
-        Field,
-        Form,
-        ErrorMessage,
+    
     },
 
     data() {
         return {
-            validateTitre: yup
-                .string()
-                .required("Champ Obligatoire"),
-            
             erreur: "",
             recettes: [],
             searchQuery: "",
             recettesSelectionees: [],
             listeAEnvoyer: {},
+            titre:""
 
         }
     },    
@@ -76,8 +68,8 @@ export default {
     },
 
     methods: {
-        creerListe(values) {
-            this.listeAEnvoyer.titre = values.titre;
+        creerListe() {
+            this.listeAEnvoyer.titre = this.titre;
             this.listeAEnvoyer.recettes = this.recettesSelectionees;
             this.axios.post(`${this.baseUrl}/listes`, this.listeAEnvoyer)
                 .then(response => {

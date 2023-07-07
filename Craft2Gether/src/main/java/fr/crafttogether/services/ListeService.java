@@ -21,19 +21,16 @@ public class ListeService {
     }
     public Liste findByTitre(String titre){ return listeRepository.findByTitre(titre).orElseThrow(() -> new NotFoundException("no list with nom " + titre + " exists")); }
 
-    @PreAuthorize("hasRole('ROLE_PLAYER')")
     public Liste save(Liste liste) {
         return listeRepository.save(liste);
     }
 
-    @PreAuthorize("hasRole('ROLE_PLAYER')")
     public void deleteById(int id) {
         if(listeRepository.findById(id).isEmpty())
             throw new NotFoundException("no list with id " + id + " exists");
         listeRepository.deleteById(id);
     }
 
-    @PreAuthorize("hasRole('ROLE_PLAYER')")
     public Liste update(Liste liste) {
         if(listeRepository.findById(liste.getId()).isEmpty())
             throw new NotFoundException("no list with id " + liste.getId() + " exists");
