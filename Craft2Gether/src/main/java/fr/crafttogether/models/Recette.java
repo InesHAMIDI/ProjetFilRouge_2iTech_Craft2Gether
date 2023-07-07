@@ -17,6 +17,7 @@ import java.util.Map;
 public class Recette {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private int id;
     @NonNull
     private String nom;
