@@ -30,7 +30,7 @@ public class SecurityConfig {
                 User.builder().username("admin").password("{noop}admin").roles("PLAYER", "ADMIN").build()
         );
     }*/
-    private final RequestMatcher adminUrls = new OrRequestMatcher(
+   /* private final RequestMatcher adminUrls = new OrRequestMatcher(
             //users
             new AntPathRequestMatcher("/users", "GET"), //get all users
 
@@ -55,7 +55,7 @@ public class SecurityConfig {
             //auth
             new AntPathRequestMatcher("/auth", "POST")
 
-    );
+    );*/
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -63,7 +63,6 @@ public class SecurityConfig {
 		    .authorizeHttpRequests()
                 .anyRequest()
                 .permitAll()
-
 
                 .and()
                 .formLogin().disable()

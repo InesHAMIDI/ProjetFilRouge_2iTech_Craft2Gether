@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/auth") //Route general
-@CrossOrigin
+@CrossOrigin("http://localhost:8080")
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring@NoArgsConstructor
 @PermitAll()
@@ -16,7 +16,7 @@ public class AuthController {
     private UserService userService;
     private PasswordEncoder passwordEncoder;
     // POST
-    @PermitAll()
+    @PermitAll
     @PostMapping
     public User authenticate(@RequestParam String username, @RequestParam String password){
         User user = userService.findByUsername(username);

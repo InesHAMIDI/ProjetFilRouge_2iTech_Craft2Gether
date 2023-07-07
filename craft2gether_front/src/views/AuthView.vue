@@ -1,7 +1,7 @@
 <template>
     <div class="form">
         <h1>Authentification</h1>
-        <form @submit="seConnecter">
+        <form @submit.prevent="seConnecter">
             <div class="us">
                 <label for="username">Identifiant </label>
                 <input type="text" v-model="username" id="username">
@@ -10,14 +10,14 @@
                 <label for="password">Mot de passe </label>
                 <input type="password" v-model="password" id="password">
             </div>
-            <button> Se connecter </button>
+            <button>Se connecter</button>
         </form>
+        <p>{{ erreur }}</p>
     </div>
 </template> 
 
 <script>
 import { useConnection } from '@/connexion/CheckConnection'
-import axios from 'axios'
 import { useRouter } from 'vue-router'
 const router = useRouter();
 
@@ -28,19 +28,29 @@ const router = useRouter();
 			return {
 				connection: useConnection(),
                 password: "",
-                username: ""
+                username: "",
+                erreur: "",
 			}
 		},
 		methods: {
             seConnecter(){
-                axios.post(`${this.baseUrl}/auth`, this.username, this.password)
+                this.axios
+                .post(`${this.baseUrl}/auth`, null, {
+                    params:{
+                        username: this.username, 
+                        password: this.password
+                    }
+                })
                 .then(res => {
                     this.connection.login(res.data);
                     console.log(res.data)
+                    console.log("------------")
+                    console.log(this.connection.isConnected)
                     router.push('home');
                 })
-                .catch(function(error) {
-                    console.log(error);
+                .catch(error => {
+                    console.log("bboofdbs")
+                    this.erreur = error.data;
                 });
             }
     }
@@ -48,6 +58,9 @@ const router = useRouter();
 </script>
 
 <style scoped>
+p{
+    color:firebrick;
+}
 .form{
   display: flex;
   align-items: center;

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RequestMapping("/blocs") //Route general
-@CrossOrigin
+@CrossOrigin("http://localhost:8080")
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring@NoArgsConstructor
 @RolesAllowed({"PLAYER", "ADMIN"}) //Il faut avoir l'un ou l'autre, s'écrit aussi @Secured({"ROLE_ADMIN", "ROLE_USER"})

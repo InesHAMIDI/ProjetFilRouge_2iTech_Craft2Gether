@@ -5,19 +5,22 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import {axiosInterceptor} from '@/interceptors/axios-request-interceptor'
 import { createPinia } from 'pinia'
+//import { useConnection } from '@/connexion/CheckConnection'
 
 const app = createApp(App);
 const pinia = createPinia()
 axios.interceptors.request.use(axiosInterceptor)
 app.config.globalProperties.baseUrl = "http://localhost:3000/ctg"
-router.beforeEach((to, from, next) => {
-    if (to != 'auth' && (localStorage.getItem('token') == null && localStorage.getItem('token') == undefined) ) {
-        router.push({name: 'auth'})
-    }
-    next()
-})
-app
-app.use(router).use(VueAxios, axios).use(pinia).mount('#app');
+app.use(pinia)
+// const auth = useConnection()
+
+// router.beforeEach((to, from, next) => {
+//   if (to.name !== 'auth' && !auth.isConnected) next({ name: 'auth' })
+//   else next()
+// // })
+
+app.use(router).use(VueAxios, axios).mount('#app');
+app.provide('global', 'injections')
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
