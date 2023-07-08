@@ -23,7 +23,5 @@ public class AuthController {
         if(!passwordEncoder.matches(password, user.getPassword()))
            throw new RuntimeException();
         return user;
-
     };
-
 }

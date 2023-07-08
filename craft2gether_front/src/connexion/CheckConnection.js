@@ -4,7 +4,6 @@ export const useConnection = defineStore('connection', {
     state() {
         return {
             userCredentials: "",
-            userRoles:"",
             userConnected: false
         }
     },
@@ -25,7 +24,6 @@ export const useConnection = defineStore('connection', {
                 username: data.username,
                 password: data.password
             }
-            this.userRoles = data.roles;
             localStorage.setItem('credentials', JSON.stringify(this.userCredentials));
             console.log(JSON.parse(localStorage.getItem('credentials')))
 
@@ -38,12 +36,5 @@ export const useConnection = defineStore('connection', {
             }
         },
 
-        lastConnectionAvailable() {
-            let cred = localStorage.getItem("credentials");
-            if(cred != undefined) {
-                    this.userConnected = true;
-                }
-            }
-        },
     }
-)
+})

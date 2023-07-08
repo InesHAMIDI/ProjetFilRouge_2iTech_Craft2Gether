@@ -1,11 +1,10 @@
 <template>
     <div class="user-card">
         <div class="card">
-            <img class="card-img-top" :src="profilePic" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{ user.name }}</h5>
-            <p class="card-text">Listes : {{ nombredeListes }}</p>
-        </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ user.name }}</h5>
+                <p class="card-text">Listes : {{ nombredeListes }}</p>
+            </div>
         </div>
     </div>
 </template>

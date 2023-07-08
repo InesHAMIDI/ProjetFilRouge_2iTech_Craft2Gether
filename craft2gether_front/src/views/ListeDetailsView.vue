@@ -10,8 +10,8 @@
             <th scope="col"></th> <!-- Quantite farmée / quantité -->
             <th scope="col"></th> <!-- Status -->
         </thead>
-        <tbody v-for="recette in liste.recettes" :key="recette">
-                <tr v-for="ingredient in recette.ingredients" :key="ingredient">
+        <tbody v-for="recette in this.recettes" :key="recette.id">
+                <tr v-for="ingredient in this.ingredients" :key="ingredient.id">
                     <td>{{ ingredient.nom }}</td>
                     <td>{{ ingredient.quantite }}</td>
                 </tr>
@@ -56,13 +56,15 @@ export default {
         recettes(){
             return this.liste.recettes;
         },
+        ingredients(){
+           return this.getIngr()
+        }
     },
 
     mounted() {
         this.axios.get(`${this.baseUrl}/listes/${this.id}`)
             .then(response => this.liste = response.data)
-            .catch(err => this.erreur = err);
-
+            .catch(err => this.erreur = err);        
     },
 
     methods: {
@@ -104,6 +106,12 @@ export default {
                 .then(() => this.$router.push({ name: 'home'}))
                 .catch(err => this.erreur = err);
         },
+
+        getIngr(){
+            let ingr
+            
+            return ingr
+        }
     },
 }
 </script>

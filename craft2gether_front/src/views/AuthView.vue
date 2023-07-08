@@ -19,64 +19,66 @@
 <script>
 import { useConnection } from '@/connexion/CheckConnection'
 
-	export default {
-		components: {
-		},
-		data() {
-			return {
-				connection: useConnection(),
-                password: "",
-                username: "",
-                erreur: "",
-			}
-		},
-		methods: {
-            seConnecter(){
-                this.axios
+export default {
+    components: {
+    },
+    data() {
+        return {
+            connection: useConnection(),
+            password: "",
+            username: "",
+            erreur: "",
+        }
+    },
+    methods: {
+        seConnecter() {
+            this.axios
                 .post(`${this.baseUrl}/auth`, null, {
-                    params:{
-                        username: this.username, 
+                    params: {
+                        username: this.username,
                         password: this.password
                     }
                 })
                 .then(() => {
                     this.connection.login({
-                        username: this.username, 
+                        username: this.username,
                         password: this.password
                     });
-                    this.$router.push({ name: 'home'})
+                    this.$router.push({ name: 'home' })
                 })
                 .catch(error => {
                     console.log("bboofdbs")
                     this.erreur = error.data;
                 });
-            }
+        }
     }
 }
 </script>
 
 <style scoped>
-p{
-    color:firebrick;
-}
-.form{
-  display: flex;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
+p {
+    color: firebrick;
 }
 
-.form .us, .form .pass{
+.form {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.form .us,
+.form .pass {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-label{
+label {
     margin-right: 15px;
 }
 
-button{
+button {
     margin-top: 10px;
     background-color: #717171;
     color: white;
@@ -85,7 +87,7 @@ button{
     border: solid;
 }
 
-button:hover{
+button:hover {
     background-color: #32465a;
 }
 </style>
