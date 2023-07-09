@@ -47,8 +47,8 @@ export default {
                     this.$router.push({ name: 'home' })
                 })
                 .catch(error => {
-                    console.log("bboofdbs")
-                    this.erreur = error.data;
+                    if(error == "AxiosError: Request failed with status code 404")
+                    this.erreur = "Identifiants incorrects";
                 });
         }
     }

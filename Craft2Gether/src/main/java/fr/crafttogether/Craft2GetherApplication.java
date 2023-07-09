@@ -16,8 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static fr.crafttogether.models.Bloc.BLOCK_TYPE.MANUFACTURE;
 import static fr.crafttogether.models.Bloc.BLOCK_TYPE.NATUREL;
@@ -53,19 +52,19 @@ public class Craft2GetherApplication implements ApplicationRunner {
     }
     @Override
     public void run(ApplicationArguments args){
-      /* Bloc chene = Bloc.builder().nom("chene").biomeOrigine("all").outilNecessaire("hache_bois").type(NATUREL).build();
+       /* Bloc chene = Bloc.builder().nom("chene").biomeOrigine("all").outilNecessaire("hache_bois").type(NATUREL).build();
         Bloc plancheCheneBloc = Bloc.builder().nom("planche de chene").biomeOrigine("all").outilNecessaire("hache_bois").type(MANUFACTURE).build();
-        Map<Integer, Bloc> quantiteChene = new HashMap<Integer, Bloc>();
-        quantiteChene.put(1, chene);
+        List<Bloc> quantiteChene = new ArrayList<>();
+        quantiteChene.add(chene);
 
         Bloc fer = Bloc.builder().nom("minerai de fer").biomeOrigine("all").outilNecessaire("pioche").type(NATUREL).build();
         Bloc lingoFerBloc = Bloc.builder().nom("lingot de fer").biomeOrigine("all").outilNecessaire("pioche").type(MANUFACTURE).build();
-        Map<Integer, Bloc> quantiteLingot = new HashMap<Integer, Bloc>();
-        quantiteLingot.put(1, lingoFerBloc);
+        List<Bloc> quantiteLingot = new ArrayList<>();
+        quantiteLingot.add(lingoFerBloc);
 
         Bloc epee = Bloc.builder().nom("minerai de fer").biomeOrigine("all").outilNecessaire("pioche").type(MANUFACTURE).build();
-        Map<Integer, Bloc> quantiteLingotpourepee = new HashMap<Integer, Bloc>();
-        quantiteLingot.put(3, lingoFerBloc);
+        List<Bloc> quantiteLingotpourepee = new ArrayList<>();
+        quantiteLingot.add(lingoFerBloc);
 
         Recette plancheCheneRecette = Recette.builder().nom("Planche de chene").ingredients(quantiteChene).resultat(plancheCheneBloc).build();
         Recette lingotFerRecette = Recette.builder().nom("lingot de fer").ingredients(quantiteLingot).resultat(lingoFerBloc).build();
