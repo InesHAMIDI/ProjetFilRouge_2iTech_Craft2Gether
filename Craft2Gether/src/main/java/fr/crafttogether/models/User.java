@@ -1,26 +1,33 @@
 package fr.crafttogether.models;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
+import java.util.List;
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
+@SuperBuilder
 public class User {
-
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-
+    int id;
     @NonNull
     String username;
 
     @NonNull
     String password;
+
+    @NonNull
+    String roles;
+
+    @OneToMany(mappedBy = "createur")
+    private List<Liste> listesICreated;
+
+    @ManyToMany(mappedBy = "collaborateurs")
+    private List<Liste> listeIParticipate;
 
 }

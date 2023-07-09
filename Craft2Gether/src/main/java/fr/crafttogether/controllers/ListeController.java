@@ -1,65 +1,66 @@
 package fr.crafttogether.controllers;
 
+import fr.crafttogether.exceptions.BadRequestException;
+import fr.crafttogether.exceptions.NotFoundException;
 import fr.crafttogether.models.Liste;
+import fr.crafttogether.models.Recette;
 import fr.crafttogether.services.ListeService;
+import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import lombok.NoArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import java.util.Collection;
 
-@CrossOrigin //authorise le front sur le port 5500 de live server
 @RequestMapping("/listes") //Route general
+@CrossOrigin("http://localhost:8080")
 @RestController //Controller rest qui ne retourne pas de vue
 @AllArgsConstructor //Remplace l'autowired recommandé par spring
+@PermitAll
 public class ListeController {
     private ListeService listeService;
 
     // GET
     @GetMapping
-    public List<Liste> getListes() {
+    public Collection<Liste> getListes() {
         return listeService.findAll();
     }
 
     // GET BY ID
     @GetMapping("/{id}")
-    public ResponseEntity<Liste> getListeById(@PathVariable int id) {
+    public Liste getListeById(@PathVariable int id) {
         Liste list = listeService.findById(id);
         if (list == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "La liste recherchée n'existe pas");
+            throw new NotFoundException("La liste recherchée n'existe pas");
         }
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        return list;
     }
 
-    // POST : SAVE OR UPDATE
+    // POST : SAVE
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_PLAYER')")
     @PostMapping()
-    @ResponseStatus(code = HttpStatus.CREATED) //Permet de changer le code serveur
-    public Liste saveOrUpdateListe(@RequestBody Liste liste) {
+    public Liste saveListe(@Valid @RequestBody Liste liste) {
+        if (liste.getId() != 0)
+            throw new BadRequestException("id needs to be 0");
         return listeService.save(liste);
     }
 
-    // DELETE
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Boolean> deleteListe(@PathVariable int id) {
-        Liste list = listeService.findById(id);
-        if (list == null) {
-            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
-        }
-        listeService.deleteById(id);
-        return new ResponseEntity<>(true, HttpStatus.NO_CONTENT);
-    }
-
-    //PUT
+    // POST : UPDATE
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_PLAYER')")
     @PutMapping("/{id}")
-    public ResponseEntity<Liste> updateListe(@RequestBody Liste liste, @PathVariable int id) {
-        if (id != liste.getId()) {
-            return new ResponseEntity<>(liste, HttpStatus.BAD_REQUEST);
-        } else if (listeService.findById(id) == null) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(listeService.save(liste), HttpStatus.ACCEPTED);
+    public Liste updateListe(@PathVariable long id, @Valid @RequestBody Liste liste){
+        if(liste.getId() != id)
+            throw new BadRequestException("ids in url and object do no match");
+        return listeService.update(liste);
+    };
 
+    // DELETE
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_PLAYER')")
+    @DeleteMapping("/{id}")
+    public void deletebyId(@PathVariable int id) throws InterruptedException {
+        listeService.deleteById(id);
     }
 }
