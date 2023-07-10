@@ -5,6 +5,7 @@
             <div>
                 <label for="titre">Titre </label>
                 <input id="titre" type="text" name="titre" v-model="titre"/>
+                <button type="submit"><i class="fa-solid fa-plus"></i></button>
             </div>
             <div class="selection-deselectionRecettes">
                 <div class="rechercheRecettes">
@@ -39,7 +40,6 @@
                     </table>
                 </div>
             </div>
-            <button type="submit"><i class="fa-solid fa-plus"></i></button>
         </form>
     </div>
 </template>
@@ -74,8 +74,7 @@ export default {
             this.axios.post(`${this.baseUrl}/listes`, this.listeAEnvoyer)
                 .then(response => {
                     this.$emit('sendData', response.data)
-                    this.$refs.listeForm.resetForm()
-                    this.$router.push({ name: 'home'})
+                    this.$router.push({ name: 'home' })
                 })
                 .catch(err => this.erreur = err);
         },

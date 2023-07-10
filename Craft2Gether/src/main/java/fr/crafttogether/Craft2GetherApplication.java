@@ -52,7 +52,7 @@ public class Craft2GetherApplication implements ApplicationRunner {
     }
     @Override
     public void run(ApplicationArguments args){
-       /* Bloc chene = Bloc.builder().nom("chene").biomeOrigine("all").outilNecessaire("hache_bois").type(NATUREL).build();
+        /*Bloc chene = Bloc.builder().nom("chene").biomeOrigine("all").outilNecessaire("hache_bois").type(NATUREL).build();
         Bloc plancheCheneBloc = Bloc.builder().nom("planche de chene").biomeOrigine("all").outilNecessaire("hache_bois").type(MANUFACTURE).build();
         List<Bloc> quantiteChene = new ArrayList<>();
         quantiteChene.add(chene);

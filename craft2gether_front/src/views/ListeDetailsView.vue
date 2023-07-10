@@ -1,6 +1,5 @@
 <template>
     <h1>{{ liste.titre }}</h1>
-    <p>{{ liste.status }}</p>
 
     <div class="content">
         <p>Ingredients</p>
@@ -26,19 +25,19 @@
             <tbody>
                 <tr v-for="recette in this.recettes" :key="recette.id">
                     <td>{{ recette.nom }}</td>
-                    <td>
+                    <!-- <td>
                         <button v-if="recette.status == 'FINISHED'" @click="recettePasFinie(recette)"><i
                                 class="fa-sharp fa-regular fa-circle-check"></i></button>
                         <button v-else><i class="fa-regular fa-circle" @click="recetteFinie(recette)"></i></button>
-                    </td>
+                    </td> -->
                 </tr>
             </tbody>
         </table>
         <div class="boutons-list">
             <button @click="deleteList"><i class="fas fa-trash"></i></button>
-            <button v-if="this.liste.status == 'FINISHED'" @click="listePasFinie"><i
+            <!-- <button v-if="this.liste.status == 'FINISHED'" @click="listePasFinie"><i
                     class="fa-sharp fa-regular fa-circle-check"></i></button>
-            <button v-else><i class="fa-regular fa-circle" @click="listeFinie"></i></button>
+            <button v-else><i class="fa-regular fa-circle" @click="listeFinie"></i></button> -->
         </div>
     </div>
     <p>{{ erreur }}</p>
@@ -119,9 +118,10 @@ export default {
         },
 
         updateListe(val) {
-            this.axios.put(`${this.baseUrl}/listes/${this.id}`, val)
+            let obj = JSON.parse(JSON.stringify(val))
+            this.axios.put(`${this.baseUrl}/listes/${this.id}`, obj)
                 .then()
-                .catch(err => alert(err))
+                .catch(err => this.erreur = err)
         },
 
         deleteList() {
